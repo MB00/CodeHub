@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "android.mb00.githubclient"
+        applicationId "mb00.android.codehub"
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1

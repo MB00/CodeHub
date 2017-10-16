@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest
-    package="android.mb00.codehub"
+    package="mb00.android.codehub"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".ui.MainActivity"
+            android:name="mb00.android.codehub.ui.MainActivity"
             >
             <intent-filter
                 >
@@ -30,28 +30,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="mb00.android.codehub.ui.LoginActivity"
             />
         <activity
-            android:name=".ui.HomeActivity"
+            android:name="mb00.android.codehub.ui.HomeActivity"
             />
         <activity
-            android:name=".ui.SearchActivity"
+            android:name="mb00.android.codehub.ui.SearchActivity"
             />
         <activity
-            android:name=".ui.UserActivity"
+            android:name="mb00.android.codehub.ui.UserActivity"
             />
         <activity
-            android:name=".ui.RepoActivity"
+            android:name="mb00.android.codehub.ui.RepoActivity"
             />
         <activity
-            android:name=".ui.RepoFileActivity"
+            android:name="mb00.android.codehub.ui.RepoFileActivity"
             />
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name="mb00.android.codehub.ui.SettingsActivity"
             />
         <activity
-            android:name=".ui.AboutActivity"
+            android:name="mb00.android.codehub.ui.AboutActivity"
             />
     </application>
 
