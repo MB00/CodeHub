@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageButton
+                    android:id="@+id/home_menu_button"
+                    android:src="@drawable/ic_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@+id/home_menu_button"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:paddingLeft="20dp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/home_search_button"
+                    android:src="@drawable/ic_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:background="@null"
+                    android:paddingRight="10dp"
+                    />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/home_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/home_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <!--<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        >
+
+        <LinearLayout
+            android:id="@+id/home_drawer_list"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:background="@color/darkGrey"
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/home_drawer_avatar_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/home_drawer_username_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/home_drawer_home_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_home"
+                />
+
+            <Button
+                android:id="@+id/home_drawer_profile_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_person"
+                />
+
+            <Button
+                android:id="@+id/home_drawer_repos_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/repositories"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_repo"
+                />
+
+            <Button
+                android:id="@+id/home_drawer_gists_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gists"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_gist"
+                />
+
+            <Button
+                android:id="@+id/home_drawer_logout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/drawer_sign_out_button"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_sign_out"
+                />
+
+            <Button
+                android:id="@+id/home_drawer_settings_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/drawer_settings_button"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_settings"
+                />
+
+            <Button
+                android:id="@+id/home_drawer_about_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/drawer_about_button"
+                android:textAllCaps="false"
+                android:drawableLeft="@drawable/ic_info_white_24dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>-->
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/drawer_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        app:headerLayout="@layout/header_drawer"
+        app:menu="@menu/drawer"
+        />
+
+</android.support.v4.widget.DrawerLayout>

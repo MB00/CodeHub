@@ -1,0 +1,5 @@
+1) BundleKeys has a dedicated password key
+2) auth header stored in SharedPrefences
+3) PreferenceKeys has a dedicated auth header key
+
+4) from LoginActivity to HomeActivity

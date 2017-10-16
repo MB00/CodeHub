@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <group
+        android:id="@+id/drawer_group_one"
+        android:checkableBehavior="none"
+        >
+
+        <item
+            android:id="@+id/drawer_home_button"
+            android:checked="false"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home"
+            />
+
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_two"
+        android:checkableBehavior="none"
+        >
+
+        <item
+            android:id="@+id/drawer_profile_button"
+            android:checked="false"
+            android:icon="@drawable/ic_person"
+            android:title="@string/profile"
+            />
+
+        <item
+            android:id="@+id/drawer_repos_button"
+            android:checked="false"
+            android:icon="@drawable/ic_repo"
+            android:title="@string/repositories"
+            />
+
+        <item
+            android:id="@+id/drawer_gists_button"
+            android:checked="false"
+            android:icon="@drawable/ic_gist"
+            android:title="@string/gists"
+            />
+
+        <item
+            android:id="@+id/drawer_logout_button"
+            android:checked="false"
+            android:icon="@drawable/ic_sign_out"
+            android:title="@string/sign_out"
+            />
+
+    </group>
+
+    <group
+        android:id="@+id/drawer_group_three"
+        android:checkableBehavior="none"
+        >
+
+        <item
+            android:id="@+id/drawer_settings_button"
+            android:checked="false"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings"
+            />
+
+        <item
+            android:id="@+id/drawer_about_button"
+            android:checked="false"
+            android:icon="@drawable/ic_info_white_24dp"
+            android:title="@string/about"
+            />
+
+    </group>
+
+</menu>

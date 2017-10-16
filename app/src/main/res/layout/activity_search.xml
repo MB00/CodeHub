@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+    android:id="@id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageButton
+                    android:id="@+id/search_back_button"
+                    android:src="@drawable/ic_arrow_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|left"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+
+                    />
+
+                <HorizontalScrollView
+                    android:id="@+id/search_scroll_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@+id/search_back_button"
+                    android:paddingLeft="20dp"
+                    >
+
+                    <EditText
+                        android:id="@+id/search_query_edit_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_github"
+                        android:imeOptions="actionSearch"
+                        />
+
+                </HorizontalScrollView>
+
+                <ImageButton
+                    android:id="@+id/main_search_button"
+                    android:src="@drawable/ic_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:padding="10dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/search_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/search_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@id/drawer_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        app:headerLayout="@layout/header_drawer"
+        app:menu="@menu/drawer"
+        />
+
+</android.support.v4.widget.DrawerLayout>

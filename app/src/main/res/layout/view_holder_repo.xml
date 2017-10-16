@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:id="@+id/repo_view_holder"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/repo_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/repo_description_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/repo_language_color_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="10dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/repo_language_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/repo_stargazers_image_view"
+            android:src="@drawable/ic_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="4dp"
+            android:paddingBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/repo_stargazers_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/repo_forked_image_view"
+            android:src="@drawable/ic_forked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="2dp"
+            android:paddingBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/repo_forks_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
