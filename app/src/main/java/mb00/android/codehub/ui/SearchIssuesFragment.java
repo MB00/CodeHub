@@ -1,8 +1,6 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Issue;
 import mb00.android.codehub.api.model.IssueResult;
 import mb00.android.codehub.api.service.GitHubService;
@@ -10,6 +8,9 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.IssueAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -48,11 +49,11 @@ public class SearchIssuesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View searchIssuesView = inflater.inflate(mb00.android.codehub.R.layout.fragment_search_issues, container, false);
-        searchIssuesRecyclerView = (RecyclerView) searchIssuesView.findViewById(mb00.android.codehub.R.id.search_issues_recycler_view);
+        View searchIssuesView = inflater.inflate(R.layout.fragment_search_issues, container, false);
+        searchIssuesRecyclerView = (RecyclerView) searchIssuesView.findViewById(R.id.search_issues_recycler_view);
         searchIssuesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchIssuesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        noIssueResultsTextView = (TextView) searchIssuesView.findViewById(mb00.android.codehub.R.id.no_issue_results_text_view);
+        noIssueResultsTextView = (TextView) searchIssuesView.findViewById(R.id.no_issue_results_text_view);
 
         issue = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
         issueCall(authHeader, issue);

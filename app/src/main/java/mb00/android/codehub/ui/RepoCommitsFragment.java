@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Commit;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.CommitAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -50,10 +51,10 @@ public class RepoCommitsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View repoCommitView = inflater.inflate(mb00.android.codehub.R.layout.fragment_repo_commits, container, false);
+        View repoCommitView = inflater.inflate(R.layout.fragment_repo_commits, container, false);
 
-        repoCommitRecyclerView = (RecyclerView) repoCommitView.findViewById(mb00.android.codehub.R.id.repo_commit_recycler_view);
-        noCommitsTextView = (TextView) repoCommitView.findViewById(mb00.android.codehub.R.id.no_commits_text_view);
+        repoCommitRecyclerView = (RecyclerView) repoCommitView.findViewById(R.id.repo_commit_recycler_view);
+        noCommitsTextView = (TextView) repoCommitView.findViewById(R.id.no_commits_text_view);
 
         repoCommitRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCommitRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

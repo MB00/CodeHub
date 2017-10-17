@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.api.model.Pulse;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.PulseAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -53,10 +54,10 @@ public class UserPulseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View userPulseView = inflater.inflate(mb00.android.codehub.R.layout.fragment_user_pulse, container, false);
+        View userPulseView = inflater.inflate(R.layout.fragment_user_pulse, container, false);
 
-        userPulseRecyclerView = (RecyclerView) userPulseView.findViewById(mb00.android.codehub.R.id.user_pulse_recycler_view);
-        noUserPulseTextView = (TextView) userPulseView.findViewById(mb00.android.codehub.R.id.no_user_pulse_text_view);
+        userPulseRecyclerView = (RecyclerView) userPulseView.findViewById(R.id.user_pulse_recycler_view);
+        noUserPulseTextView = (TextView) userPulseView.findViewById(R.id.no_user_pulse_text_view);
 
         userPulseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userPulseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

@@ -1,17 +1,18 @@
 package mb00.android.codehub.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.api.model.User;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.NavigationValues;
 import mb00.android.codehub.data.PreferenceKeys;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -35,11 +36,11 @@ public class NavigationDrawerSetup {
     private static String userAvatarUrl;
 
     public static void setupNavigationDrawer(final Context context) {
-        final DrawerLayout navigationDrawer = (DrawerLayout) ((Activity)context).findViewById(mb00.android.codehub.R.id.drawer_layout);
-        NavigationView navigationView = (NavigationView) ((Activity)context).findViewById(mb00.android.codehub.R.id.drawer_navigation_view);
+        final DrawerLayout navigationDrawer = (DrawerLayout) ((Activity)context).findViewById(R.id.drawer_layout);
+        NavigationView navigationView = (NavigationView) ((Activity)context).findViewById(R.id.drawer_navigation_view);
 
-        ImageView userAvatarImageView = (ImageView) navigationView.getHeaderView(0).findViewById(mb00.android.codehub.R.id.drawer_user_avatar_image_view);
-        TextView userNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(mb00.android.codehub.R.id.drawer_user_name_text_view);
+        ImageView userAvatarImageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.drawer_user_avatar_image_view);
+        TextView userNameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_user_name_text_view);
 
         SharedPreferences preferences = context.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
         String authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
@@ -56,33 +57,33 @@ public class NavigationDrawerSetup {
                 Intent userActivityIntent = new Intent(context, UserActivity.class);
 
                 switch (item.getItemId()) {
-                    case mb00.android.codehub.R.id.drawer_home_button:
+                    case R.id.drawer_home_button:
                         Intent homeActivityIntent = new Intent(context, HomeActivity.class);
                         context.startActivity(homeActivityIntent);
                         break;
-                    case mb00.android.codehub.R.id.drawer_profile_button:
+                    case R.id.drawer_profile_button:
                         userBundle.putString(BundleKeys.USER_NAME, userName);
                         userBundle.putInt(BundleKeys.VIEW_PAGER_POSITION, NavigationValues.USER_OVERVIEW);
                         userActivityIntent.putExtras(userBundle);
                         context.startActivity(userActivityIntent);
                         break;
-                    case mb00.android.codehub.R.id.drawer_repos_button:
+                    case R.id.drawer_repos_button:
                         userBundle.putString(BundleKeys.USER_NAME, userName);
                         userBundle.putInt(BundleKeys.VIEW_PAGER_POSITION, NavigationValues.USER_REPOSITORIES);
                         userActivityIntent.putExtras(userBundle);
                         context.startActivity(userActivityIntent);
                         break;
-                    case mb00.android.codehub.R.id.drawer_gists_button:
+                    case R.id.drawer_gists_button:
                         userBundle.putString(BundleKeys.USER_NAME, userName);
                         userBundle.putInt(BundleKeys.VIEW_PAGER_POSITION, NavigationValues.USER_GISTS);
                         userActivityIntent.putExtras(userBundle);
                         context.startActivity(userActivityIntent);
                         break;
-                    case mb00.android.codehub.R.id.drawer_logout_button:
+                    case R.id.drawer_logout_button:
                         AlertDialog.Builder logoutDialog = new AlertDialog.Builder(context)
-                                .setTitle(mb00.android.codehub.R.string.sign_out_confirmation)
-                                .setNegativeButton(mb00.android.codehub.R.string.no, null)
-                                .setPositiveButton(mb00.android.codehub.R.string.yes, new DialogInterface.OnClickListener() {
+                                .setTitle(R.string.sign_out_confirmation)
+                                .setNegativeButton(R.string.no, null)
+                                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         SharedPreferences.Editor preferenceEditor = context.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE).edit();
@@ -94,11 +95,11 @@ public class NavigationDrawerSetup {
                                 });
                         logoutDialog.show();
                         break;
-                    case mb00.android.codehub.R.id.drawer_settings_button:
+                    case R.id.drawer_settings_button:
                         Intent settingsIntent = new Intent(context, SettingsActivity.class);
                         context.startActivity(settingsIntent);
                         break;
-                    case mb00.android.codehub.R.id.drawer_about_button:
+                    case R.id.drawer_about_button:
                         Intent aboutIntent = new Intent(context, AboutActivity.class);
                         context.startActivity(aboutIntent);
                         break;

@@ -1,6 +1,5 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Context;
 import mb00.android.codehub.R;
 import mb00.android.codehub.ui.RepoCodeFragment;
 import mb00.android.codehub.ui.RepoCommitsFragment;
@@ -11,6 +10,8 @@ import mb00.android.codehub.ui.RepoPullRequestsFragment;
 import mb00.android.codehub.ui.RepoPulseFragment;
 import mb00.android.codehub.ui.RepoReadmeFragment;
 import mb00.android.codehub.ui.RepoReleasesFragment;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

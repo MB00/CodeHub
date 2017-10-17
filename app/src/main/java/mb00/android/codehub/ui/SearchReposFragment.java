@@ -1,7 +1,5 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Repo;
 import mb00.android.codehub.api.model.RepoResult;
@@ -10,6 +8,9 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.RepoAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -56,7 +57,6 @@ public class SearchReposFragment extends Fragment {
 
         repo = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
         repoCall(authHeader, repo);
-
 
         return searchReposView;
     }

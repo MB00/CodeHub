@@ -1,13 +1,14 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Context;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.UserFollowersFragment;
 import mb00.android.codehub.ui.UserFollowingFragment;
 import mb00.android.codehub.ui.UserPulseFragment;
 import mb00.android.codehub.ui.UserReposFragment;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,10 +29,10 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
     public HomeFragmentPagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
 
-        pulseTabTitle = context.getResources().getString(mb00.android.codehub.R.string.pulse);
-        reposTabTitle = context.getResources().getString(mb00.android.codehub.R.string.repositories);
-        followersTabTitle = context.getResources().getString(mb00.android.codehub.R.string.followers);
-        followingTabTitle = context.getResources().getString(mb00.android.codehub.R.string.following);
+        pulseTabTitle = context.getResources().getString(R.string.pulse);
+        reposTabTitle = context.getResources().getString(R.string.repositories);
+        followersTabTitle = context.getResources().getString(R.string.followers);
+        followingTabTitle = context.getResources().getString(R.string.following);
 
         homeArgs = new Bundle();
         userLogin = context.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE).getString(PreferenceKeys.USER_NAME, "");

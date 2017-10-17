@@ -1,7 +1,5 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Context;
-
 import mb00.android.codehub.ui.UserFollowersFragment;
 import mb00.android.codehub.ui.UserFollowingFragment;
 import mb00.android.codehub.ui.UserGistsFragment;
@@ -9,6 +7,8 @@ import mb00.android.codehub.ui.UserOverviewFragment;
 import mb00.android.codehub.ui.UserPulseFragment;
 import mb00.android.codehub.ui.UserReposFragment;
 import mb00.android.codehub.ui.UserStarredFragment;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

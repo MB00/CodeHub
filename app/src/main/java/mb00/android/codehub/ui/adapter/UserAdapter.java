@@ -1,10 +1,11 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Intent;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.User;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.UserActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,9 +36,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.SearchUsersHol
 
         public SearchUsersHolder(final View itemView) {
             super(itemView);
-            userViewHolder = (LinearLayout) itemView.findViewById(mb00.android.codehub.R.id.user_view_holder);
-            loginText = (TextView) itemView.findViewById(mb00.android.codehub.R.id.user_login_text);
-            avatar = (ImageView) itemView.findViewById(mb00.android.codehub.R.id.user_avatar);
+            userViewHolder = (LinearLayout) itemView.findViewById(R.id.user_view_holder);
+            loginText = (TextView) itemView.findViewById(R.id.user_login_text);
+            avatar = (ImageView) itemView.findViewById(R.id.user_avatar);
 
             userViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -58,7 +59,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.SearchUsersHol
     @Override
     public SearchUsersHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View userView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_user, parent, false);
+        View userView = inflater.inflate(R.layout.view_holder_user, parent, false);
         return new SearchUsersHolder(userView);
     }
 

@@ -1,12 +1,13 @@
 package mb00.android.codehub.ui;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.User;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -32,11 +33,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_login);
+        setContentView(R.layout.activity_login);
 
-        usernameEditText = (EditText) findViewById(mb00.android.codehub.R.id.username_edit_text);
-        passwordEditText = (EditText) findViewById(mb00.android.codehub.R.id.password_edit_text);
-        Button loginButton = (Button) findViewById(mb00.android.codehub.R.id.sign_in_button);
+        usernameEditText = (EditText) findViewById(R.id.username_edit_text);
+        passwordEditText = (EditText) findViewById(R.id.password_edit_text);
+        Button loginButton = (Button) findViewById(R.id.sign_in_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                            Intent homeActivityIntent = new Intent(LoginActivity.this, HomeActivity.class);
                            startActivity(homeActivityIntent);
                        } else {
-                           Toast.makeText(LoginActivity.this, mb00.android.codehub.R.string.login_failure, Toast.LENGTH_SHORT).show();
+                           Toast.makeText(LoginActivity.this, R.string.login_failure, Toast.LENGTH_SHORT).show();
                        }
                     }
 

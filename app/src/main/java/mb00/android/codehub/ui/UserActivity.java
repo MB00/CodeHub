@@ -1,8 +1,10 @@
 package mb00.android.codehub.ui;
 
+import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.UserFragmentPagerAdapter;
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -30,14 +32,14 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_user);
+        setContentView(R.layout.activity_user);
 
         userBundle = getIntent().getExtras();
 
-        userToolbar = (Toolbar) findViewById(mb00.android.codehub.R.id.toolbar_user);
+        userToolbar = (Toolbar) findViewById(R.id.toolbar_user);
         setSupportActionBar(userToolbar);
 
-        userBackButton = (ImageButton) findViewById(mb00.android.codehub.R.id.user_back_button);
+        userBackButton = (ImageButton) findViewById(R.id.user_back_button);
         userBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,14 +53,14 @@ public class UserActivity extends AppCompatActivity {
                     .getString(PreferenceKeys.USER_NAME, "");
         }
 
-        userToolbarTextView = (TextView) findViewById(mb00.android.codehub.R.id.user_toolbar_text_view);
+        userToolbarTextView = (TextView) findViewById(R.id.user_toolbar_text_view);
         userToolbarTextView.setText(userName);
 
-        userViewPager = (ViewPager) findViewById(mb00.android.codehub.R.id.user_view_pager);
+        userViewPager = (ViewPager) findViewById(R.id.user_view_pager);
         userPagerAdapter = new UserFragmentPagerAdapter(getSupportFragmentManager(), this, userBundle);
         userViewPager.setAdapter(userPagerAdapter);
 
-        userTabLayout = (TabLayout) findViewById(mb00.android.codehub.R.id.user_tab_layout);
+        userTabLayout = (TabLayout) findViewById(R.id.user_tab_layout);
         userTabLayout.setupWithViewPager(userViewPager);
 
         userViewPager.setCurrentItem(userBundle.getInt(BundleKeys.VIEW_PAGER_POSITION));

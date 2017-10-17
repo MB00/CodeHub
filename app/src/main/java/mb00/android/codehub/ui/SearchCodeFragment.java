@@ -1,6 +1,7 @@
 package mb00.android.codehub.ui;
 
 import mb00.android.codehub.ui.adapter.UserAdapter;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;

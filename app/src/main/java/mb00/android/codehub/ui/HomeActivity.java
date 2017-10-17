@@ -1,8 +1,9 @@
 package mb00.android.codehub.ui;
 
-import android.content.Intent;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.ui.adapter.HomeFragmentPagerAdapter;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -30,20 +31,20 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_home);
+        setContentView(R.layout.activity_home);
 
-        homeToolbar = (Toolbar) findViewById(mb00.android.codehub.R.id.toolbar_home);
-        menuButton = (ImageButton) findViewById(mb00.android.codehub.R.id.home_menu_button);
-        searchButton = (ImageButton) findViewById(mb00.android.codehub.R.id.home_search_button);
+        homeToolbar = (Toolbar) findViewById(R.id.toolbar_home);
+        menuButton = (ImageButton) findViewById(R.id.home_menu_button);
+        searchButton = (ImageButton) findViewById(R.id.home_search_button);
 
-        homeViewPager = (ViewPager) findViewById(mb00.android.codehub.R.id.home_view_pager);
+        homeViewPager = (ViewPager) findViewById(R.id.home_view_pager);
         homePagerAdapter = new HomeFragmentPagerAdapter(getSupportFragmentManager(), this);
         homeViewPager.setAdapter(homePagerAdapter);
 
-        homeTabLayout = (TabLayout) findViewById(mb00.android.codehub.R.id.home_tab_layout);
+        homeTabLayout = (TabLayout) findViewById(R.id.home_tab_layout);
         homeTabLayout.setupWithViewPager(homeViewPager);
 
-        navigationDrawer = (DrawerLayout) findViewById(mb00.android.codehub.R.id.drawer_layout);
+        navigationDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

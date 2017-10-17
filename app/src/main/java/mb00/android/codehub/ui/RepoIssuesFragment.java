@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Issue;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.IssueAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -50,10 +51,10 @@ public class RepoIssuesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View repoCodeView = inflater.inflate(mb00.android.codehub.R.layout.fragment_repo_issues, container, false);
+        View repoCodeView = inflater.inflate(R.layout.fragment_repo_issues, container, false);
 
-        repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(mb00.android.codehub.R.id.repo_issues_recycler_view);
-        noIssuesTextView = (TextView) repoCodeView.findViewById(mb00.android.codehub.R.id.no_issues_text_view);
+        repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_issues_recycler_view);
+        noIssuesTextView = (TextView) repoCodeView.findViewById(R.id.no_issues_text_view);
 
         repoCodeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCodeRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

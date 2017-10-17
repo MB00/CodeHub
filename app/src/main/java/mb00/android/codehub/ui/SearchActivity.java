@@ -1,7 +1,9 @@
 package mb00.android.codehub.ui;
 
+import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.adapter.SearchFragmentPagerAdapter;
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -26,17 +28,17 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_search);
+        setContentView(R.layout.activity_search);
 
         queryBundle = new Bundle();
         queryBundle.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery);
 
-        backButton = (ImageButton) findViewById(mb00.android.codehub.R.id.search_back_button);
-        searchQueryEditText = (EditText) findViewById(mb00.android.codehub.R.id.search_query_edit_text);
-        searchButton = (ImageButton) findViewById(mb00.android.codehub.R.id.main_search_button);
+        backButton = (ImageButton) findViewById(R.id.search_back_button);
+        searchQueryEditText = (EditText) findViewById(R.id.search_query_edit_text);
+        searchButton = (ImageButton) findViewById(R.id.main_search_button);
         searchPagerAdapter = new SearchFragmentPagerAdapter(getSupportFragmentManager(), this, queryBundle);
-        searchViewPager = (ViewPager) findViewById(mb00.android.codehub.R.id.search_view_pager);
-        searchTabLayout = (TabLayout) findViewById(mb00.android.codehub.R.id.search_tab_layout);
+        searchViewPager = (ViewPager) findViewById(R.id.search_view_pager);
+        searchTabLayout = (TabLayout) findViewById(R.id.search_tab_layout);
 
         searchViewPager.setAdapter(searchPagerAdapter);
         searchTabLayout.setupWithViewPager(searchViewPager);

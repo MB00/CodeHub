@@ -1,9 +1,10 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Context;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.PullRequest;
 import mb00.android.codehub.api.parser.DateParser;
+
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,16 +36,16 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestAdapter.
         public PullRequestHolder(View itemView) {
             super(itemView);
 
-            avatarImageView = (ImageView) itemView.findViewById(mb00.android.codehub.R.id.repo_pull_request_avatar_image_view);
-            titleTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.repo_pull_request_title_text_view);
-            detailTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.repo_pull_request_detail_text_view);
+            avatarImageView = (ImageView) itemView.findViewById(R.id.repo_pull_request_avatar_image_view);
+            titleTextView = (TextView) itemView.findViewById(R.id.repo_pull_request_title_text_view);
+            detailTextView = (TextView) itemView.findViewById(R.id.repo_pull_request_detail_text_view);
         }
     }
 
     @Override
     public PullRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View pullRequestView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_pull_request, parent, false);
+        View pullRequestView = inflater.inflate(R.layout.view_holder_pull_request, parent, false);
         return new PullRequestHolder(pullRequestView);
     }
 

@@ -1,7 +1,9 @@
 package mb00.android.codehub.ui;
 
+import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -27,11 +29,11 @@ public class RepoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_repo);
+        setContentView(R.layout.activity_repo);
 
         repoBundle = getIntent().getExtras();
 
-        repoBackButton = (ImageButton) findViewById(mb00.android.codehub.R.id.repo_back_button);
+        repoBackButton = (ImageButton) findViewById(R.id.repo_back_button);
         repoBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,14 +43,14 @@ public class RepoActivity extends AppCompatActivity {
 
         repoFullName = repoBundle.getString(BundleKeys.REPO_FULL_NAME);
 
-        repoToolbarTextView = (TextView) findViewById(mb00.android.codehub.R.id.repo_toolbar_text_view);
+        repoToolbarTextView = (TextView) findViewById(R.id.repo_toolbar_text_view);
         repoToolbarTextView.setText(repoFullName);
 
-        repoViewPager = (ViewPager) findViewById(mb00.android.codehub.R.id.repo_view_pager);
+        repoViewPager = (ViewPager) findViewById(R.id.repo_view_pager);
         repoPagerAdapter = new RepoFragmentPagerAdapter(getSupportFragmentManager(), this, repoBundle);
         repoViewPager.setAdapter(repoPagerAdapter);
 
-        repoTabLayout = (TabLayout) findViewById(mb00.android.codehub.R.id.repo_tab_layout);
+        repoTabLayout = (TabLayout) findViewById(R.id.repo_tab_layout);
         repoTabLayout.setupWithViewPager(repoViewPager);
 
         NavigationDrawerSetup.setupNavigationDrawer(RepoActivity.this);

@@ -1,6 +1,8 @@
 package mb00.android.codehub.ui.adapter;
 
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Gist;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,16 +29,16 @@ public class UserGistsAdapter extends RecyclerView.Adapter<UserGistsAdapter.User
         public UserGistHolder(View itemView) {
             super(itemView);
 
-            gistDescriptionTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.gist_description_text_view);
-            gistFileCountTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.gist_file_count_text_view);
-            gistCommentCountTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.gist_comment_count_text_view);
+            gistDescriptionTextView = (TextView) itemView.findViewById(R.id.gist_description_text_view);
+            gistFileCountTextView = (TextView) itemView.findViewById(R.id.gist_file_count_text_view);
+            gistCommentCountTextView = (TextView) itemView.findViewById(R.id.gist_comment_count_text_view);
         }
     }
 
     @Override
     public UserGistHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View userGistView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_gist, parent, false);
+        View userGistView = inflater.inflate(R.layout.view_holder_gist, parent, false);
         return new UserGistHolder(userGistView);
     }
 

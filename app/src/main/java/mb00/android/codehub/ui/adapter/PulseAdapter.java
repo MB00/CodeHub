@@ -1,9 +1,10 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Context;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Pulse;
 import mb00.android.codehub.api.parser.DateParser;
+
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;

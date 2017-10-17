@@ -1,10 +1,11 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Context;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.ui.SearchIssuesFragment;
 import mb00.android.codehub.ui.SearchReposFragment;
 import mb00.android.codehub.ui.SearchUsersFragment;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,9 +23,9 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public SearchFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle queryArgs) {
         super(fragmentManager);
-        reposTabTitle = context.getResources().getString(mb00.android.codehub.R.string.repositories);
-        usersTabTitle = context.getResources().getString(mb00.android.codehub.R.string.users);
-        issuesTabTitle = context.getResources().getString(mb00.android.codehub.R.string.issues);
+        reposTabTitle = context.getResources().getString(R.string.repositories);
+        usersTabTitle = context.getResources().getString(R.string.users);
+        issuesTabTitle = context.getResources().getString(R.string.issues);
         this.queryArgs = queryArgs;
     }
 

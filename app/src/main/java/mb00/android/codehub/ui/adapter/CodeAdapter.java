@@ -1,11 +1,12 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Intent;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Code;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.RepoFileActivity;
 import mb00.android.codehub.ui.RepoCodeFragment;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -47,10 +48,10 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
             super(itemView);
 
 
-            codeViewHolder = (LinearLayout) itemView.findViewById(mb00.android.codehub.R.id.code_view_holder);
-            codeTypeImageView = (ImageView) itemView.findViewById(mb00.android.codehub.R.id.code_type_image_view);
-            codeTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.code_text_view);
-            codeSizeTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.code_size_text_view);
+            codeViewHolder = (LinearLayout) itemView.findViewById(R.id.code_view_holder);
+            codeTypeImageView = (ImageView) itemView.findViewById(R.id.code_type_image_view);
+            codeTextView = (TextView) itemView.findViewById(R.id.code_text_view);
+            codeSizeTextView = (TextView) itemView.findViewById(R.id.code_size_text_view);
 
             codeViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -109,7 +110,7 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
     @Override
     public CodeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View codeView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_code, parent, false);
+        View codeView = inflater.inflate(R.layout.view_holder_code, parent, false);
         return new CodeHolder(codeView);
     }
 
@@ -118,10 +119,10 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
         Code code = codeList.get(position);
 
         if (code.getType().equals("dir")) {
-            holder.codeTypeImageView.setImageResource(mb00.android.codehub.R.drawable.ic_directory);
+            holder.codeTypeImageView.setImageResource(R.drawable.ic_directory);
             holder.codeSizeTextView.setVisibility(View.GONE);
         } else { // code.getType().equals("file")
-            holder.codeTypeImageView.setImageResource(mb00.android.codehub.R.drawable.ic_file);
+            holder.codeTypeImageView.setImageResource(R.drawable.ic_file);
             holder.codeSizeTextView.setText(parseSize(code.getSize()));
         }
         holder.codeTextView.setText(code.getName());

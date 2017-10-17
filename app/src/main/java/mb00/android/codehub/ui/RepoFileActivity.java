@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.Base64Decoder;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.api.model.Code;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,7 +41,7 @@ public class RepoFileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_repo_file);
+        setContentView(R.layout.activity_repo_file);
 
         preferences = getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
         authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
@@ -49,10 +50,10 @@ public class RepoFileActivity extends AppCompatActivity {
         fileName = getIntent().getExtras().getString(BundleKeys.FILE_NAME);
         filePath = getIntent().getExtras().getString(BundleKeys.FILE_PATH);
 
-        fileToolbar = (Toolbar) findViewById(mb00.android.codehub.R.id.toolbar_file);
-        fileBackButton = (ImageButton) fileToolbar.findViewById(mb00.android.codehub.R.id.file_back_button);
-        fileTitleTextView = (TextView) fileToolbar.findViewById(mb00.android.codehub.R.id.file_title_text_view);
-        fileTextView = (TextView) findViewById(mb00.android.codehub.R.id.repo_file_text_view);
+        fileToolbar = (Toolbar) findViewById(R.id.toolbar_file);
+        fileBackButton = (ImageButton) fileToolbar.findViewById(R.id.file_back_button);
+        fileTitleTextView = (TextView) fileToolbar.findViewById(R.id.file_title_text_view);
+        fileTextView = (TextView) findViewById(R.id.repo_file_text_view);
 
         fileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

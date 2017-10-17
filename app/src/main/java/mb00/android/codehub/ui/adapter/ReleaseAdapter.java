@@ -1,11 +1,10 @@
 package mb00.android.codehub.ui.adapter;
 
-
-import android.content.Context;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Release;
 import mb00.android.codehub.api.parser.DateParser;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,9 +39,9 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ReleaseH
         public ReleaseHolder(final View itemView) {
             super(itemView);
 
-            releaseAvatarImageView = (ImageView) itemView.findViewById(mb00.android.codehub.R.id.repo_release_avatar_image_view);
-            releaseTitleTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.repo_release_title_text_view);
-            releaseDetailTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.repo_release_detail_text_view);
+            releaseAvatarImageView = (ImageView) itemView.findViewById(R.id.repo_release_avatar_image_view);
+            releaseTitleTextView = (TextView) itemView.findViewById(R.id.repo_release_title_text_view);
+            releaseDetailTextView = (TextView) itemView.findViewById(R.id.repo_release_detail_text_view);
             //releaseDownloadButton = (ImageButton) itemView.findViewById(R.id.repo_release_download_button);
 
             /*releaseDownloadButton.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +101,7 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ReleaseH
     @Override
     public ReleaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View releaseView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_release, parent, false);
+        View releaseView = inflater.inflate(R.layout.view_holder_release, parent, false);
         return new ReleaseHolder(releaseView);
     }
 

@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.User;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.UserAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -53,10 +54,10 @@ public class UserFollowingFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View userFollowerView = inflater.inflate(mb00.android.codehub.R.layout.fragment_user_following, container, false);
+        View userFollowerView = inflater.inflate(R.layout.fragment_user_following, container, false);
 
-        userFollowingRecyclerView = (RecyclerView) userFollowerView.findViewById(mb00.android.codehub.R.id.user_following_recycler_view);
-        noneFollowingTextView = (TextView) userFollowerView.findViewById(mb00.android.codehub.R.id.none_following_text_view);
+        userFollowingRecyclerView = (RecyclerView) userFollowerView.findViewById(R.id.user_following_recycler_view);
+        noneFollowingTextView = (TextView) userFollowerView.findViewById(R.id.none_following_text_view);
 
         userFollowingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userFollowingRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

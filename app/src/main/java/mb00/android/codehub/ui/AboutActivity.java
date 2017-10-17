@@ -1,5 +1,7 @@
 package mb00.android.codehub.ui;
 
+import mb00.android.codehub.R;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +14,11 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(mb00.android.codehub.R.layout.activity_about);
+        setContentView(R.layout.activity_about);
 
-        aboutToolbar = (Toolbar) findViewById(mb00.android.codehub.R.id.toolbar_about);
-        aboutToolbar.setTitle(mb00.android.codehub.R.string.app_name);
+        aboutToolbar = (Toolbar) findViewById(R.id.toolbar_about);
+        aboutToolbar.setTitle(R.string.app_name);
+
         setSupportActionBar(aboutToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

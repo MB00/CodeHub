@@ -1,5 +1,6 @@
 package mb00.android.codehub.ui.adapter;
 
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Issue;
 import mb00.android.codehub.api.parser.DateParser;
 import android.support.v7.widget.RecyclerView;
@@ -29,16 +30,16 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.SearchIssues
         public SearchIssuesHolder(View itemView) {
             super(itemView);
 
-            statusImageView = (ImageView) itemView.findViewById(mb00.android.codehub.R.id.issue_status_image_view);
-            titleTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.issue_title_text_view);
-            dateTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.issue_date_text_view);
+            statusImageView = (ImageView) itemView.findViewById(R.id.issue_status_image_view);
+            titleTextView = (TextView) itemView.findViewById(R.id.issue_title_text_view);
+            dateTextView = (TextView) itemView.findViewById(R.id.issue_date_text_view);
         }
     }
 
     @Override
     public SearchIssuesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View issueView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_issue, parent, false);
+        View issueView = inflater.inflate(R.layout.view_holder_issue, parent, false);
         return new SearchIssuesHolder(issueView);
     }
 
@@ -49,11 +50,11 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.SearchIssues
         String state = issue.getState();
 
         if (state.equals("open")) {
-            holder.statusImageView.setImageResource(mb00.android.codehub.R.drawable.ic_issue_open);
+            holder.statusImageView.setImageResource(R.drawable.ic_issue_open);
             String openDate = "Opened " + DateParser.parseEnglish(issue.getOpenDate());
             holder.dateTextView.setText(openDate);
         } else { // "closed"
-            holder.statusImageView.setImageResource(mb00.android.codehub.R.drawable.ic_issue_closed);
+            holder.statusImageView.setImageResource(R.drawable.ic_issue_closed);
             String closedDate = "Closed " + DateParser.parseEnglish(issue.getCloseDate());
             holder.dateTextView.setText(closedDate);
         }

@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Code;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.api.Base64Decoder;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -43,8 +44,8 @@ public class RepoLicenseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View repoLicenseView = inflater.inflate(mb00.android.codehub.R.layout.fragment_repo_license, container, false);
-        licenseTextView = (TextView) repoLicenseView.findViewById(mb00.android.codehub.R.id.repo_license_text_view);
+        View repoLicenseView = inflater.inflate(R.layout.fragment_repo_license, container, false);
+        licenseTextView = (TextView) repoLicenseView.findViewById(R.id.repo_license_text_view);
         
         repoLicenseCall(authHeader, userName, repoName);
 
@@ -63,7 +64,7 @@ public class RepoLicenseFragment extends Fragment {
                     String license = Base64Decoder.decodeBase64(response.body().getContent());
                     licenseTextView.setText(license);
                 } else {
-                    licenseTextView.setText(mb00.android.codehub.R.string.no_license);
+                    licenseTextView.setText(R.string.no_license);
                 }
             }
 

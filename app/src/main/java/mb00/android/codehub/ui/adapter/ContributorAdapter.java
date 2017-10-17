@@ -1,10 +1,11 @@
 package mb00.android.codehub.ui.adapter;
 
-import android.content.Intent;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Contributor;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.UserActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

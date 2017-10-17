@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Code;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.CodeAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -59,15 +60,15 @@ public class RepoCodeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         layoutInflater = inflater;
-        View repoCodeView = inflater.inflate(mb00.android.codehub.R.layout.fragment_repo_code, container, false);
+        View repoCodeView = inflater.inflate(R.layout.fragment_repo_code, container, false);
 
-        repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(mb00.android.codehub.R.id.repo_code_recycler_view);
+        repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_code_recycler_view);
         repoCodeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCodeRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
 
         repoCodeCall(repoCodeRecyclerView, authHeader, userName, repoName, "");
 
-        pathHomeButton = (ImageButton) repoCodeView.findViewById(mb00.android.codehub.R.id.path_home_button);
+        pathHomeButton = (ImageButton) repoCodeView.findViewById(R.id.path_home_button);
         pathHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,8 +119,8 @@ public class RepoCodeFragment extends Fragment {
 
     // Parses the path and turns each directory into a clickable TextView
     public static void displayPathAsViewObjects(String path, Context context, ViewGroup viewParent) {
-        View repoCodeView = layoutInflater.inflate(mb00.android.codehub.R.layout.fragment_repo_code, viewParent, false);
-        LinearLayout dynamicPath = (LinearLayout) repoCodeView.findViewById(mb00.android.codehub.R.id.repo_dynamic_path);
+        View repoCodeView = layoutInflater.inflate(R.layout.fragment_repo_code, viewParent, false);
+        LinearLayout dynamicPath = (LinearLayout) repoCodeView.findViewById(R.id.repo_dynamic_path);
         List<String> pathList = new ArrayList<>();
 
         int parsePosition = 0;
@@ -143,7 +144,7 @@ public class RepoCodeFragment extends Fragment {
             pathSeparator.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             pathTextView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-            pathSeparator.setImageResource(mb00.android.codehub.R.drawable.ic_chevron_right);
+            pathSeparator.setImageResource(R.drawable.ic_chevron_right);
             pathTextView.setText(pathList.get(j));
 
             dynamicPath.addView(pathSeparator);

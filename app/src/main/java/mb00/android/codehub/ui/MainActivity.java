@@ -1,8 +1,9 @@
 package mb00.android.codehub.ui;
 
+import mb00.android.codehub.data.PreferenceKeys;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import mb00.android.codehub.data.PreferenceKeys;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
             Intent loginActivityIntent = new Intent(this, LoginActivity.class);
             startActivity(loginActivityIntent);
         }
-
     }
 
 }

@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.User;
 import mb00.android.codehub.api.parser.DateParser;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -51,16 +52,16 @@ public class UserOverviewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View userOverviewView = inflater.inflate(mb00.android.codehub.R.layout.fragment_user_overview, container, false);
+        View userOverviewView = inflater.inflate(R.layout.fragment_user_overview, container, false);
 
-        userAvatarImageView = (ImageView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_avatar_image_view);
-        userNameTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_name_text_view);
-        userLoginTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_login_text_view);
-        userCompanyTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_company_text_view);
-        userLocationTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_location_text_view);
-        userEmailTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_email_text_view);
-        userWebsiteTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_website_text_view);
-        userCreationDateTextView = (TextView) userOverviewView.findViewById(mb00.android.codehub.R.id.user_overview_creation_date_text_view);
+        userAvatarImageView = (ImageView) userOverviewView.findViewById(R.id.user_overview_avatar_image_view);
+        userNameTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_name_text_view);
+        userLoginTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_login_text_view);
+        userCompanyTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_company_text_view);
+        userLocationTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_location_text_view);
+        userEmailTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_email_text_view);
+        userWebsiteTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_website_text_view);
+        userCreationDateTextView = (TextView) userOverviewView.findViewById(R.id.user_overview_creation_date_text_view);
 
         userOverViewCall(authHeader, userLogin);
 

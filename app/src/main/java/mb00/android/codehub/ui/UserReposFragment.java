@@ -1,14 +1,15 @@
 package mb00.android.codehub.ui;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Repo;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.RepoAdapter;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -53,10 +54,10 @@ public class UserReposFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View userRepoView = inflater.inflate(mb00.android.codehub.R.layout.fragment_user_repos, container, false);
+        View userRepoView = inflater.inflate(R.layout.fragment_user_repos, container, false);
 
-        userReposRecyclerView = (RecyclerView) userRepoView.findViewById(mb00.android.codehub.R.id.user_repos_recycler_view);
-        noReposTextView = (TextView) userRepoView.findViewById(mb00.android.codehub.R.id.no_repos_text_view);
+        userReposRecyclerView = (RecyclerView) userRepoView.findViewById(R.id.user_repos_recycler_view);
+        noReposTextView = (TextView) userRepoView.findViewById(R.id.no_repos_text_view);
 
         userReposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userReposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

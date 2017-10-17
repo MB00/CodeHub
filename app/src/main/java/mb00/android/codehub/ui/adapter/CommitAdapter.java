@@ -1,10 +1,10 @@
 package mb00.android.codehub.ui.adapter;
 
-
-import android.content.Context;
-
+import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Commit;
 import mb00.android.codehub.api.parser.DateParser;
+
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
 
 public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.CommitHolder> {
 
@@ -35,16 +36,16 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.CommitHold
         public CommitHolder(View itemView) {
             super(itemView);
 
-            commitAvatarImageView = (ImageView) itemView.findViewById(mb00.android.codehub.R.id.repo_commit_avatar_image_view);
-            commitTitleTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.repo_commit_title_text_view);
-            commitDetailTextView = (TextView) itemView.findViewById(mb00.android.codehub.R.id.repo_commit_detail_text_view);
+            commitAvatarImageView = (ImageView) itemView.findViewById(R.id.repo_commit_avatar_image_view);
+            commitTitleTextView = (TextView) itemView.findViewById(R.id.repo_commit_title_text_view);
+            commitDetailTextView = (TextView) itemView.findViewById(R.id.repo_commit_detail_text_view);
         }
     }
 
     @Override
     public CommitHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View commitView = inflater.inflate(mb00.android.codehub.R.layout.view_holder_commit, parent, false);
+        View commitView = inflater.inflate(R.layout.view_holder_commit, parent, false);
         return new CommitHolder(commitView);
     }
 
