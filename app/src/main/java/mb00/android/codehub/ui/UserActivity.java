@@ -20,7 +20,6 @@ public class UserActivity extends AppCompatActivity {
 
     private Bundle userBundle;
 
-    private Toolbar userToolbar;
     private ImageButton userBackButton;
     private String userName;
     private TextView userToolbarTextView;
@@ -35,9 +34,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         userBundle = getIntent().getExtras();
-
-        userToolbar = (Toolbar) findViewById(R.id.toolbar_user);
-        setSupportActionBar(userToolbar);
 
         userBackButton = (ImageButton) findViewById(R.id.user_back_button);
         userBackButton.setOnClickListener(new View.OnClickListener() {

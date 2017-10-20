@@ -13,10 +13,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,12 +66,16 @@ public class RepoReadmeFragment extends Fragment {
             public void onResponse(Call<Readme> call, Response<Readme> response) {
                 if (response.isSuccessful()) {
                     String readmeMarkdown = Base64Decoder.decodeBase64(response.body().getContent());
-                    String readmeParsed = MarkdownParser.parseMarkdown(readmeMarkdown);
-                    repoReadmeTextView.setText(readmeParsed);
+                    Parser parser = Parser.builder().build();
+                    Node document = parser.parse(readmeMarkdown);
+                    HtmlRenderer renderer = HtmlRenderer.builder().build();
+                    String readmeHtml = renderer.render(document);
+
+                    //String readmeParsed = MarkdownParser.parseMarkdown();
+                    repoReadmeTextView.setText(Html.fromHtml(readmeHtml));
                 } else {
                     repoReadmeTextView.setText(R.string.no_readme);
                 }
-
             }
 
             @Override

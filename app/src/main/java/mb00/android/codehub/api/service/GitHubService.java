@@ -2,6 +2,7 @@ package mb00.android.codehub.api.service;
 
 import mb00.android.codehub.api.model.Branch;
 import mb00.android.codehub.api.model.CodeResult;
+import mb00.android.codehub.api.model.Comment;
 import mb00.android.codehub.api.model.Commit;
 import mb00.android.codehub.api.model.Contributor;
 import mb00.android.codehub.api.model.Gist;
@@ -98,5 +99,12 @@ public interface GitHubService {
 
     @GET("repos/{user}/{repo}/contributors")
     Call<List<Contributor>> getRepoContributors(@Header("Authorization") String authHeader, @Path("user") String user, @Path("repo") String repo);
+
+
+    @GET("gists/{gist}")
+    Call<List<Code>> getGistContents(@Header("Authorization") String authHeader, @Path("gist") String gist);
+
+    @GET("gists/{gist}/comments")
+    Call<List<Comment>> getGistComments(@Header("Authorization") String authHeader, @Path("gist") String gist);
 
 }

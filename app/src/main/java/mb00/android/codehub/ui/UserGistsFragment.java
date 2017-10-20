@@ -6,7 +6,7 @@ import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.adapter.UserGistsAdapter;
+import mb00.android.codehub.ui.adapter.GistsAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -35,7 +35,7 @@ public class UserGistsFragment extends Fragment {
     private String userName;
 
     private RecyclerView userGistsRecyclerView;
-    private UserGistsAdapter searchGistsAdapter;
+    private GistsAdapter searchGistsAdapter;
     private TextView noGistsTextView;
 
     @Override
@@ -73,7 +73,7 @@ public class UserGistsFragment extends Fragment {
                 List<Gist> userGistList = response.body();
 
                 if (userGistList.size() > 0) {
-                    searchGistsAdapter = new UserGistsAdapter(userGistList);
+                    searchGistsAdapter = new GistsAdapter(userGistList);
                     userGistsRecyclerView.setAdapter(searchGistsAdapter);
                 } else {
                     noGistsTextView.setVisibility(View.VISIBLE);

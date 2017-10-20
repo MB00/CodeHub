@@ -1,5 +1,8 @@
 package mb00.android.codehub.api.parser;
 
+import android.text.Html;
+
+// not currently used
 
 public class MarkdownParser {
 

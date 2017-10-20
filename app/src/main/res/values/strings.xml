@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">CodeHub</string>
-    <string name="app_version">0.1 (Beta)</string>
+    <string name="app_version">0.2 (Beta)</string>
 
     <!-- Login screen -->
     <string name="sign_in_to_github">Sign in to GitHub</string>
@@ -42,6 +42,8 @@
     <string name="releases">Releases</string>
     <string name="contributors">Contributors</string>
     <string name="license">License</string>
+    <string name="files">Files</string>
+    <string name="comments">Comments</string>
 
     <!-- No results text -->
     <string name="no_results">No results</string>
@@ -58,9 +60,11 @@
     <string name="no_releases">No releases</string>
     <string name="no_contributors">No contributors</string>
     <string name="no_license">No license</string>
+    <string name="no_files">No files</string>
 
     <!-- Downloads -->
     <string name="zip_download">.zip</string>
     <string name="tar_download">tar.gz</string>
+    <string name="no_comments">No comments</string>
 
 </resources>
