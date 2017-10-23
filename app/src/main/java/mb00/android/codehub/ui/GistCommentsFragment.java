@@ -4,7 +4,9 @@ import mb00.android.codehub.R;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.api.model.Comment;
 import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.adapter.CommentAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -33,6 +35,7 @@ public class GistCommentsFragment extends Fragment {
     private String gistId;
 
     private RecyclerView gistCommentsRecyclerView;
+    private CommentAdapter commentAdapter;
     private TextView noGistCommentsTextView;
 
     @Override
@@ -46,6 +49,7 @@ public class GistCommentsFragment extends Fragment {
 
         preferences = getActivity().getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
         authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
+        gistId = getArguments().getString(BundleKeys.GIST_ID);
 
         gistCommentsRecyclerView = (RecyclerView) gistCommentsView.findViewById(R.id.gist_comments_recycler_view);
         noGistCommentsTextView = (TextView) gistCommentsView.findViewById(R.id.no_gist_comments_text_view);
@@ -68,6 +72,13 @@ public class GistCommentsFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
                 List<Comment> gistCommentList = response.body();
+
+                if (gistCommentList.size() > 0) {
+                    commentAdapter = new CommentAdapter(gistCommentList, getActivity());
+                    gistCommentsRecyclerView.setAdapter(commentAdapter);
+                } else {
+                    noGistCommentsTextView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

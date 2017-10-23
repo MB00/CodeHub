@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -32,10 +31,8 @@ public class RepoFileActivity extends AppCompatActivity {
     private String fileName;
     private String filePath;
 
-    private Toolbar fileToolbar;
     private ImageButton fileBackButton;
     private TextView fileTitleTextView;
-
     private TextView fileTextView;
 
     @Override
@@ -50,9 +47,8 @@ public class RepoFileActivity extends AppCompatActivity {
         fileName = getIntent().getExtras().getString(BundleKeys.FILE_NAME);
         filePath = getIntent().getExtras().getString(BundleKeys.FILE_PATH);
 
-        fileToolbar = (Toolbar) findViewById(R.id.toolbar_file);
-        fileBackButton = (ImageButton) fileToolbar.findViewById(R.id.file_back_button);
-        fileTitleTextView = (TextView) fileToolbar.findViewById(R.id.file_title_text_view);
+        fileBackButton = (ImageButton) findViewById(R.id.repo_file_back_button);
+        fileTitleTextView = (TextView) findViewById(R.id.repo_file_title_text_view);
         fileTextView = (TextView) findViewById(R.id.repo_file_text_view);
 
         fileBackButton.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +57,6 @@ public class RepoFileActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         fileTitleTextView.setText(fileName);
 
         codeFileCall(authHeader, userName, repoName, filePath);

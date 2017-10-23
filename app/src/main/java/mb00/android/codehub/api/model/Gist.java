@@ -2,13 +2,15 @@ package mb00.android.codehub.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Map;
+
 
 public class Gist {
 
-    @SerializedName("url")
-    private String url;
+    @SerializedName("id")
+    private String id;
     @SerializedName("files")
-    private GistFile files;
+    private Map<String, GistFile> files;
     @SerializedName("description")
     private String description;
     @SerializedName("created_at")
@@ -17,17 +19,19 @@ public class Gist {
     private String updateDate;
     @SerializedName("comments")
     private int commentCount;
+    @SerializedName("owner")
+    private Owner owner;
 
-    public String getDescription() {
-        return description;
+    public String getId() {
+        return id;
     }
 
-    public GistFile getFiles() {
+    public Map<String, GistFile> getFiles() {
         return files;
     }
 
-    public String getUrl() {
-        return url;
+    public String getDescription() {
+        return description;
     }
 
     public String getCreationDate() {
@@ -40,6 +44,10 @@ public class Gist {
 
     public int getCommentCount() {
         return commentCount;
+    }
+
+    public Owner getOwner() {
+        return owner;
     }
 
 }

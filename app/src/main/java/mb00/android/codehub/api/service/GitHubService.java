@@ -102,7 +102,7 @@ public interface GitHubService {
 
 
     @GET("gists/{gist}")
-    Call<List<Code>> getGistContents(@Header("Authorization") String authHeader, @Path("gist") String gist);
+    Call<Gist> getGistContents(@Header("Authorization") String authHeader, @Path("gist") String gist);
 
     @GET("gists/{gist}/comments")
     Call<List<Comment>> getGistComments(@Header("Authorization") String authHeader, @Path("gist") String gist);

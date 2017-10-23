@@ -10,7 +10,7 @@ public class Code {
     @SerializedName("path")
     private String path;
     @SerializedName("size")
-    private int size;
+    private String size;
     @SerializedName("type")
     private String type;
     @SerializedName("content")
@@ -24,7 +24,7 @@ public class Code {
         return path;
     }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 

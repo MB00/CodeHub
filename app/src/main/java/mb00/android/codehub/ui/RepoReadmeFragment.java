@@ -66,13 +66,8 @@ public class RepoReadmeFragment extends Fragment {
             public void onResponse(Call<Readme> call, Response<Readme> response) {
                 if (response.isSuccessful()) {
                     String readmeMarkdown = Base64Decoder.decodeBase64(response.body().getContent());
-                    Parser parser = Parser.builder().build();
-                    Node document = parser.parse(readmeMarkdown);
-                    HtmlRenderer renderer = HtmlRenderer.builder().build();
-                    String readmeHtml = renderer.render(document);
-
-                    //String readmeParsed = MarkdownParser.parseMarkdown();
-                    repoReadmeTextView.setText(Html.fromHtml(readmeHtml));
+                    String readmeParsed = MarkdownParser.parseMarkdown(readmeMarkdown);
+                    repoReadmeTextView.setText(Html.fromHtml(readmeParsed));
                 } else {
                     repoReadmeTextView.setText(R.string.no_readme);
                 }

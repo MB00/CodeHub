@@ -28,7 +28,6 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.CommitHold
     }
 
     public class CommitHolder extends RecyclerView.ViewHolder {
-
         private ImageView commitAvatarImageView;
         private TextView commitTitleTextView;
         private TextView commitDetailTextView;

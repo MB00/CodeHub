@@ -15,6 +15,7 @@
             android:id="@+id/repo_license_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             android:padding="10dp"
             />
 

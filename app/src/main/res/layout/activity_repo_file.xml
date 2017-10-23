@@ -9,7 +9,6 @@
     >
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_file"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -20,7 +19,7 @@
             >
 
             <ImageButton
-                android:id="@+id/file_back_button"
+                android:id="@+id/repo_file_back_button"
                 android:src="@drawable/ic_arrow_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,11 +31,11 @@
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toRightOf="@id/file_back_button"
+                app:layout_constraintLeft_toRightOf="@id/repo_file_back_button"
                 >
 
                 <TextView
-                    android:id="@+id/file_title_text_view"
+                    android:id="@+id/repo_file_title_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"

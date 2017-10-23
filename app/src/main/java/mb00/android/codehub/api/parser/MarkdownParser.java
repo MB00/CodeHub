@@ -1,14 +1,18 @@
 package mb00.android.codehub.api.parser;
 
-import android.text.Html;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 
-// not currently used
 
 public class MarkdownParser {
 
-    public static String parseMarkdown(String text) {
-
-        return text;
+    public static String parseMarkdown(String readmeMarkdown) {
+        Parser parser = Parser.builder().build();
+        Node document = parser.parse(readmeMarkdown);
+        HtmlRenderer renderer = HtmlRenderer.builder().build();
+        String readmeParsed = renderer.render(document);
+        return readmeParsed;
     }
 
 }
