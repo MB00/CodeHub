@@ -4,7 +4,7 @@ import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Gist;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.GistActivity;
-import mb00.android.codehub.ui.UserGistsFragment
+import mb00.android.codehub.ui.UserGistsFragment;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -21,7 +21,7 @@ import mb00.android.codehub.api.model.Comment;
 import mb00.android.codehub.api.parser.DateParser;
 import mb00.android.codehub.api.parser.MarkdownParser;
 import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.GistCommentsFragment
+import mb00.android.codehub.ui.GistCommentsFragment;
 import mb00.android.codehub.ui.UserActivity;
 
 /**

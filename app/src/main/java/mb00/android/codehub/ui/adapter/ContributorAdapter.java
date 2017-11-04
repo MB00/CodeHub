@@ -3,7 +3,7 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Contributor;
 import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.RepoContributorsFragment
+import mb00.android.codehub.ui.RepoContributorsFragment;
 import mb00.android.codehub.ui.UserActivity;
 
 import android.content.Intent;
