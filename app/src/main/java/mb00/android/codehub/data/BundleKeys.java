@@ -1,5 +1,8 @@
 package mb00.android.codehub.data;
 
+/**
+ * Collection of keys for values stored in Bundle objects
+ */
 
 public class BundleKeys {
     public static final String SEARCH_QUERY_KEY = "queryKey";

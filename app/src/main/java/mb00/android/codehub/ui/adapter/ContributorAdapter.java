@@ -3,6 +3,7 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Contributor;
 import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.RepoContributorsFragment
 import mb00.android.codehub.ui.UserActivity;
 
 import android.content.Intent;
@@ -19,21 +20,44 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * A RecyclerView adapter used to display repository contributors in {@link RepoContributorsFragment}
+ */
 
 public class ContributorAdapter extends RecyclerView.Adapter<ContributorAdapter.ContributorHolder> {
 
+    //==============================================================================================
+    // ContributorAdapter fields
+    //==============================================================================================
+
     private List<Contributor> contributorList;
+
+    //==============================================================================================
+    // ContributorAdapter constructor
+    //==============================================================================================
 
     public ContributorAdapter(List<Contributor> contributorList) {
         this.contributorList = contributorList;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class ContributorHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // ContributorHolder fields
+        //==========================================================================================
 
         private LinearLayout contributorViewHolder;
         private ImageView avatarImageView;
         private TextView titleTextView;
         private TextView detailTextView;
+
+        //==========================================================================================
+        // ContributorHolder constructor
+        //==========================================================================================
 
         public ContributorHolder(final View itemView) {
             super(itemView);
@@ -56,23 +80,12 @@ public class ContributorAdapter extends RecyclerView.Adapter<ContributorAdapter.
                     itemView.getContext().startActivity(userActivityIntent);
                 }
             });
-
-            /*
-            * userViewHolder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    User user = userList.get(getAdapterPosition());
-                    String userLogin = user.getLogin();
-                    userBundle = new Bundle();
-                    userBundle.putString(BundleKeys.USER_NAME, userLogin);
-
-                    Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
-                    userActivityIntent.putExtras(userBundle);
-                    itemView.getContext().startActivity(userActivityIntent);
-                }
-            });*/
         }
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public ContributorHolder onCreateViewHolder(ViewGroup parent, int viewType) {

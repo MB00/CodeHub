@@ -2,10 +2,21 @@ package mb00.android.codehub.ui;
 
 import android.graphics.Color;
 
+/**
+ * Contains values for GitHub language colors
+ */
 
 public class LanguageColor {
 
+    //==============================================================================================
+    // LanguageColor fields
+    //==============================================================================================
+
     public int color;
+
+    //==============================================================================================
+    // LanguageColor constructor
+    //==============================================================================================
 
     public LanguageColor(String language) {
 

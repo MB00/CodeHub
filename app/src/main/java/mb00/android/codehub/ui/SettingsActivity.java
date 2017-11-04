@@ -6,8 +6,15 @@ import android.support.v7.widget.Toolbar;
 
 import mb00.android.codehub.R;
 
+/**
+ * Launched from {@link NavigationDrawerSetup} if "Settings" item is clicked
+ */
 
 public class SettingsActivity extends AppCompatActivity {
+
+    //==============================================================================================
+    // Activity / lifecycle methods
+    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,7 +3,11 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.User;
 import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.RepoContributorsFragment;
+import mb00.android.codehub.ui.SearchUsersFragment;
 import mb00.android.codehub.ui.UserActivity;
+import mb00.android.codehub.ui.UserFollowersFragment;
+import mb00.android.codehub.ui.UserFollowingFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,22 +23,48 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * RecyclerView adapter used to display users in {@link SearchUsersFragment},
+ *                                               {@link RepoContributorsFragment},
+ *                                               {@link UserFollowersFragment},
+ *                                           and {@link UserFollowingFragment}
+ */
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.SearchUsersHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
+
+    //==============================================================================================
+    // UserAdapter fields
+    //==============================================================================================
 
     private List<User> userList;
+
+    //==============================================================================================
+    // UserAdapter constructor
+    //==============================================================================================
 
     public UserAdapter(List<User> userList) {
         this.userList = userList;
     }
 
-    public class SearchUsersHolder extends RecyclerView.ViewHolder {
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
+    public class UserHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // UserHolder fields
+        //==========================================================================================
 
         private LinearLayout userViewHolder;
         private TextView loginText;
         private ImageView avatar;
 
-        public SearchUsersHolder(final View itemView) {
+        //==========================================================================================
+        // UserHolder constructor
+        //==========================================================================================
+
+        public UserHolder(final View itemView) {
             super(itemView);
             userViewHolder = (LinearLayout) itemView.findViewById(R.id.user_view_holder);
             loginText = (TextView) itemView.findViewById(R.id.user_login_text);
@@ -56,15 +86,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.SearchUsersHol
         }
     }
 
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
+
     @Override
-    public SearchUsersHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public UserHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View userView = inflater.inflate(R.layout.view_holder_user, parent, false);
-        return new SearchUsersHolder(userView);
+        return new UserHolder(userView);
     }
 
     @Override
-    public void onBindViewHolder(SearchUsersHolder holder, int position) {
+    public void onBindViewHolder(UserHolder holder, int position) {
         User user = userList.get(position);
         String avatarUrl = user.getAvatarUrl();
         Glide.with(holder.avatar.getContext()).load(avatarUrl).into(holder.avatar);

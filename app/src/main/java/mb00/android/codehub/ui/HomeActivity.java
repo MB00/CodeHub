@@ -1,6 +1,7 @@
 package mb00.android.codehub.ui;
 
 import mb00.android.codehub.R;
+import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.HomeFragmentPagerAdapter;
 
 import android.content.Intent;
@@ -15,8 +16,15 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 
+/**
+ * Launched from {@link MainActivity} if {@link PreferenceKeys .SIGNED_IN == true}
+ */
 
 public class HomeActivity extends AppCompatActivity {
+
+    //==============================================================================================
+    // HomeActivity fields
+    //==============================================================================================
 
     private Toolbar homeToolbar;
     private ImageButton menuButton;
@@ -27,6 +35,10 @@ public class HomeActivity extends AppCompatActivity {
     private TabLayout homeTabLayout;
 
     private DrawerLayout navigationDrawer;
+
+    //==============================================================================================
+    // Activity / lifecycle methods
+    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         homeViewPager = (ViewPager) findViewById(R.id.home_view_pager);
         homePagerAdapter = new HomeFragmentPagerAdapter(getSupportFragmentManager(), this);
         homeViewPager.setAdapter(homePagerAdapter);
+        homeViewPager.setOffscreenPageLimit(4);
 
         homeTabLayout = (TabLayout) findViewById(R.id.home_tab_layout);
         homeTabLayout.setupWithViewPager(homeViewPager);

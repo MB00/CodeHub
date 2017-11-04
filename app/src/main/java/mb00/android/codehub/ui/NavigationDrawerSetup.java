@@ -29,11 +29,25 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Contains methods used to setup navigation drawer in Activities; used in {@link HomeActivity}
+ *                                                                         {@link UserActivity},
+ *                                                                         {@link RepoActivity},
+ *                                                                     and {@link SearchActivity}
+ */
 
 public class NavigationDrawerSetup {
 
+    //==============================================================================================
+    // NavigationDrawerSetup fields
+    //==============================================================================================
+
     private static String userName;
     private static String userAvatarUrl;
+
+    //==============================================================================================
+    // NavigationDrawerSetup static methods
+    //==============================================================================================
 
     public static void setupNavigationDrawer(final Context context) {
         final DrawerLayout navigationDrawer = (DrawerLayout) ((Activity)context).findViewById(R.id.drawer_layout);
@@ -87,6 +101,8 @@ public class NavigationDrawerSetup {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         SharedPreferences.Editor preferenceEditor = context.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE).edit();
+                                        preferenceEditor.putBoolean(PreferenceKeys.SIGNED_IN, false);
+                                        preferenceEditor.putString(PreferenceKeys.USER_NAME, "");
                                         preferenceEditor.putString(PreferenceKeys.AUTH_HEADER, "");
                                         preferenceEditor.apply();
                                         Intent loginActivityIntent = new Intent(context, LoginActivity.class);

@@ -7,11 +7,13 @@ import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.CommentAdapter;
+import mb00.android.codehub.ui.adapter.GistFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing gist comments; launched from {@link GistFragmentPagerAdapter}
+ */
 
 public class GistCommentsFragment extends Fragment {
+
+    //==============================================================================================
+    // GistCommentsFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -37,6 +46,11 @@ public class GistCommentsFragment extends Fragment {
     private RecyclerView gistCommentsRecyclerView;
     private CommentAdapter commentAdapter;
     private TextView noGistCommentsTextView;
+    private SwipeRefreshLayout gistCommentsSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,14 +67,25 @@ public class GistCommentsFragment extends Fragment {
 
         gistCommentsRecyclerView = (RecyclerView) gistCommentsView.findViewById(R.id.gist_comments_recycler_view);
         noGistCommentsTextView = (TextView) gistCommentsView.findViewById(R.id.no_gist_comments_text_view);
+        gistCommentsSwipeRefreshLayout = (SwipeRefreshLayout) gistCommentsView.findViewById(R.id.gist_comments_swipe_refresh_layout);
 
         gistCommentsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         gistCommentsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        gistCommentsSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                gistCommentsCall(authHeader, gistId);
+                gistCommentsSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         gistCommentsCall(authHeader, gistId);
 
         return gistCommentsView;
     }
+
+    //==============================================================================================
+    // GistCommentsFragment methods
+    //==============================================================================================
 
     private void gistCommentsCall(String header, String gist) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

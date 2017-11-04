@@ -3,6 +3,7 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.HomeActivity;
 import mb00.android.codehub.ui.UserFollowersFragment;
 import mb00.android.codehub.ui.UserFollowingFragment;
 import mb00.android.codehub.ui.UserPulseFragment;
@@ -14,8 +15,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+/**
+ * FragmentPagerAdapter used to display home-related Fragments; launched from {@link HomeActivity}
+ */
 
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    //==============================================================================================
+    // HomeFragmentPagerAdapter fields
+    //==============================================================================================
+
     private final int PAGE_COUNT = 4;
 
     private String pulseTabTitle;
@@ -25,6 +34,10 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Bundle homeArgs;
     private String userLogin;
+
+    //==============================================================================================
+    // HomeFragmentPagerAdapter constructor
+    //==============================================================================================
 
     public HomeFragmentPagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
@@ -38,6 +51,10 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
         userLogin = context.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE).getString(PreferenceKeys.USER_NAME, "");
         homeArgs.putString(BundleKeys.USER_NAME, userLogin);
     }
+
+    //==============================================================================================
+    // FragmentPagerAdapter methods
+    //==============================================================================================
 
     @Override
     public int getCount() {

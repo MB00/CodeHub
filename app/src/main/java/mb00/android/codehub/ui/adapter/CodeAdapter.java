@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.adapter;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Code;
-import mb00.android.codehub.api.model.GistFile;
 import mb00.android.codehub.api.parser.FileSizeParser;
 import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.GistFilesFragment;
 import mb00.android.codehub.ui.RepoFileActivity;
 import mb00.android.codehub.ui.RepoCodeFragment;
 
@@ -18,18 +18,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.List;
 
+/**
+ * A RecyclerView adapter used to display folders and files in {@link RepoCodeFragment}
+ */
 
 public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
+    
+    //==============================================================================================
+    // CodeAdapter fields
+    //==============================================================================================
 
     private List<Code> fileList;
     private RecyclerView fileRecyclerView;
     private String header;
     private String user;
     private String repo;
+
+    //==============================================================================================
+    // CodeAdapter constructor
+    //==============================================================================================
 
     public CodeAdapter(List<Code> fileList, RecyclerView fileRecyclerView, String header, String user, String repo) {
         this.fileList = fileList;
@@ -39,12 +48,24 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
         this.repo = repo;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class CodeHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // CodeHolder fields
+        //==========================================================================================
 
         private LinearLayout codeViewHolder;
         private ImageView codeTypeImageView;
         private TextView codeTextView;
         private TextView codeSizeTextView;
+
+        //==========================================================================================
+        // CodeHolder constructor
+        //==========================================================================================
 
         public CodeHolder(final View itemView) {
             super(itemView);
@@ -78,6 +99,10 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
         }
 
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public CodeHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -1,10 +1,15 @@
 package mb00.android.codehub.ui.adapter;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.GistFile;
+import mb00.android.codehub.api.parser.FileSizeParser;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.GistFileActivity;
+import mb00.android.codehub.ui.GistFilesFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +18,24 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.GistFile;
-import mb00.android.codehub.api.parser.FileSizeParser;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.GistFileActivity;
+/**
+ * RecyclerView adapter used to display gist files in {@link GistFilesFragment}
+ */
 
 public class GistFileAdapter extends RecyclerView.Adapter<GistFileAdapter.GistFileHolder> {
+
+    //==============================================================================================
+    // GistFileAdapter fields
+    //==============================================================================================
 
     private List<GistFile> fileList;
     private RecyclerView fileRecyclerView;
     private String header;
     private String gist;
+
+    //==============================================================================================
+    // GistFileAdapter constructor
+    //==============================================================================================
 
     public GistFileAdapter(List<GistFile> fileList, RecyclerView fileRecyclerView, String header, String gist) {
         this.fileList = fileList;
@@ -33,11 +44,23 @@ public class GistFileAdapter extends RecyclerView.Adapter<GistFileAdapter.GistFi
         this.gist = gist;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class GistFileHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // GistFileHolder fields
+        //==========================================================================================
 
         private LinearLayout gistFileViewHolder;
         private TextView gistFileTextView;
         private TextView gistFileSizeTextView;
+
+        //==========================================================================================
+        // GistFileHolder constructor
+        //==========================================================================================
 
         public GistFileHolder(View itemView) {
             super(itemView);
@@ -64,6 +87,10 @@ public class GistFileAdapter extends RecyclerView.Adapter<GistFileAdapter.GistFi
         }
 
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public GistFileHolder onCreateViewHolder(ViewGroup parent, int viewType) {

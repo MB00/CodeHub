@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.ContributorAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository contributors; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoContributorsFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoContributorsFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class RepoContributorsFragment extends Fragment {
     private RecyclerView repoContributorRecyclerView;
     private ContributorAdapter contributorAdapter;
     private TextView noContributorsTextView;
+    private SwipeRefreshLayout repoContributorsSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +69,25 @@ public class RepoContributorsFragment extends Fragment {
 
         repoContributorRecyclerView = (RecyclerView) repoContributorView.findViewById(R.id.repo_contributor_recycler_view);
         noContributorsTextView = (TextView) repoContributorView.findViewById(R.id.no_contributors_text_view);
+        repoContributorsSwipeRefreshLayout = (SwipeRefreshLayout) repoContributorView.findViewById(R.id.repo_contributors_swipe_refresh_layout);
 
         repoContributorRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoContributorRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoContributorsSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoContributorCall(authHeader, userName, repoName);
+                repoContributorsSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoContributorCall(authHeader, userName, repoName);
 
         return repoContributorView;
     }
+
+    //==============================================================================================
+    // RepoContributorsFragment methods
+    //==============================================================================================
 
     private void repoContributorCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

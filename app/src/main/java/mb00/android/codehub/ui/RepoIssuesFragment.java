@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.IssueAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository issues; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoIssuesFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoIssuesFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class RepoIssuesFragment extends Fragment {
     private RecyclerView repoCodeRecyclerView;
     private IssueAdapter issueAdapter;
     private TextView noIssuesTextView;
+    private SwipeRefreshLayout repoIssuesSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +69,25 @@ public class RepoIssuesFragment extends Fragment {
 
         repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_issues_recycler_view);
         noIssuesTextView = (TextView) repoCodeView.findViewById(R.id.no_issues_text_view);
+        repoIssuesSwipeRefreshLayout = (SwipeRefreshLayout) repoCodeView.findViewById(R.id.repo_issues_swipe_refresh_layout);
 
         repoCodeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCodeRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoIssuesSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoCodeCall(authHeader, userName, repoName);
+                repoIssuesSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoCodeCall(authHeader, userName, repoName);
 
         return repoCodeView;
     }
+
+    //==============================================================================================
+    // RepoIssuesFragment methods
+    //==============================================================================================
 
     private void repoCodeCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

@@ -7,6 +7,7 @@ import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.adapter.UserFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,8 +26,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing user overview; launched from {@link UserFragmentPagerAdapter}
+ */
 
 public class UserOverviewFragment extends Fragment {
+
+    //==============================================================================================
+    // UserOverviewFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -40,6 +48,10 @@ public class UserOverviewFragment extends Fragment {
     private TextView userEmailTextView;
     private TextView userWebsiteTextView;
     private TextView userCreationDateTextView;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +79,10 @@ public class UserOverviewFragment extends Fragment {
 
         return userOverviewView;
     }
+
+    //==============================================================================================
+    // UserOverviewFragment methods
+    //==============================================================================================
 
     private void userOverViewCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

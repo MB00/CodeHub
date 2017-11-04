@@ -13,8 +13,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+/**
+ * Launched from {@link HomeActivity} if searchButton is clicked
+ * Immediately launches {@link SearchFragmentPagerAdapter}
+ */
 
 public class SearchActivity extends AppCompatActivity {
+
+    //==============================================================================================
+    // SearchActivity fields
+    //==============================================================================================
 
     private EditText searchQueryEditText;
     private ImageButton backButton;
@@ -24,6 +32,10 @@ public class SearchActivity extends AppCompatActivity {
     private ViewPager searchViewPager;
     private PagerAdapter searchPagerAdapter;
     private TabLayout searchTabLayout;
+
+    //==============================================================================================
+    // Activity / lifecycle methods
+    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         searchTabLayout = (TabLayout) findViewById(R.id.search_tab_layout);
 
         searchViewPager.setAdapter(searchPagerAdapter);
+        searchViewPager.setOffscreenPageLimit(3);
         searchTabLayout.setupWithViewPager(searchViewPager);
 
         backButton.setOnClickListener(new View.OnClickListener() {

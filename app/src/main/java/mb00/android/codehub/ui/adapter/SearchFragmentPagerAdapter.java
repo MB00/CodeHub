@@ -1,6 +1,7 @@
 package mb00.android.codehub.ui.adapter;
 
 import mb00.android.codehub.R;
+import mb00.android.codehub.ui.SearchActivity;
 import mb00.android.codehub.ui.SearchIssuesFragment;
 import mb00.android.codehub.ui.SearchReposFragment;
 import mb00.android.codehub.ui.SearchUsersFragment;
@@ -11,8 +12,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+/**
+ * FragmentPagerAdapter used to display search-related Fragments; launched from {@link SearchActivity}
+ */
 
 public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    //==============================================================================================
+    // SearchFragmentPagerAdapter fields
+    //==============================================================================================
+
     private final int PAGE_COUNT = 3;
 
     private String reposTabTitle;
@@ -21,6 +30,10 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Bundle queryArgs;
 
+    //==============================================================================================
+    // SearchFragmentPagerAdapter constructor
+    //==============================================================================================
+
     public SearchFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle queryArgs) {
         super(fragmentManager);
         reposTabTitle = context.getResources().getString(R.string.repositories);
@@ -28,6 +41,10 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
         issuesTabTitle = context.getResources().getString(R.string.issues);
         this.queryArgs = queryArgs;
     }
+
+    //==============================================================================================
+    // FragmentPagerAdapter methods
+    //==============================================================================================
 
     @Override
     public int getCount() {

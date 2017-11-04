@@ -3,6 +3,7 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.PullRequest;
 import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.RepoPullRequestsFragment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,22 +17,45 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * RecyclerView adapter used to display pull requests in {@link RepoPullRequestsFragment}
+ */
 
 public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestAdapter.PullRequestHolder> {
 
+    //==============================================================================================
+    // PullRequestAdapter fields
+    //==============================================================================================
+
     private List<PullRequest> pullRequestList;
     private Context context;
+
+    //==============================================================================================
+    // PullRequestAdapter constructor
+    //==============================================================================================
 
     public PullRequestAdapter(List<PullRequest> pullRequestList, Context context) {
         this.pullRequestList = pullRequestList;
         this.context = context;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class PullRequestHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // PullRequestHolder fields
+        //==========================================================================================
 
         private ImageView avatarImageView;
         private TextView titleTextView;
         private TextView detailTextView;
+
+        //==========================================================================================
+        // PullRequestHolder constructor
+        //==========================================================================================
 
         public PullRequestHolder(View itemView) {
             super(itemView);
@@ -40,7 +64,12 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestAdapter.
             titleTextView = (TextView) itemView.findViewById(R.id.repo_pull_request_title_text_view);
             detailTextView = (TextView) itemView.findViewById(R.id.repo_pull_request_detail_text_view);
         }
+
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public PullRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {

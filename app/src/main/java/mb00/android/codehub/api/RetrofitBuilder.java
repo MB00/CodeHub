@@ -3,6 +3,9 @@ package mb00.android.codehub.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Singleton which returns a Retrofit instance
+ */
 
 public class RetrofitBuilder {
 

@@ -1,5 +1,8 @@
 package mb00.android.codehub.data;
 
+/**
+ * Final int values for navigation Fragments
+ */
 
 public class NavigationValues {
     public static final int USER_OVERVIEW = 0;

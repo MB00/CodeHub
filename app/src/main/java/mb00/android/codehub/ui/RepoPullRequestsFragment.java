@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.PullRequestAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository pull requests; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoPullRequestsFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoPullRequestsFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class RepoPullRequestsFragment extends Fragment {
     private RecyclerView repoPullRequestRecyclerView;
     private PullRequestAdapter pullRequestAdapter;
     private TextView noPullRequestsTextView;
+    private SwipeRefreshLayout repoPullRequestsSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +69,25 @@ public class RepoPullRequestsFragment extends Fragment {
 
         repoPullRequestRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_pull_requests_recycler_view);
         noPullRequestsTextView = (TextView) repoCodeView.findViewById(R.id.no_pull_requests_text_view);
+        repoPullRequestsSwipeRefreshLayout = (SwipeRefreshLayout) repoCodeView.findViewById(R.id.repo_pull_requests_swipe_refresh_layout);
 
         repoPullRequestRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoPullRequestRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoPullRequestsSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoPullRequestCall(authHeader, userName, repoName);
+                repoPullRequestsSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoPullRequestCall(authHeader, userName, repoName);
 
         return repoCodeView;
     }
+
+    //==============================================================================================
+    // RepoPullRequestsFragment methods
+    //==============================================================================================
 
     private void repoPullRequestCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.RepoAdapter;
+import mb00.android.codehub.ui.adapter.UserFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing user-starred repositories; launched from {@link UserFragmentPagerAdapter}
+ */
 
 public class UserStarredFragment extends Fragment {
+
+    //==============================================================================================
+    // UserStarredFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -37,6 +46,11 @@ public class UserStarredFragment extends Fragment {
     private RecyclerView userStarredRecyclerView;
     private RepoAdapter starredAdapter;
     private TextView noneStarredTextView;
+    private SwipeRefreshLayout userStarredSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,14 +67,25 @@ public class UserStarredFragment extends Fragment {
 
         userStarredRecyclerView = (RecyclerView) userFollowerView.findViewById(R.id.user_starred_recycler_view);
         noneStarredTextView = (TextView) userFollowerView.findViewById(R.id.none_starred_text_view);
+        userStarredSwipeRefreshLayout = (SwipeRefreshLayout) userFollowerView.findViewById(R.id.user_starred_swipe_refresh_layout);
 
         userStarredRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userStarredRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        userStarredSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userStarredCall(authHeader, userName);
+                userStarredSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         userStarredCall(authHeader, userName);
 
         return userFollowerView;
     }
+
+    //==============================================================================================
+    // UserStarredFragment methods
+    //==============================================================================================
 
     private void userStarredCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

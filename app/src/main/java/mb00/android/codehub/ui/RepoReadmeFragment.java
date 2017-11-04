@@ -8,6 +8,7 @@ import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.api.Base64Decoder;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,17 +20,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.commonmark.node.Node;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository readme; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoReadmeFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoReadmeFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -37,6 +41,10 @@ public class RepoReadmeFragment extends Fragment {
     private String repoName;
 
     private TextView repoReadmeTextView;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,10 @@ public class RepoReadmeFragment extends Fragment {
         repoReadmeCall(authHeader, userName, repoName);
         return readmeView;
     }
+
+    //==============================================================================================
+    // RepoReadmeFragment methods
+    //==============================================================================================
 
     private void repoReadmeCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

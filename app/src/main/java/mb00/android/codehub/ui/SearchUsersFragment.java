@@ -7,12 +7,14 @@ import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.adapter.SearchFragmentPagerAdapter;
 import mb00.android.codehub.ui.adapter.UserAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,8 +30,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing user search results; launched from {@link SearchFragmentPagerAdapter}
+ */
 
 public class SearchUsersFragment extends Fragment {
+
+    //==============================================================================================
+    // SearchUsersFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class SearchUsersFragment extends Fragment {
     private RecyclerView searchUsersRecyclerView;
     private UserAdapter searchUsersAdapter;
     private TextView noUserResultsTextView;
+    private SwipeRefreshLayout searchUsersSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,16 +64,30 @@ public class SearchUsersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View searchUsersView = inflater.inflate(R.layout.fragment_search_users, container, false);
-        searchUsersRecyclerView = (RecyclerView) searchUsersView.findViewById(R.id.search_users_recycler_view);
-        searchUsersRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        searchUsersRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        noUserResultsTextView = (TextView) searchUsersView.findViewById(R.id.no_user_results_text_view);
 
         user = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
+        searchUsersRecyclerView = (RecyclerView) searchUsersView.findViewById(R.id.search_users_recycler_view);
+        noUserResultsTextView = (TextView) searchUsersView.findViewById(R.id.no_user_results_text_view);
+        searchUsersSwipeRefreshLayout = (SwipeRefreshLayout) searchUsersView.findViewById(R.id.search_users_swipe_refresh_layout);
+
+        searchUsersRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        searchUsersRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        searchUsersSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userCall(authHeader, user);
+                searchUsersSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         userCall(authHeader, user);
 
         return searchUsersView;
     }
+
+    //==============================================================================================
+    // SearchUsersFragment methods
+    //==============================================================================================
 
     private void userCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

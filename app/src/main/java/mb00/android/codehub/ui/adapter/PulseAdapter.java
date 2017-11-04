@@ -3,6 +3,8 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Pulse;
 import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.RepoPulseFragment;
+import mb00.android.codehub.ui.UserPulseFragment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,22 +18,45 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * RecyclerView adapter used to display pulse in {@link UserPulseFragment} and {@link RepoPulseFragment}
+ */
 
 public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.PulseHolder> {
 
+    //==============================================================================================
+    // PulseAdapter fields
+    //==============================================================================================
+
     private List<Pulse> pulseList;
     private Context context;
+
+    //==============================================================================================
+    // PulseAdapter constructor
+    //==============================================================================================
 
     public PulseAdapter(List<Pulse> pulseList, Context context) {
         this.pulseList = pulseList;
         this.context = context;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class PulseHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // PulseHolder fields
+        //==========================================================================================
 
         private ImageView pulseAvatarImageView;
         private TextView pulseTitleTextView;
         private TextView pulseTimeTextView;
+
+        //==========================================================================================
+        // PulseHolder constructor
+        //==========================================================================================
 
         public PulseHolder(View itemView) {
             super(itemView);
@@ -42,6 +67,10 @@ public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.PulseHolder>
         }
 
     }
+
+    //==============================================================================================
+    // PulseAdapter methods
+    //==============================================================================================
 
     private String getActionType(Pulse pulse) {
         String repoName = pulse.getRepo().getName();
@@ -68,6 +97,10 @@ public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.PulseHolder>
                 return "";
         }
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public PulseHolder onCreateViewHolder(ViewGroup parent, int viewType) {

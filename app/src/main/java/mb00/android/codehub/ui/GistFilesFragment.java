@@ -2,14 +2,13 @@ package mb00.android.codehub.ui;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Code;
 import mb00.android.codehub.api.model.Gist;
 import mb00.android.codehub.api.model.GistFile;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.adapter.CodeAdapter;
 import mb00.android.codehub.ui.adapter.GistFileAdapter;
+import mb00.android.codehub.ui.adapter.GistFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,10 +18,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +31,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Fragment containing gist files; launched from {@link GistFragmentPagerAdapter}
+ */
 
 public class GistFilesFragment extends Fragment{
+
+    //==============================================================================================
+    // GistFilesFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -42,6 +48,11 @@ public class GistFilesFragment extends Fragment{
     private RecyclerView gistFilesRecyclerView;
     private GistFileAdapter fileAdapter;
     private TextView noGistFilesTextView;
+    private SwipeRefreshLayout gistFilesSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,14 +69,25 @@ public class GistFilesFragment extends Fragment{
 
         gistFilesRecyclerView = (RecyclerView) gistFilesView.findViewById(R.id.gist_files_recycler_view);
         noGistFilesTextView = (TextView) gistFilesView.findViewById(R.id.no_gist_files_text_view);
+        gistFilesSwipeRefreshLayout = (SwipeRefreshLayout) gistFilesView.findViewById(R.id.gist_files_swipe_refresh_layout);
 
         gistFilesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         gistFilesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        gistFilesSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                gistFilesCall(authHeader, gistId);
+                gistFilesSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         gistFilesCall(authHeader, gistId);
 
         return gistFilesView;
     }
+
+    //==============================================================================================
+    // GistFilesFragment methods
+    //==============================================================================================
 
     private void gistFilesCall(String header, String gist) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

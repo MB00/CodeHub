@@ -5,6 +5,8 @@ import mb00.android.codehub.api.model.Repo;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.LanguageColor;
 import mb00.android.codehub.ui.RepoActivity;
+import mb00.android.codehub.ui.SearchReposFragment;
+import mb00.android.codehub.ui.UserReposFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,16 +20,35 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * RecyclerView adapter used to display repositories in {@link UserReposFragment} and {@link SearchReposFragment}
+ */
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHolder> {
 
+    //==============================================================================================
+    // RepoAdapter fields
+    //==============================================================================================
+
     private List<Repo> repoList;
+
+    //==============================================================================================
+    // RepoAdapter constructor
+    //==============================================================================================
 
     public RepoAdapter(List<Repo> repoList) {
         this.repoList = repoList;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class SearchReposHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // SearchReposHolder fields
+        //==========================================================================================
 
         private LinearLayout repoViewHolder;
         private TextView nameText;
@@ -37,6 +58,10 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHol
         private TextView stargazersCountText;
         private TextView forksCountText;
         private Bundle repoBundle;
+
+        //==========================================================================================
+        // SearchReposHolder constructor
+        //==========================================================================================
 
         public SearchReposHolder(final View itemView) {
             super(itemView);
@@ -69,6 +94,10 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHol
         }
 
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public SearchReposHolder onCreateViewHolder(ViewGroup parent, int viewType) {

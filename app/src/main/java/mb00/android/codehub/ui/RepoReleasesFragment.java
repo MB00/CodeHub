@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.ReleaseAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository releases; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoReleasesFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoReleasesFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class RepoReleasesFragment extends Fragment {
     private RecyclerView repoReleaseRecyclerView;
     private ReleaseAdapter releaseAdapter;
     private TextView noReleasesTextView;
+    private SwipeRefreshLayout repoReleasesSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +69,25 @@ public class RepoReleasesFragment extends Fragment {
 
         repoReleaseRecyclerView = (RecyclerView) repoReleaseView.findViewById(R.id.repo_release_recycler_view);
         noReleasesTextView = (TextView) repoReleaseView.findViewById(R.id.no_releases_text_view);
+        repoReleasesSwipeRefreshLayout = (SwipeRefreshLayout) repoReleaseView.findViewById(R.id.repo_releases_swipe_refresh_layout);
 
         repoReleaseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoReleaseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoReleasesSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoReleaseCall(authHeader, userName, repoName);
+                repoReleasesSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoReleaseCall(authHeader, userName, repoName);
 
         return repoReleaseView;
     }
+
+    //==============================================================================================
+    // RepoReleasesFragment methods
+    //==============================================================================================
 
     private void repoReleaseCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.CommitAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository commits; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoCommitsFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoCommitsFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class RepoCommitsFragment extends Fragment {
     private RecyclerView repoCommitRecyclerView;
     private CommitAdapter commitAdapter;
     private TextView noCommitsTextView;
+    private SwipeRefreshLayout repoCommitsSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +69,25 @@ public class RepoCommitsFragment extends Fragment {
 
         repoCommitRecyclerView = (RecyclerView) repoCommitView.findViewById(R.id.repo_commit_recycler_view);
         noCommitsTextView = (TextView) repoCommitView.findViewById(R.id.no_commits_text_view);
+        repoCommitsSwipeRefreshLayout = (SwipeRefreshLayout) repoCommitView.findViewById(R.id.repo_commits_swipe_refresh_layout);
 
         repoCommitRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCommitRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoCommitsSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoCommitCall(authHeader, userName, repoName);
+                repoCommitsSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoCommitCall(authHeader, userName, repoName);
 
         return repoCommitView;
     }
+
+    //==============================================================================================
+    // RepoCommitsFragment methods
+    //==============================================================================================
 
     private void repoCommitCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

@@ -1,5 +1,6 @@
 package mb00.android.codehub.ui.adapter;
 
+import mb00.android.codehub.ui.UserActivity;
 import mb00.android.codehub.ui.UserFollowersFragment;
 import mb00.android.codehub.ui.UserFollowingFragment;
 import mb00.android.codehub.ui.UserGistsFragment;
@@ -14,8 +15,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+/**
+ * FragmentPagerAdapter used to display user-related Fragments; launched from {@link UserActivity}
+ */
 
 public class UserFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    //==============================================================================================
+    // UserFragmentPagerAdapter fields
+    //==============================================================================================
+
     private final int PAGE_COUNT = 7;
 
     private String overviewTabTitle;
@@ -27,6 +36,10 @@ public class UserFragmentPagerAdapter extends FragmentPagerAdapter {
     private String followingTabTitle;
 
     private Bundle userArgs;
+
+    //==============================================================================================
+    // UserFragmentPagerAdapter constructor
+    //==============================================================================================
 
     public UserFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle userBundle) {
         super(fragmentManager);
@@ -41,6 +54,10 @@ public class UserFragmentPagerAdapter extends FragmentPagerAdapter {
 
         userArgs = userBundle;
     }
+
+    //==============================================================================================
+    // FragmentPagerAdapter methods
+    //==============================================================================================
 
     @Override
     public int getCount() {

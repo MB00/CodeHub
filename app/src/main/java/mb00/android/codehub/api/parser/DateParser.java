@@ -1,5 +1,8 @@
 package mb00.android.codehub.api.parser;
 
+/**
+ * Contains methods used to parse dates from the GitHub API
+ */
 
 public class DateParser {
 

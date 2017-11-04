@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.RepoAdapter;
+import mb00.android.codehub.ui.adapter.UserFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing user repositories; launched from {@link UserFragmentPagerAdapter}
+ */
 
 public class UserReposFragment extends Fragment {
+
+    //==============================================================================================
+    // UserReposFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String userLogin;
@@ -37,6 +46,11 @@ public class UserReposFragment extends Fragment {
     private RecyclerView userReposRecyclerView;
     private RepoAdapter searchReposAdapter;
     private TextView noReposTextView;
+    private SwipeRefreshLayout userReposSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,14 +72,25 @@ public class UserReposFragment extends Fragment {
 
         userReposRecyclerView = (RecyclerView) userRepoView.findViewById(R.id.user_repos_recycler_view);
         noReposTextView = (TextView) userRepoView.findViewById(R.id.no_repos_text_view);
+        userReposSwipeRefreshLayout = (SwipeRefreshLayout) userRepoView.findViewById(R.id.user_repos_swipe_refresh_layout);
 
         userReposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userReposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        userReposSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userReposCall(authHeader, userLogin);
+                userReposSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         userReposCall(authHeader, userLogin);
 
         return userRepoView;
     }
+
+    //==============================================================================================
+    // UserReposFragment methods
+    //==============================================================================================
 
     private void userReposCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

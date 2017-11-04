@@ -3,6 +3,7 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Commit;
 import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.RepoCommitsFragment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,21 +17,45 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+/**
+ * A RecyclerView adapter used to display commits in {@link RepoCommitsFragment}
+ */
 
 public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.CommitHolder> {
 
+    //==============================================================================================
+    // CommitAdapter fields
+    //==============================================================================================
+
     private List<Commit> commitList;
     private Context context;
+
+    //==============================================================================================
+    // CommitAdapter constructor
+    //==============================================================================================
 
     public CommitAdapter(List<Commit> commitList, Context context) {
         this.commitList = commitList;
         this.context = context;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class CommitHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // CommitHolder fields
+        //==========================================================================================
+
         private ImageView commitAvatarImageView;
         private TextView commitTitleTextView;
         private TextView commitDetailTextView;
+
+        //==========================================================================================
+        // CommitHolder constructor
+        //==========================================================================================
 
         public CommitHolder(View itemView) {
             super(itemView);
@@ -40,6 +65,10 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.CommitHold
             commitDetailTextView = (TextView) itemView.findViewById(R.id.repo_commit_detail_text_view);
         }
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public CommitHolder onCreateViewHolder(ViewGroup parent, int viewType) {

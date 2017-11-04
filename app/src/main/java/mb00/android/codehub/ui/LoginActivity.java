@@ -21,14 +21,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Launched from {@link MainActivity} if {@link PreferenceKeys .SIGNED_IN == false}
+ * Once logged in, PreferenceKeys.SIGNED_IN is set to true, and {@link HomeActivity} is launched
+ */
 
 public class LoginActivity extends AppCompatActivity {
+
+    //==============================================================================================
+    // LoginActivity fields
+    //==============================================================================================
 
     private String username;
     private String password;
 
     private EditText usernameEditText;
     private EditText passwordEditText;
+
+    //==============================================================================================
+    // Activity / lifecycle methods
+    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +89,11 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 
 }

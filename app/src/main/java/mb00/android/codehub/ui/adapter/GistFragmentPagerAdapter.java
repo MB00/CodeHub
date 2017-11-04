@@ -1,6 +1,7 @@
 package mb00.android.codehub.ui.adapter;
 
 import mb00.android.codehub.R;
+import mb00.android.codehub.ui.GistActivity;
 import mb00.android.codehub.ui.GistCommentsFragment;
 import mb00.android.codehub.ui.GistFilesFragment;
 
@@ -10,14 +11,26 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+/**
+ * FragmentPagerAdapter used to display gist-related Fragments; launched from {@link GistActivity}
+ */
 
 public class GistFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    //==============================================================================================
+    // GistFragmentPagerAdapter fields
+    //==============================================================================================
+
     private final int PAGE_COUNT = 2;
 
     private String filesTabTitle;
     private String commentsTabTitle;
 
     private Bundle gistArgs;
+
+    //==============================================================================================
+    // GistFileAdapter constructor
+    //==============================================================================================
 
     public GistFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle gistBundle) {
         super(fragmentManager);
@@ -27,6 +40,10 @@ public class GistFragmentPagerAdapter extends FragmentPagerAdapter {
 
         gistArgs = gistBundle;
     }
+
+    //==============================================================================================
+    // FragmentPagerAdapter methods
+    //==============================================================================================
 
     @Override
     public int getCount() {

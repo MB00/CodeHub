@@ -4,6 +4,9 @@ import android.util.Base64;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * Static method used to decode content from the GitHub API
+ */
 
 public class Base64Decoder {
 

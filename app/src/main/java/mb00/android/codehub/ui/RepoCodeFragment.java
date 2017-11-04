@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.CodeAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,21 +33,31 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository contents; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoCodeFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoCodeFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
     private String userName;
     private String repoName;
 
-    private RecyclerView repoCodeRecyclerView;
-    static CodeAdapter codeAdapter;
-
     private ImageButton pathHomeButton;
+    private RecyclerView repoCodeRecyclerView;
+    private SwipeRefreshLayout repoCodeSwipeRefreshLayout;
 
+    static CodeAdapter codeAdapter;
     private static LayoutInflater layoutInflater;
 
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,13 +74,21 @@ public class RepoCodeFragment extends Fragment {
         layoutInflater = inflater;
         View repoCodeView = inflater.inflate(R.layout.fragment_repo_code, container, false);
 
+        pathHomeButton = (ImageButton) repoCodeView.findViewById(R.id.path_home_button);
         repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_code_recycler_view);
+        repoCodeSwipeRefreshLayout = (SwipeRefreshLayout) repoCodeView.findViewById(R.id.repo_code_swipe_refresh_layout);
+
         repoCodeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCodeRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoCodeSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoCodeCall(repoCodeRecyclerView, authHeader, userName, repoName, "");
+                repoCodeSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoCodeCall(repoCodeRecyclerView, authHeader, userName, repoName, "");
 
-        pathHomeButton = (ImageButton) repoCodeView.findViewById(R.id.path_home_button);
         pathHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +100,10 @@ public class RepoCodeFragment extends Fragment {
         return repoCodeView;
     }
 
+    //==============================================================================================
+    // RepoCodeFragment static methods
+    //==============================================================================================
+
     public static void repoCodeCall(final RecyclerView codeRecyclerView, final String header, final String user, final String repo, String path) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
         GitHubService service = retrofit.create(GitHubService.class);
@@ -89,9 +113,15 @@ public class RepoCodeFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Code>> call, Response<List<Code>> response) {
                 List<Code> codeList = response.body();
-                List<Code> sortedCodeList = sortCodeList(codeList);
-                codeAdapter = new CodeAdapter(sortedCodeList, codeRecyclerView, header, user, repo);
-                codeRecyclerView.setAdapter(codeAdapter);
+
+                if (codeList.size() > 0) {
+                    List<Code> sortedCodeList = sortCodeList(codeList);
+                    codeAdapter = new CodeAdapter(sortedCodeList, codeRecyclerView, header, user, repo);
+                    codeRecyclerView.setAdapter(codeAdapter);
+                } else {
+                    TextView noRepoCodeTextView = (TextView) ((View) codeRecyclerView.getParent()).findViewById(R.id.no_repo_code_text_view);
+                    noRepoCodeTextView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

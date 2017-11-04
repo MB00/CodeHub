@@ -7,6 +7,7 @@ import mb00.android.codehub.api.model.Code;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.adapter.CodeAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,8 +22,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Launched from {@link CodeAdapter} if repository file in RecyclerView is clicked
+ */
 
 public class RepoFileActivity extends AppCompatActivity {
+
+    //==============================================================================================
+    // RepoFileActivity fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -34,6 +42,10 @@ public class RepoFileActivity extends AppCompatActivity {
     private ImageButton fileBackButton;
     private TextView fileTitleTextView;
     private TextView fileTextView;
+
+    //==============================================================================================
+    // Activity / lifecycle methods
+    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +73,10 @@ public class RepoFileActivity extends AppCompatActivity {
 
         codeFileCall(authHeader, userName, repoName, filePath);
     }
+
+    //==============================================================================================
+    // RepoFileActivity methods
+    //==============================================================================================
 
     private void codeFileCall(String header, String user, String repo, String filePath) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

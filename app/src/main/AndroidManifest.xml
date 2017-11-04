@@ -54,7 +54,7 @@
             android:name=".ui.GistFileActivity"
             />
         <activity
-            android:name="ui.SettingsActivity"
+            android:name=".ui.SettingsActivity"
             />
         <activity
             android:name=".ui.AboutActivity"

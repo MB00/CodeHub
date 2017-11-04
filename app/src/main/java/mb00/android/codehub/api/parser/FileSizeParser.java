@@ -3,6 +3,9 @@ package mb00.android.codehub.api.parser;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+/**
+ * Contains methods used to parse file sizes from the GitHub API
+ */
 
 public class FileSizeParser {
 

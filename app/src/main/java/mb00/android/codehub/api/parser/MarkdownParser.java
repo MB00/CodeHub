@@ -4,6 +4,9 @@ import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
+/**
+ * Contains methods used to parse Markdown from the GitHub API
+ */
 
 public class MarkdownParser {
 

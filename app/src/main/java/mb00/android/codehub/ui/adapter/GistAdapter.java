@@ -4,6 +4,7 @@ import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Gist;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.GistActivity;
+import mb00.android.codehub.ui.UserGistsFragment
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,16 +17,35 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * A RecyclerView adapter used to display gists in {@link UserGistsFragment}
+ */
 
-public class GistAdapter extends RecyclerView.Adapter<GistAdapter.UserGistHolder> {
+public class GistAdapter extends RecyclerView.Adapter<GistAdapter.GistHolder> {
+
+    //==============================================================================================
+    // GistAdapter fields
+    //==============================================================================================
 
     private List<Gist> gistList;
+
+    //==============================================================================================
+    // GistAdapter constructor
+    //==============================================================================================
 
     public GistAdapter(List<Gist> gistList) {
         this.gistList = gistList;
     }
 
-    public class UserGistHolder extends RecyclerView.ViewHolder {
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
+    public class GistHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // GistHolder fields
+        //==========================================================================================
 
         private LinearLayout gistViewHolder;
         private TextView gistDescriptionTextView;
@@ -33,7 +53,11 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.UserGistHolder
         private TextView gistCommentCountTextView;
         private Bundle gistBundle;
 
-        public UserGistHolder(final View itemView) {
+        //==========================================================================================
+        // GistHolder constructor
+        //==========================================================================================
+
+        public GistHolder(final View itemView) {
             super(itemView);
 
             gistViewHolder = (LinearLayout) itemView.findViewById(R.id.gist_view_holder);
@@ -58,15 +82,19 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.UserGistHolder
         }
     }
 
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
+
     @Override
-    public UserGistHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GistHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View userGistView = inflater.inflate(R.layout.view_holder_gist, parent, false);
-        return new UserGistHolder(userGistView);
+        return new GistHolder(userGistView);
     }
 
     @Override
-    public void onBindViewHolder(UserGistHolder holder, int position) {
+    public void onBindViewHolder(GistHolder holder, int position) {
         Gist gist = gistList.get(position);
         holder.gistDescriptionTextView.setText(gist.getDescription());
         holder.gistFileCountTextView.setText(gist.getFiles().toString());

@@ -8,11 +8,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.RepoAdapter;
+import mb00.android.codehub.ui.adapter.SearchFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,8 +30,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository search results; launched from {@link SearchFragmentPagerAdapter}
+ */
 
 public class SearchReposFragment extends Fragment {
+
+    //==============================================================================================
+    // SearchReposFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class SearchReposFragment extends Fragment {
     private RecyclerView searchReposRecyclerView;
     private RepoAdapter searchReposAdapter;
     private TextView noRepoResultsTextView;
+    private SwipeRefreshLayout searchReposSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,16 +64,29 @@ public class SearchReposFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View searchReposView = inflater.inflate(R.layout.fragment_search_repos, container, false);
-        searchReposRecyclerView = (RecyclerView) searchReposView.findViewById(R.id.search_repos_recycler_view);
-        searchReposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        searchReposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        noRepoResultsTextView = (TextView) searchReposView.findViewById(R.id.no_repo_results_text_view);
 
         repo = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
+        searchReposRecyclerView = (RecyclerView) searchReposView.findViewById(R.id.search_repos_recycler_view);
+        noRepoResultsTextView = (TextView) searchReposView.findViewById(R.id.no_repo_results_text_view);
+        searchReposSwipeRefreshLayout = (SwipeRefreshLayout) searchReposView.findViewById(R.id.search_repos_swipe_refresh_layout);
+
+        searchReposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        searchReposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        searchReposSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoCall(authHeader, repo);
+                searchReposSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoCall(authHeader, repo);
 
         return searchReposView;
     }
+
+    //==============================================================================================
+    // SearchReposFragment methods
+    //==============================================================================================
 
     private void repoCall(String header, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

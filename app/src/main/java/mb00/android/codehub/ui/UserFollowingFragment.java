@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.UserAdapter;
+import mb00.android.codehub.ui.adapter.UserFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing users following; launched from {@link UserFragmentPagerAdapter}
+ */
 
 public class UserFollowingFragment extends Fragment {
+
+    //==============================================================================================
+    // UserFollowingFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String userName;
@@ -37,6 +46,11 @@ public class UserFollowingFragment extends Fragment {
     private RecyclerView userFollowingRecyclerView;
     private UserAdapter followingAdapter;
     private TextView noneFollowingTextView;
+    private SwipeRefreshLayout userFollowingSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,14 +72,25 @@ public class UserFollowingFragment extends Fragment {
 
         userFollowingRecyclerView = (RecyclerView) userFollowerView.findViewById(R.id.user_following_recycler_view);
         noneFollowingTextView = (TextView) userFollowerView.findViewById(R.id.none_following_text_view);
+        userFollowingSwipeRefreshLayout = (SwipeRefreshLayout) userFollowerView.findViewById(R.id.user_following_swipe_refresh_layout);
 
         userFollowingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userFollowingRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        userFollowingSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userFollowingCall(authHeader, userName);
+                userFollowingSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         userFollowingCall(authHeader, userName);
 
         return userFollowerView;
     }
+
+    //==============================================================================================
+    // UserFollowingFragment methods
+    //==============================================================================================
 
     private void userFollowingCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

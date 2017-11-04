@@ -7,11 +7,13 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.PulseAdapter;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository pulse; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoPulseFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoPulseFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -38,6 +47,11 @@ public class RepoPulseFragment extends Fragment {
     private RecyclerView repoPulseRecyclerView;
     private PulseAdapter pulseAdapter;
     private TextView noRepoPulseTextView;
+    private SwipeRefreshLayout repoPulseSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,14 +69,25 @@ public class RepoPulseFragment extends Fragment {
 
         repoPulseRecyclerView = (RecyclerView) repoPulseView.findViewById(R.id.repo_pulse_recycler_view);
         noRepoPulseTextView = (TextView) repoPulseView.findViewById(R.id.no_repo_pulse_text_view);
+        repoPulseSwipeRefreshLayout = (SwipeRefreshLayout) repoPulseView.findViewById(R.id.repo_pulse_swipe_refresh_layout);
 
         repoPulseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoPulseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        repoPulseSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                repoPulseCall(authHeader, userName, repoName);
+                repoPulseSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         repoPulseCall(authHeader, userName, repoName);
 
         return repoPulseView;
     }
+
+    //==============================================================================================
+    // RepoPulseFragment methods
+    //==============================================================================================
 
     private void repoPulseCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

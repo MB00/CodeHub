@@ -2,6 +2,7 @@ package mb00.android.codehub.ui;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.adapter.RepoAdapter;
 import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.os.Bundle;
@@ -13,8 +14,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+/**
+ * Launched from {@link RepoAdapter} if repository in RecyclerView is clicked
+ * Immediately launches {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoActivity extends AppCompatActivity {
+
+    //==============================================================================================
+    // RepoActivity fields
+    //==============================================================================================
 
     private Bundle repoBundle;
 
@@ -25,6 +34,10 @@ public class RepoActivity extends AppCompatActivity {
     private ViewPager repoViewPager;
     private PagerAdapter repoPagerAdapter;
     private TabLayout repoTabLayout;
+
+    //==============================================================================================
+    // Activity / lifecycle methods
+    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,7 @@ public class RepoActivity extends AppCompatActivity {
         repoViewPager = (ViewPager) findViewById(R.id.repo_view_pager);
         repoPagerAdapter = new RepoFragmentPagerAdapter(getSupportFragmentManager(), this, repoBundle);
         repoViewPager.setAdapter(repoPagerAdapter);
+        repoViewPager.setOffscreenPageLimit(9);
 
         repoTabLayout = (TabLayout) findViewById(R.id.repo_tab_layout);
         repoTabLayout.setupWithViewPager(repoViewPager);

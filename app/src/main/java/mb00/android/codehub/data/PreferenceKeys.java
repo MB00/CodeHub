@@ -1,5 +1,8 @@
 package mb00.android.codehub.data;
 
+/**
+ * Collection of keys for values stored in SharedPreferences
+ */
 
 public class PreferenceKeys {
     public static final String PREFERENCES = "preferences";

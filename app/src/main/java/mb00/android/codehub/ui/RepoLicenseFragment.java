@@ -7,6 +7,7 @@ import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.api.RetrofitBuilder;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.api.Base64Decoder;
+import mb00.android.codehub.ui.adapter.RepoFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -22,8 +23,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing repository license; launched from {@link RepoFragmentPagerAdapter}
+ */
 
 public class RepoLicenseFragment extends Fragment {
+
+    //==============================================================================================
+    // RepoLicenseFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -31,6 +39,10 @@ public class RepoLicenseFragment extends Fragment {
     private String repoName;
 
     private TextView licenseTextView;
+
+    //==============================================================================================
+    // Fragment / lifecycle methods
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +63,10 @@ public class RepoLicenseFragment extends Fragment {
 
         return repoLicenseView;
     }
+
+    //==============================================================================================
+    // RepoLicenseFragment methods
+    //==============================================================================================
 
     private void repoLicenseCall(String header, String user, String repo) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

@@ -7,11 +7,13 @@ import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.adapter.PulseAdapter;
+import mb00.android.codehub.ui.adapter.UserFragmentPagerAdapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +29,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+/**
+ * Fragment containing user pulse; launched from {@link UserFragmentPagerAdapter}
+ */
 
 public class UserPulseFragment extends Fragment {
+
+    //==============================================================================================
+    // UserPulseFragment fields
+    //==============================================================================================
 
     private SharedPreferences preferences;
     private String userName;
@@ -37,6 +46,11 @@ public class UserPulseFragment extends Fragment {
     private RecyclerView userPulseRecyclerView;
     private PulseAdapter pulseAdapter;
     private TextView noUserPulseTextView;
+    private SwipeRefreshLayout userPulseSwipeRefreshLayout;
+
+    //==============================================================================================
+    // Fragment / lifecycle fields
+    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,14 +72,25 @@ public class UserPulseFragment extends Fragment {
 
         userPulseRecyclerView = (RecyclerView) userPulseView.findViewById(R.id.user_pulse_recycler_view);
         noUserPulseTextView = (TextView) userPulseView.findViewById(R.id.no_user_pulse_text_view);
+        userPulseSwipeRefreshLayout = (SwipeRefreshLayout) userPulseView.findViewById(R.id.user_pulse_swipe_refresh_layout);
 
         userPulseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userPulseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
+        userPulseSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                userPulseCall(authHeader, userName);
+                userPulseSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
         userPulseCall(authHeader, userName);
 
         return userPulseView;
     }
+
+    //==============================================================================================
+    // UserPulseFragment methods
+    //==============================================================================================
 
     private void userPulseCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();

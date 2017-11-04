@@ -3,6 +3,9 @@ package mb00.android.codehub.ui.adapter;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Issue;
 import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.RepoIssuesFragment;
+import mb00.android.codehub.ui.SearchIssuesFragment;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +15,43 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * RecyclerView adapter used to display issues in {@link RepoIssuesFragment} and {@link SearchIssuesFragment}
+ */
 
 public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.SearchIssuesHolder> {
 
+    //==============================================================================================
+    // IssueAdapter fields
+    //==============================================================================================
+
     private List<Issue> issueList;
+
+    //==============================================================================================
+    // IssueAdapter constructor
+    //==============================================================================================
 
     public IssueAdapter(List<Issue> issueList) {
         this.issueList = issueList;
     }
 
+    //==============================================================================================
+    // ViewHolder inner class
+    //==============================================================================================
+
     public class SearchIssuesHolder extends RecyclerView.ViewHolder {
+
+        //==========================================================================================
+        // SearchIssuesHolder fields
+        //==========================================================================================
 
         private ImageView statusImageView;
         private TextView titleTextView;
         private TextView dateTextView;
+
+        //==========================================================================================
+        // SearchIssuesHolder constructor
+        //==========================================================================================
 
         public SearchIssuesHolder(View itemView) {
             super(itemView);
@@ -34,7 +60,12 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.SearchIssues
             titleTextView = (TextView) itemView.findViewById(R.id.issue_title_text_view);
             dateTextView = (TextView) itemView.findViewById(R.id.issue_date_text_view);
         }
+
     }
+
+    //==============================================================================================
+    // RecyclerView.Adapter methods
+    //==============================================================================================
 
     @Override
     public SearchIssuesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
