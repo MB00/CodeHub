@@ -24,6 +24,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import mb00.android.codehub.ui.about.view.AboutActivity;
+import mb00.android.codehub.ui.home.view.HomeActivity;
+import mb00.android.codehub.ui.login.view.LoginActivity;
+import mb00.android.codehub.ui.repo.view.RepoActivity;
+import mb00.android.codehub.ui.search.view.SearchActivity;
+import mb00.android.codehub.ui.settings.view.SettingsActivity;
+import mb00.android.codehub.ui.user.view.UserActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

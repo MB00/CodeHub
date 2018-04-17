@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="com.atlassian.commonmark:commonmark:0.10.0@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.commonmark/commonmark/0.10.0/119cb7bedc3570d9ecb64ec69ab7686b5c20559b/commonmark-0.10.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.atlassian.commonmark/commonmark/0.10.0/b20bd67ed21898cbd16cc636baf83cb093074660/commonmark-0.10.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         >
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.view.MainActivity"
             >
             <intent-filter
                 >
@@ -30,34 +30,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.login.view.LoginActivity"
             />
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.home.view.HomeActivity"
             />
         <activity
-            android:name=".ui.SearchActivity"
+            android:name=".ui.search.view.SearchActivity"
             />
         <activity
-            android:name=".ui.UserActivity"
+            android:name=".ui.user.view.UserActivity"
             />
         <activity
-            android:name=".ui.RepoActivity"
+            android:name=".ui.repo.view.RepoActivity"
             />
         <activity
-            android:name=".ui.RepoFileActivity"
+            android:name=".ui.repo.view.RepoFileActivity"
             />
         <activity 
-            android:name=".ui.GistActivity"
+            android:name=".ui.gist.view.GistActivity"
             />
         <activity
-            android:name=".ui.GistFileActivity"
+            android:name=".ui.gist.view.GistFileActivity"
             />
         <activity
-            android:name=".ui.SettingsActivity"
+            android:name=".ui.settings.view.SettingsActivity"
             />
         <activity
-            android:name=".ui.AboutActivity"
+            android:name=".ui.about.view.AboutActivity"
             />
     </application>
 
