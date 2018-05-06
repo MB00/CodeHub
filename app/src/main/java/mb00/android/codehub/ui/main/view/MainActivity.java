@@ -1,13 +1,13 @@
 package mb00.android.codehub.ui.main.view;
 
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.home.view.HomeActivity;
-import mb00.android.codehub.ui.login.view.LoginActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.home.view.HomeActivity;
+import mb00.android.codehub.ui.login.view.LoginActivity;
 
 /**
  * Program execution starts here

@@ -1,11 +1,5 @@
 package mb00.android.codehub.ui.universaladapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Pulse;
-import mb00.android.codehub.api.parser.DateParser;
-import mb00.android.codehub.ui.repo.view.RepoPulseFragment;
-import mb00.android.codehub.ui.user.view.UserPulseFragment;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +11,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Pulse;
+import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.repo.view.RepoPulseFragment;
+import mb00.android.codehub.ui.user.view.UserPulseFragment;
 
 /**
  * RecyclerView adapter used to display pulse in {@link UserPulseFragment} and {@link RepoPulseFragment}
@@ -61,9 +61,9 @@ public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.PulseHolder>
         public PulseHolder(View itemView) {
             super(itemView);
 
-            pulseAvatarImageView = (ImageView) itemView.findViewById(R.id.repo_pulse_avatar_image_view);
-            pulseTitleTextView = (TextView) itemView.findViewById(R.id.repo_pulse_title_text_view);
-            pulseTimeTextView = (TextView) itemView.findViewById(R.id.repo_pulse_time_text_view);
+            pulseAvatarImageView = itemView.findViewById(R.id.repo_pulse_avatar_image_view);
+            pulseTitleTextView = itemView.findViewById(R.id.repo_pulse_title_text_view);
+            pulseTimeTextView = itemView.findViewById(R.id.repo_pulse_time_text_view);
         }
 
     }

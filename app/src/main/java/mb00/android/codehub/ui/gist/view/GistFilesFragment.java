@@ -1,19 +1,5 @@
 package mb00.android.codehub.ui.gist.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Gist;
-import mb00.android.codehub.api.model.GistFile;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
-import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,6 +16,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Gist;
+import mb00.android.codehub.api.model.GistFile;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
+import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Fragment containing gist files; launched from {@link GistFragmentPagerAdapter}
@@ -67,9 +67,9 @@ public class GistFilesFragment extends Fragment{
         authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
         gistId = getArguments().getString(BundleKeys.GIST_ID);
 
-        gistFilesRecyclerView = (RecyclerView) gistFilesView.findViewById(R.id.gist_files_recycler_view);
-        noGistFilesTextView = (TextView) gistFilesView.findViewById(R.id.no_gist_files_text_view);
-        gistFilesSwipeRefreshLayout = (SwipeRefreshLayout) gistFilesView.findViewById(R.id.gist_files_swipe_refresh_layout);
+        gistFilesRecyclerView = gistFilesView.findViewById(R.id.gist_files_recycler_view);
+        noGistFilesTextView = gistFilesView.findViewById(R.id.no_gist_files_text_view);
+        gistFilesSwipeRefreshLayout = gistFilesView.findViewById(R.id.gist_files_swipe_refresh_layout);
 
         gistFilesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         gistFilesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

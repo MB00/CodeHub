@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.repo.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Code;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.CodeAdapter;
-import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,6 +19,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Code;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.CodeAdapter;
+import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,9 +73,9 @@ public class RepoCodeFragment extends Fragment {
         layoutInflater = inflater;
         View repoCodeView = inflater.inflate(R.layout.fragment_repo_code, container, false);
 
-        pathHomeButton = (ImageButton) repoCodeView.findViewById(R.id.path_home_button);
-        repoCodeRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_code_recycler_view);
-        repoCodeSwipeRefreshLayout = (SwipeRefreshLayout) repoCodeView.findViewById(R.id.repo_code_swipe_refresh_layout);
+        pathHomeButton = repoCodeView.findViewById(R.id.path_home_button);
+        repoCodeRecyclerView = repoCodeView.findViewById(R.id.repo_code_recycler_view);
+        repoCodeSwipeRefreshLayout = repoCodeView.findViewById(R.id.repo_code_swipe_refresh_layout);
 
         repoCodeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCodeRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
@@ -119,7 +118,7 @@ public class RepoCodeFragment extends Fragment {
                     codeAdapter = new CodeAdapter(sortedCodeList, codeRecyclerView, header, user, repo);
                     codeRecyclerView.setAdapter(codeAdapter);
                 } else {
-                    TextView noRepoCodeTextView = (TextView) ((View) codeRecyclerView.getParent()).findViewById(R.id.no_repo_code_text_view);
+                    TextView noRepoCodeTextView = ((View) codeRecyclerView.getParent()).findViewById(R.id.no_repo_code_text_view);
                     noRepoCodeTextView.setVisibility(View.VISIBLE);
                 }
             }
@@ -150,7 +149,7 @@ public class RepoCodeFragment extends Fragment {
     // Parses the path and turns each directory into a clickable TextView
     public static void displayPathAsViewObjects(String path, Context context, ViewGroup viewParent) {
         View repoCodeView = layoutInflater.inflate(R.layout.fragment_repo_code, viewParent, false);
-        LinearLayout dynamicPath = (LinearLayout) repoCodeView.findViewById(R.id.repo_dynamic_path);
+        LinearLayout dynamicPath = repoCodeView.findViewById(R.id.repo_dynamic_path);
         List<String> pathList = new ArrayList<>();
 
         int parsePosition = 0;

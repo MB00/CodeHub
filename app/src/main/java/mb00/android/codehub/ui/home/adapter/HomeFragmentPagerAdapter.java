@@ -1,5 +1,11 @@
 package mb00.android.codehub.ui.home.adapter;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
 import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
@@ -8,12 +14,6 @@ import mb00.android.codehub.ui.user.view.UserFollowersFragment;
 import mb00.android.codehub.ui.user.view.UserFollowingFragment;
 import mb00.android.codehub.ui.user.view.UserPulseFragment;
 import mb00.android.codehub.ui.user.view.UserReposFragment;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 /**
  * FragmentPagerAdapter used to display home-related Fragments; launched from {@link HomeActivity}

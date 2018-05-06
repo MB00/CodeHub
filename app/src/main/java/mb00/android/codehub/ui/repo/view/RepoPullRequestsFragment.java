@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.repo.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.PullRequest;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.PullRequestAdapter;
-import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.PullRequest;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.PullRequestAdapter;
+import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,9 +66,9 @@ public class RepoPullRequestsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View repoCodeView = inflater.inflate(R.layout.fragment_repo_pull_requests, container, false);
 
-        repoPullRequestRecyclerView = (RecyclerView) repoCodeView.findViewById(R.id.repo_pull_requests_recycler_view);
-        noPullRequestsTextView = (TextView) repoCodeView.findViewById(R.id.no_pull_requests_text_view);
-        repoPullRequestsSwipeRefreshLayout = (SwipeRefreshLayout) repoCodeView.findViewById(R.id.repo_pull_requests_swipe_refresh_layout);
+        repoPullRequestRecyclerView = repoCodeView.findViewById(R.id.repo_pull_requests_recycler_view);
+        noPullRequestsTextView = repoCodeView.findViewById(R.id.no_pull_requests_text_view);
+        repoPullRequestsSwipeRefreshLayout = repoCodeView.findViewById(R.id.repo_pull_requests_swipe_refresh_layout);
 
         repoPullRequestRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoPullRequestRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

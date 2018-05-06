@@ -1,12 +1,5 @@
 package mb00.android.codehub.ui.repo.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Code;
-import mb00.android.codehub.api.parser.FileSizeParser;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.repo.view.RepoFileActivity;
-import mb00.android.codehub.ui.repo.view.RepoCodeFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Code;
+import mb00.android.codehub.api.parser.FileSizeParser;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.repo.view.RepoCodeFragment;
+import mb00.android.codehub.ui.repo.view.RepoFileActivity;
 
 /**
  * A RecyclerView adapter used to display folders and files in {@link RepoCodeFragment}
@@ -69,10 +69,10 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
         public CodeHolder(final View itemView) {
             super(itemView);
 
-            codeViewHolder = (LinearLayout) itemView.findViewById(R.id.code_view_holder);
-            codeTypeImageView = (ImageView) itemView.findViewById(R.id.code_type_image_view);
-            codeTextView = (TextView) itemView.findViewById(R.id.code_text_view);
-            codeSizeTextView = (TextView) itemView.findViewById(R.id.code_size_text_view);
+            codeViewHolder = itemView.findViewById(R.id.code_view_holder);
+            codeTypeImageView = itemView.findViewById(R.id.code_type_image_view);
+            codeTextView = itemView.findViewById(R.id.code_text_view);
+            codeSizeTextView = itemView.findViewById(R.id.code_size_text_view);
 
             codeViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override

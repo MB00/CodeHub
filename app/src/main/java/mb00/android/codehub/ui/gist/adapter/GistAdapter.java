@@ -1,11 +1,5 @@
 package mb00.android.codehub.ui.gist.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Gist;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.gist.view.GistActivity;
-import mb00.android.codehub.ui.user.view.UserGistsFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Gist;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.gist.view.GistActivity;
+import mb00.android.codehub.ui.user.view.UserGistsFragment;
 
 /**
  * A RecyclerView adapter used to display gists in {@link UserGistsFragment}
@@ -60,10 +60,10 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.GistHolder> {
         public GistHolder(final View itemView) {
             super(itemView);
 
-            gistViewHolder = (LinearLayout) itemView.findViewById(R.id.gist_view_holder);
-            gistDescriptionTextView = (TextView) itemView.findViewById(R.id.gist_description_text_view);
-            gistFileCountTextView = (TextView) itemView.findViewById(R.id.gist_file_count_text_view);
-            gistCommentCountTextView = (TextView) itemView.findViewById(R.id.gist_comment_count_text_view);
+            gistViewHolder = itemView.findViewById(R.id.gist_view_holder);
+            gistDescriptionTextView = itemView.findViewById(R.id.gist_description_text_view);
+            gistFileCountTextView = itemView.findViewById(R.id.gist_file_count_text_view);
+            gistCommentCountTextView = itemView.findViewById(R.id.gist_comment_count_text_view);
 
             gistViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override

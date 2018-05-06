@@ -1,5 +1,11 @@
 package mb00.android.codehub.ui.user.adapter;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
 import mb00.android.codehub.ui.user.view.UserActivity;
 import mb00.android.codehub.ui.user.view.UserFollowersFragment;
 import mb00.android.codehub.ui.user.view.UserFollowingFragment;
@@ -8,12 +14,6 @@ import mb00.android.codehub.ui.user.view.UserOverviewFragment;
 import mb00.android.codehub.ui.user.view.UserPulseFragment;
 import mb00.android.codehub.ui.user.view.UserReposFragment;
 import mb00.android.codehub.ui.user.view.UserStarredFragment;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 /**
  * FragmentPagerAdapter used to display user-related Fragments; launched from {@link UserActivity}

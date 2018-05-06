@@ -1,12 +1,5 @@
 package mb00.android.codehub.ui.gist.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.GistFile;
-import mb00.android.codehub.api.parser.FileSizeParser;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.gist.view.GistFileActivity;
-import mb00.android.codehub.ui.gist.view.GistFilesFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.GistFile;
+import mb00.android.codehub.api.parser.FileSizeParser;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.gist.view.GistFileActivity;
+import mb00.android.codehub.ui.gist.view.GistFilesFragment;
 
 /**
  * RecyclerView adapter used to display gist files in {@link GistFilesFragment}
@@ -65,9 +65,9 @@ public class GistFileAdapter extends RecyclerView.Adapter<GistFileAdapter.GistFi
         public GistFileHolder(View itemView) {
             super(itemView);
 
-            gistFileViewHolder = (LinearLayout) itemView.findViewById(R.id.gist_file_view_holder);
-            gistFileTextView = (TextView) itemView.findViewById(R.id.gist_file_text_view);
-            gistFileSizeTextView = (TextView) itemView.findViewById(R.id.gist_file_size_text_view);
+            gistFileViewHolder = itemView.findViewById(R.id.gist_file_view_holder);
+            gistFileTextView = itemView.findViewById(R.id.gist_file_text_view);
+            gistFileSizeTextView = itemView.findViewById(R.id.gist_file_size_text_view);
 
             gistFileViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override

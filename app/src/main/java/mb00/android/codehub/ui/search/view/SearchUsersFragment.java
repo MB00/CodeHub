@@ -1,15 +1,5 @@
 package mb00.android.codehub.ui.search.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.User;
-import mb00.android.codehub.api.model.UserResult;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
-import mb00.android.codehub.ui.user.adapter.UserAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +15,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.User;
+import mb00.android.codehub.api.model.UserResult;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
+import mb00.android.codehub.ui.user.adapter.UserAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,9 +65,9 @@ public class SearchUsersFragment extends Fragment {
         View searchUsersView = inflater.inflate(R.layout.fragment_search_users, container, false);
 
         user = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
-        searchUsersRecyclerView = (RecyclerView) searchUsersView.findViewById(R.id.search_users_recycler_view);
-        noUserResultsTextView = (TextView) searchUsersView.findViewById(R.id.no_user_results_text_view);
-        searchUsersSwipeRefreshLayout = (SwipeRefreshLayout) searchUsersView.findViewById(R.id.search_users_swipe_refresh_layout);
+        searchUsersRecyclerView = searchUsersView.findViewById(R.id.search_users_recycler_view);
+        noUserResultsTextView = searchUsersView.findViewById(R.id.no_user_results_text_view);
+        searchUsersSwipeRefreshLayout = searchUsersView.findViewById(R.id.search_users_swipe_refresh_layout);
 
         searchUsersRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchUsersRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

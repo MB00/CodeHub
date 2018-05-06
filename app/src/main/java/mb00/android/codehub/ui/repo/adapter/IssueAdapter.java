@@ -1,11 +1,5 @@
 package mb00.android.codehub.ui.repo.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Issue;
-import mb00.android.codehub.api.parser.DateParser;
-import mb00.android.codehub.ui.repo.view.RepoIssuesFragment;
-import mb00.android.codehub.ui.search.view.SearchIssuesFragment;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Issue;
+import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.repo.view.RepoIssuesFragment;
+import mb00.android.codehub.ui.search.view.SearchIssuesFragment;
 
 /**
  * RecyclerView adapter used to display issues in {@link RepoIssuesFragment} and {@link SearchIssuesFragment}
@@ -56,9 +56,9 @@ public class IssueAdapter extends RecyclerView.Adapter<IssueAdapter.SearchIssues
         public SearchIssuesHolder(View itemView) {
             super(itemView);
 
-            statusImageView = (ImageView) itemView.findViewById(R.id.issue_status_image_view);
-            titleTextView = (TextView) itemView.findViewById(R.id.issue_title_text_view);
-            dateTextView = (TextView) itemView.findViewById(R.id.issue_date_text_view);
+            statusImageView = itemView.findViewById(R.id.issue_status_image_view);
+            titleTextView = itemView.findViewById(R.id.issue_title_text_view);
+            dateTextView = itemView.findViewById(R.id.issue_date_text_view);
         }
 
     }

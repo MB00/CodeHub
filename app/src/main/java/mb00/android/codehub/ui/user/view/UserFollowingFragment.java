@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.user.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.User;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.user.adapter.UserAdapter;
-import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.User;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.user.adapter.UserAdapter;
+import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,9 +69,9 @@ public class UserFollowingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View userFollowerView = inflater.inflate(R.layout.fragment_user_following, container, false);
 
-        userFollowingRecyclerView = (RecyclerView) userFollowerView.findViewById(R.id.user_following_recycler_view);
-        noneFollowingTextView = (TextView) userFollowerView.findViewById(R.id.none_following_text_view);
-        userFollowingSwipeRefreshLayout = (SwipeRefreshLayout) userFollowerView.findViewById(R.id.user_following_swipe_refresh_layout);
+        userFollowingRecyclerView = userFollowerView.findViewById(R.id.user_following_recycler_view);
+        noneFollowingTextView = userFollowerView.findViewById(R.id.none_following_text_view);
+        userFollowingSwipeRefreshLayout = userFollowerView.findViewById(R.id.user_following_swipe_refresh_layout);
 
         userFollowingRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userFollowingRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

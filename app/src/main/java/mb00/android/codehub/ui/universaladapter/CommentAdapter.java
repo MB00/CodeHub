@@ -69,11 +69,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
         public CommentHolder(final View itemView) {
             super(itemView);
 
-            commenterLayout = (LinearLayout) itemView.findViewById(R.id.gist_commenter_layout);
-            commentAvatarImageView = (ImageView) itemView.findViewById(R.id.gist_comment_avatar_image_view);
-            commentUsernameTextView = (TextView) itemView.findViewById(R.id.gist_comment_username_text_view);
-            commentDateTextView = (TextView) itemView.findViewById(R.id.gist_comment_date_text_view);
-            commentBodyTextView = (TextView) itemView.findViewById(R.id.gist_comment_body_text_view);
+            commenterLayout = itemView.findViewById(R.id.gist_commenter_layout);
+            commentAvatarImageView = itemView.findViewById(R.id.gist_comment_avatar_image_view);
+            commentUsernameTextView = itemView.findViewById(R.id.gist_comment_username_text_view);
+            commentDateTextView = itemView.findViewById(R.id.gist_comment_date_text_view);
+            commentBodyTextView = itemView.findViewById(R.id.gist_comment_body_text_view);
 
             commenterLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

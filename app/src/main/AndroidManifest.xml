@@ -33,6 +33,9 @@
             android:name=".ui.login.view.LoginActivity"
             />
         <activity
+            android:name=".ui.base.view.NavigationDrawerActivity"
+            />
+        <activity
             android:name=".ui.home.view.HomeActivity"
             />
         <activity

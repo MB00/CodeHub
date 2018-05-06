@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.user.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Repo;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
-import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Repo;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
+import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,9 +64,9 @@ public class UserStarredFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View userFollowerView = inflater.inflate(R.layout.fragment_user_starred, container, false);
 
-        userStarredRecyclerView = (RecyclerView) userFollowerView.findViewById(R.id.user_starred_recycler_view);
-        noneStarredTextView = (TextView) userFollowerView.findViewById(R.id.none_starred_text_view);
-        userStarredSwipeRefreshLayout = (SwipeRefreshLayout) userFollowerView.findViewById(R.id.user_starred_swipe_refresh_layout);
+        userStarredRecyclerView = userFollowerView.findViewById(R.id.user_starred_recycler_view);
+        noneStarredTextView = userFollowerView.findViewById(R.id.none_starred_text_view);
+        userStarredSwipeRefreshLayout = userFollowerView.findViewById(R.id.user_starred_swipe_refresh_layout);
 
         userStarredRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userStarredRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

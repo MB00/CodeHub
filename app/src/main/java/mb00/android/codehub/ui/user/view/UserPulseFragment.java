@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.user.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Pulse;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.universaladapter.PulseAdapter;
-import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Pulse;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.universaladapter.PulseAdapter;
+import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,9 +69,9 @@ public class UserPulseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View userPulseView = inflater.inflate(R.layout.fragment_user_pulse, container, false);
 
-        userPulseRecyclerView = (RecyclerView) userPulseView.findViewById(R.id.user_pulse_recycler_view);
-        noUserPulseTextView = (TextView) userPulseView.findViewById(R.id.no_user_pulse_text_view);
-        userPulseSwipeRefreshLayout = (SwipeRefreshLayout) userPulseView.findViewById(R.id.user_pulse_swipe_refresh_layout);
+        userPulseRecyclerView = userPulseView.findViewById(R.id.user_pulse_recycler_view);
+        noUserPulseTextView = userPulseView.findViewById(R.id.no_user_pulse_text_view);
+        userPulseSwipeRefreshLayout = userPulseView.findViewById(R.id.user_pulse_swipe_refresh_layout);
 
         userPulseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userPulseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

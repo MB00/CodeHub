@@ -1,13 +1,5 @@
 package mb00.android.codehub.ui.repo.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Repo;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.LanguageColor;
-import mb00.android.codehub.ui.repo.view.RepoActivity;
-import mb00.android.codehub.ui.search.view.SearchReposFragment;
-import mb00.android.codehub.ui.user.view.UserReposFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Repo;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.LanguageColor;
+import mb00.android.codehub.ui.repo.view.RepoActivity;
+import mb00.android.codehub.ui.search.view.SearchReposFragment;
+import mb00.android.codehub.ui.user.view.UserReposFragment;
 
 /**
  * RecyclerView adapter used to display repositories in {@link UserReposFragment} and {@link SearchReposFragment}
@@ -66,13 +66,13 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHol
         public SearchReposHolder(final View itemView) {
             super(itemView);
 
-            repoViewHolder = (LinearLayout) itemView.findViewById(R.id.repo_view_holder);
-            nameText = (TextView) itemView.findViewById(R.id.repo_name_text_view);
-            descriptionText = (TextView) itemView.findViewById(R.id.repo_description_text_view);
-            languageColorImage = (ImageView) itemView.findViewById(R.id.repo_language_color_image_view);
-            languageText = (TextView) itemView.findViewById(R.id.repo_language_text_view);
-            stargazersCountText = (TextView) itemView.findViewById(R.id.repo_stargazers_count_text_view);
-            forksCountText = (TextView) itemView.findViewById(R.id.repo_forks_count_text_view);
+            repoViewHolder = itemView.findViewById(R.id.repo_view_holder);
+            nameText = itemView.findViewById(R.id.repo_name_text_view);
+            descriptionText = itemView.findViewById(R.id.repo_description_text_view);
+            languageColorImage = itemView.findViewById(R.id.repo_language_color_image_view);
+            languageText = itemView.findViewById(R.id.repo_language_text_view);
+            stargazersCountText = itemView.findViewById(R.id.repo_stargazers_count_text_view);
+            forksCountText = itemView.findViewById(R.id.repo_forks_count_text_view);
 
             repoViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override

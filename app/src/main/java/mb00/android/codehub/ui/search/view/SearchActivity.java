@@ -1,26 +1,25 @@
 package mb00.android.codehub.ui.search.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.home.view.HomeActivity;
-import mb00.android.codehub.ui.NavigationDrawerSetup;
-import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
-
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.base.view.NavigationDrawerActivity;
+import mb00.android.codehub.ui.home.view.HomeActivity;
+import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
 
 /**
  * Launched from {@link HomeActivity} if searchButton is clicked
  * Immediately launches {@link SearchFragmentPagerAdapter}
  */
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends NavigationDrawerActivity {
 
     //==============================================================================================
     // SearchActivity fields
@@ -43,16 +42,17 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        super.setupNavigationDrawer(this);
 
         queryBundle = new Bundle();
         queryBundle.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery);
 
-        backButton = (ImageButton) findViewById(R.id.search_back_button);
-        searchQueryEditText = (EditText) findViewById(R.id.search_query_edit_text);
-        searchButton = (ImageButton) findViewById(R.id.main_search_button);
+        backButton = findViewById(R.id.search_back_button);
+        searchQueryEditText = findViewById(R.id.search_query_edit_text);
+        searchButton = findViewById(R.id.main_search_button);
         searchPagerAdapter = new SearchFragmentPagerAdapter(getSupportFragmentManager(), this, queryBundle);
-        searchViewPager = (ViewPager) findViewById(R.id.search_view_pager);
-        searchTabLayout = (TabLayout) findViewById(R.id.search_tab_layout);
+        searchViewPager = findViewById(R.id.search_view_pager);
+        searchTabLayout = findViewById(R.id.search_tab_layout);
 
         searchViewPager.setAdapter(searchPagerAdapter);
         searchViewPager.setOffscreenPageLimit(3);
@@ -76,8 +76,6 @@ public class SearchActivity extends AppCompatActivity {
                 searchViewPager.getAdapter().notifyDataSetChanged();
             }
         });
-
-        NavigationDrawerSetup.setupNavigationDrawer(SearchActivity.this);
     }
-    
+
 }

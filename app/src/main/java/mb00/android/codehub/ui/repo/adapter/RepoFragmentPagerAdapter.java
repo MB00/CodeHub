@@ -1,5 +1,11 @@
 package mb00.android.codehub.ui.repo.adapter;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+
 import mb00.android.codehub.R;
 import mb00.android.codehub.ui.repo.view.RepoActivity;
 import mb00.android.codehub.ui.repo.view.RepoCodeFragment;
@@ -11,12 +17,6 @@ import mb00.android.codehub.ui.repo.view.RepoPullRequestsFragment;
 import mb00.android.codehub.ui.repo.view.RepoPulseFragment;
 import mb00.android.codehub.ui.repo.view.RepoReadmeFragment;
 import mb00.android.codehub.ui.repo.view.RepoReleasesFragment;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 /**
  * FragmentPagerAdapter used to display repository-related Fragments; launched from {@link RepoActivity}

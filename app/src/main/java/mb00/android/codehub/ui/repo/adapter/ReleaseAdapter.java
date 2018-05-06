@@ -1,9 +1,5 @@
 package mb00.android.codehub.ui.repo.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Release;
-import mb00.android.codehub.api.parser.DateParser;
-
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +11,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Release;
+import mb00.android.codehub.api.parser.DateParser;
 
 
 // not currently used
@@ -39,9 +39,9 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ReleaseH
         public ReleaseHolder(final View itemView) {
             super(itemView);
 
-            releaseAvatarImageView = (ImageView) itemView.findViewById(R.id.repo_release_avatar_image_view);
-            releaseTitleTextView = (TextView) itemView.findViewById(R.id.repo_release_title_text_view);
-            releaseDetailTextView = (TextView) itemView.findViewById(R.id.repo_release_detail_text_view);
+            releaseAvatarImageView = itemView.findViewById(R.id.repo_release_avatar_image_view);
+            releaseTitleTextView = itemView.findViewById(R.id.repo_release_title_text_view);
+            releaseDetailTextView = itemView.findViewById(R.id.repo_release_detail_text_view);
             //releaseDownloadButton = (ImageButton) itemView.findViewById(R.id.repo_release_download_button);
 
             /*releaseDownloadButton.setOnClickListener(new View.OnClickListener() {

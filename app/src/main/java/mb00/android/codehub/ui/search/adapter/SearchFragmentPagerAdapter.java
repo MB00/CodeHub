@@ -1,16 +1,16 @@
 package mb00.android.codehub.ui.search.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.ui.search.view.SearchActivity;
-import mb00.android.codehub.ui.search.view.SearchIssuesFragment;
-import mb00.android.codehub.ui.search.view.SearchReposFragment;
-import mb00.android.codehub.ui.search.view.SearchUsersFragment;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.ui.search.view.SearchActivity;
+import mb00.android.codehub.ui.search.view.SearchIssuesFragment;
+import mb00.android.codehub.ui.search.view.SearchReposFragment;
+import mb00.android.codehub.ui.search.view.SearchUsersFragment;
 
 /**
  * FragmentPagerAdapter used to display search-related Fragments; launched from {@link SearchActivity}

@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.user.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.User;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.repo.view.RepoContributorsFragment;
-import mb00.android.codehub.ui.search.view.SearchUsersFragment;
-import mb00.android.codehub.ui.user.view.UserActivity;
-import mb00.android.codehub.ui.user.view.UserFollowersFragment;
-import mb00.android.codehub.ui.user.view.UserFollowingFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +13,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.User;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.repo.view.RepoContributorsFragment;
+import mb00.android.codehub.ui.search.view.SearchUsersFragment;
+import mb00.android.codehub.ui.user.view.UserActivity;
+import mb00.android.codehub.ui.user.view.UserFollowersFragment;
+import mb00.android.codehub.ui.user.view.UserFollowingFragment;
 
 /**
  * RecyclerView adapter used to display users in {@link SearchUsersFragment},
@@ -66,9 +66,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
         public UserHolder(final View itemView) {
             super(itemView);
-            userViewHolder = (LinearLayout) itemView.findViewById(R.id.user_view_holder);
-            loginText = (TextView) itemView.findViewById(R.id.user_login_text);
-            avatar = (ImageView) itemView.findViewById(R.id.user_avatar);
+            userViewHolder = itemView.findViewById(R.id.user_view_holder);
+            loginText = itemView.findViewById(R.id.user_login_text);
+            avatar = itemView.findViewById(R.id.user_avatar);
 
             userViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.gist.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Comment;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.universaladapter.CommentAdapter;
-import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Comment;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
+import mb00.android.codehub.ui.universaladapter.CommentAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,9 +64,9 @@ public class GistCommentsFragment extends Fragment {
         authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
         gistId = getArguments().getString(BundleKeys.GIST_ID);
 
-        gistCommentsRecyclerView = (RecyclerView) gistCommentsView.findViewById(R.id.gist_comments_recycler_view);
-        noGistCommentsTextView = (TextView) gistCommentsView.findViewById(R.id.no_gist_comments_text_view);
-        gistCommentsSwipeRefreshLayout = (SwipeRefreshLayout) gistCommentsView.findViewById(R.id.gist_comments_swipe_refresh_layout);
+        gistCommentsRecyclerView = gistCommentsView.findViewById(R.id.gist_comments_recycler_view);
+        noGistCommentsTextView = gistCommentsView.findViewById(R.id.no_gist_comments_text_view);
+        gistCommentsSwipeRefreshLayout = gistCommentsView.findViewById(R.id.gist_comments_swipe_refresh_layout);
 
         gistCommentsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         gistCommentsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

@@ -1,11 +1,5 @@
 package mb00.android.codehub.ui.repo.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Contributor;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.repo.view.RepoContributorsFragment;
-import mb00.android.codehub.ui.user.view.UserActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +13,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Contributor;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.repo.view.RepoContributorsFragment;
+import mb00.android.codehub.ui.user.view.UserActivity;
 
 /**
  * A RecyclerView adapter used to display repository contributors in {@link RepoContributorsFragment}
@@ -62,10 +62,10 @@ public class ContributorAdapter extends RecyclerView.Adapter<ContributorAdapter.
         public ContributorHolder(final View itemView) {
             super(itemView);
 
-            contributorViewHolder = (LinearLayout) itemView.findViewById(R.id.repo_contributor_view_holder);
-            avatarImageView = (ImageView) itemView.findViewById(R.id.repo_contributors_avatar_image_view);
-            titleTextView = (TextView) itemView.findViewById(R.id.repo_contributors_title_text_view);
-            detailTextView = (TextView) itemView.findViewById(R.id.repo_contributors_detail_text_view);
+            contributorViewHolder = itemView.findViewById(R.id.repo_contributor_view_holder);
+            avatarImageView = itemView.findViewById(R.id.repo_contributors_avatar_image_view);
+            titleTextView = itemView.findViewById(R.id.repo_contributors_title_text_view);
+            detailTextView = itemView.findViewById(R.id.repo_contributors_detail_text_view);
 
             contributorViewHolder.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.repo.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Commit;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.CommitAdapter;
-import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Commit;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.CommitAdapter;
+import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,9 +66,9 @@ public class RepoCommitsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View repoCommitView = inflater.inflate(R.layout.fragment_repo_commits, container, false);
 
-        repoCommitRecyclerView = (RecyclerView) repoCommitView.findViewById(R.id.repo_commit_recycler_view);
-        noCommitsTextView = (TextView) repoCommitView.findViewById(R.id.no_commits_text_view);
-        repoCommitsSwipeRefreshLayout = (SwipeRefreshLayout) repoCommitView.findViewById(R.id.repo_commits_swipe_refresh_layout);
+        repoCommitRecyclerView = repoCommitView.findViewById(R.id.repo_commit_recycler_view);
+        noCommitsTextView = repoCommitView.findViewById(R.id.no_commits_text_view);
+        repoCommitsSwipeRefreshLayout = repoCommitView.findViewById(R.id.repo_commits_swipe_refresh_layout);
 
         repoCommitRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoCommitRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

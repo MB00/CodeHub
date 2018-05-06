@@ -1,15 +1,5 @@
 package mb00.android.codehub.ui.search.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Repo;
-import mb00.android.codehub.api.model.RepoResult;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
-import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +15,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Repo;
+import mb00.android.codehub.api.model.RepoResult;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
+import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,9 +65,9 @@ public class SearchReposFragment extends Fragment {
         View searchReposView = inflater.inflate(R.layout.fragment_search_repos, container, false);
 
         repo = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
-        searchReposRecyclerView = (RecyclerView) searchReposView.findViewById(R.id.search_repos_recycler_view);
-        noRepoResultsTextView = (TextView) searchReposView.findViewById(R.id.no_repo_results_text_view);
-        searchReposSwipeRefreshLayout = (SwipeRefreshLayout) searchReposView.findViewById(R.id.search_repos_swipe_refresh_layout);
+        searchReposRecyclerView = searchReposView.findViewById(R.id.search_repos_recycler_view);
+        noRepoResultsTextView = searchReposView.findViewById(R.id.no_repo_results_text_view);
+        searchReposSwipeRefreshLayout = searchReposView.findViewById(R.id.search_repos_swipe_refresh_layout);
 
         searchReposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchReposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

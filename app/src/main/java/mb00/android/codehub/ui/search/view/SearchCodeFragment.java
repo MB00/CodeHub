@@ -1,11 +1,11 @@
 package mb00.android.codehub.ui.search.view;
 
-import mb00.android.codehub.ui.user.adapter.UserAdapter;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+
+import mb00.android.codehub.ui.user.adapter.UserAdapter;
 
 
 // not currently utilized

@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.repo.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Contributor;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.ContributorAdapter;
-import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Contributor;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.ContributorAdapter;
+import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,9 +66,9 @@ public class RepoContributorsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View repoContributorView = inflater.inflate(R.layout.fragment_repo_contributors, container, false);
 
-        repoContributorRecyclerView = (RecyclerView) repoContributorView.findViewById(R.id.repo_contributor_recycler_view);
-        noContributorsTextView = (TextView) repoContributorView.findViewById(R.id.no_contributors_text_view);
-        repoContributorsSwipeRefreshLayout = (SwipeRefreshLayout) repoContributorView.findViewById(R.id.repo_contributors_swipe_refresh_layout);
+        repoContributorRecyclerView = repoContributorView.findViewById(R.id.repo_contributor_recycler_view);
+        noContributorsTextView = repoContributorView.findViewById(R.id.no_contributors_text_view);
+        repoContributorsSwipeRefreshLayout = repoContributorView.findViewById(R.id.repo_contributors_swipe_refresh_layout);
 
         repoContributorRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         repoContributorRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

@@ -1,10 +1,5 @@
 package mb00.android.codehub.ui.repo.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Commit;
-import mb00.android.codehub.api.parser.DateParser;
-import mb00.android.codehub.ui.repo.view.RepoCommitsFragment;
-
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +12,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.model.Commit;
+import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.ui.repo.view.RepoCommitsFragment;
 
 /**
  * A RecyclerView adapter used to display commits in {@link RepoCommitsFragment}
@@ -61,9 +61,9 @@ public class CommitAdapter extends RecyclerView.Adapter<CommitAdapter.CommitHold
         public CommitHolder(View itemView) {
             super(itemView);
 
-            commitAvatarImageView = (ImageView) itemView.findViewById(R.id.repo_commit_avatar_image_view);
-            commitTitleTextView = (TextView) itemView.findViewById(R.id.repo_commit_title_text_view);
-            commitDetailTextView = (TextView) itemView.findViewById(R.id.repo_commit_detail_text_view);
+            commitAvatarImageView = itemView.findViewById(R.id.repo_commit_avatar_image_view);
+            commitTitleTextView = itemView.findViewById(R.id.repo_commit_title_text_view);
+            commitDetailTextView = itemView.findViewById(R.id.repo_commit_detail_text_view);
         }
     }
 

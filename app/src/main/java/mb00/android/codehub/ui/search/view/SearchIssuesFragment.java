@@ -1,15 +1,5 @@
 package mb00.android.codehub.ui.search.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Issue;
-import mb00.android.codehub.api.model.IssueResult;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.IssueAdapter;
-import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +15,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Issue;
+import mb00.android.codehub.api.model.IssueResult;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.IssueAdapter;
+import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,9 +65,9 @@ public class SearchIssuesFragment extends Fragment {
         View searchIssuesView = inflater.inflate(R.layout.fragment_search_issues, container, false);
 
         issue = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
-        searchIssuesRecyclerView = (RecyclerView) searchIssuesView.findViewById(R.id.search_issues_recycler_view);
-        noIssueResultsTextView = (TextView) searchIssuesView.findViewById(R.id.no_issue_results_text_view);
-        searchIssuesSwipeRefreshLayout = (SwipeRefreshLayout) searchIssuesView.findViewById(R.id.search_issues_swipe_refresh_layout);
+        searchIssuesRecyclerView = searchIssuesView.findViewById(R.id.search_issues_recycler_view);
+        noIssueResultsTextView = searchIssuesView.findViewById(R.id.no_issue_results_text_view);
+        searchIssuesSwipeRefreshLayout = searchIssuesView.findViewById(R.id.search_issues_swipe_refresh_layout);
 
         searchIssuesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchIssuesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

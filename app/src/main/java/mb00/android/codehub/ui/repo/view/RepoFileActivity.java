@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.repo.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.Base64Decoder;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Code;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.CodeAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +8,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.Base64Decoder;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Code;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.CodeAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,9 +58,9 @@ public class RepoFileActivity extends AppCompatActivity {
         fileName = getIntent().getExtras().getString(BundleKeys.FILE_NAME);
         filePath = getIntent().getExtras().getString(BundleKeys.FILE_PATH);
 
-        fileBackButton = (ImageButton) findViewById(R.id.repo_file_back_button);
-        fileTitleTextView = (TextView) findViewById(R.id.repo_file_title_text_view);
-        fileTextView = (TextView) findViewById(R.id.repo_file_text_view);
+        fileBackButton = findViewById(R.id.repo_file_back_button);
+        fileTitleTextView = findViewById(R.id.repo_file_title_text_view);
+        fileTextView = findViewById(R.id.repo_file_text_view);
 
         fileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,14 +1,14 @@
 package mb00.android.codehub.ui.gist.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
 
 /**
  * Launched from {@link GistFileAdapter} if gist file in RecyclerView is clicked
@@ -40,9 +40,9 @@ public class GistFileActivity extends AppCompatActivity {
         gistFileBundle = getIntent().getExtras();
         fileName = gistFileBundle.getString(BundleKeys.FILE_NAME);
         fileContent = gistFileBundle.getString(BundleKeys.FILE_CONTENT);
-        fileBackButton = (ImageButton) findViewById(R.id.gist_file_back_button);
-        fileTitleTextView = (TextView) findViewById(R.id.gist_file_title_text_view);
-        fileTextView = (TextView) findViewById(R.id.gist_file_text_view);
+        fileBackButton = findViewById(R.id.gist_file_back_button);
+        fileTitleTextView = findViewById(R.id.gist_file_title_text_view);
+        fileTextView = findViewById(R.id.gist_file_text_view);
 
         fileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

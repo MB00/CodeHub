@@ -1,11 +1,5 @@
 package mb00.android.codehub.ui.login.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.User;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.User;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.home.view.HomeActivity;
 import mb00.android.codehub.ui.main.view.MainActivity;
 import retrofit2.Call;
@@ -49,9 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usernameEditText = (EditText) findViewById(R.id.username_edit_text);
-        passwordEditText = (EditText) findViewById(R.id.password_edit_text);
-        Button loginButton = (Button) findViewById(R.id.sign_in_button);
+        usernameEditText = findViewById(R.id.username_edit_text);
+        passwordEditText = findViewById(R.id.password_edit_text);
+        Button loginButton = findViewById(R.id.sign_in_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

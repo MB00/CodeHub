@@ -1,14 +1,5 @@
 package mb00.android.codehub.ui.user.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Repo;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
-import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Repo;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
+import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,9 +69,9 @@ public class UserReposFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View userRepoView = inflater.inflate(R.layout.fragment_user_repos, container, false);
 
-        userReposRecyclerView = (RecyclerView) userRepoView.findViewById(R.id.user_repos_recycler_view);
-        noReposTextView = (TextView) userRepoView.findViewById(R.id.no_repos_text_view);
-        userReposSwipeRefreshLayout = (SwipeRefreshLayout) userRepoView.findViewById(R.id.user_repos_swipe_refresh_layout);
+        userReposRecyclerView = userRepoView.findViewById(R.id.user_repos_recycler_view);
+        noReposTextView = userRepoView.findViewById(R.id.no_repos_text_view);
+        userReposSwipeRefreshLayout = userRepoView.findViewById(R.id.user_repos_swipe_refresh_layout);
 
         userReposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userReposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

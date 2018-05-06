@@ -1,15 +1,15 @@
 package mb00.android.codehub.ui.gist.adapter;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.ui.gist.view.GistActivity;
-import mb00.android.codehub.ui.gist.view.GistCommentsFragment;
-import mb00.android.codehub.ui.gist.view.GistFilesFragment;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import mb00.android.codehub.R;
+import mb00.android.codehub.ui.gist.view.GistActivity;
+import mb00.android.codehub.ui.gist.view.GistCommentsFragment;
+import mb00.android.codehub.ui.gist.view.GistFilesFragment;
 
 /**
  * FragmentPagerAdapter used to display gist-related Fragments; launched from {@link GistActivity}

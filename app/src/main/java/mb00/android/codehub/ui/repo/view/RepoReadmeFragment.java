@@ -1,15 +1,5 @@
 package mb00.android.codehub.ui.repo.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Readme;
-import mb00.android.codehub.api.parser.MarkdownParser;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.api.Base64Decoder;
-import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.Base64Decoder;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Readme;
+import mb00.android.codehub.api.parser.MarkdownParser;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

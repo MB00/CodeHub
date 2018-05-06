@@ -1,13 +1,5 @@
 package mb00.android.codehub.ui.user.view;
 
-import mb00.android.codehub.R;
-import mb00.android.codehub.api.model.Gist;
-import mb00.android.codehub.api.service.GitHubService;
-import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.data.PreferenceKeys;
-import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,7 +15,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import mb00.android.codehub.R;
+import mb00.android.codehub.api.RetrofitBuilder;
+import mb00.android.codehub.api.model.Gist;
+import mb00.android.codehub.api.service.GitHubService;
+import mb00.android.codehub.data.BundleKeys;
+import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.gist.adapter.GistAdapter;
+import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,9 +64,9 @@ public class UserGistsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View userGistView = inflater.inflate(R.layout.fragment_user_gists, container, false);
 
-        userGistsRecyclerView = (RecyclerView) userGistView.findViewById(R.id.user_gists_recycler_view);
-        noGistsTextView = (TextView) userGistView.findViewById(R.id.no_gists_text_view);
-        userGistsSwipeRefreshLayout = (SwipeRefreshLayout) userGistView.findViewById(R.id.user_gists_swipe_refresh_layout);
+        userGistsRecyclerView = userGistView.findViewById(R.id.user_gists_recycler_view);
+        noGistsTextView = userGistView.findViewById(R.id.no_gists_text_view);
+        userGistsSwipeRefreshLayout = userGistView.findViewById(R.id.user_gists_swipe_refresh_layout);
 
         userGistsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         userGistsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
