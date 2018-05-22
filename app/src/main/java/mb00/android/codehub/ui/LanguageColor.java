@@ -3,82 +3,454 @@ package mb00.android.codehub.ui;
 import android.graphics.Color;
 
 /**
- * Contains values for GitHub language colors
+ * Contains values for GitHub language colors and a static method to return them
  */
 
 public class LanguageColor {
 
-    //==============================================================================================
-    // LanguageColor fields
-    //==============================================================================================
+    public static int getColor(String language) {
+        return Color.parseColor(getHexCode(language));
+    }
 
-    public int color;
-
-    //==============================================================================================
-    // LanguageColor constructor
-    //==============================================================================================
-
-    public LanguageColor(String language) {
-
+    private static String getHexCode(String language) {
         switch(language) {
             case "1C Enterprise":
-                color = Color.parseColor("#814ccc");
-                break;
+                return "#814ccc";
             case "ABAP":
-                color = Color.parseColor("#e8274b");
-                break;
+                return "#e8274b";
             case "ActionScript":
-                color = Color.parseColor("#882b0f");
-                break;
+                return "#882b0f";
             case "Ada":
-                color = Color.parseColor("#02f88c");
-                break;
+                return "#02f88c";
             case "Agda":
-                color = Color.parseColor("#315665");
-                break;
+                return "#315665";
             case "AGS Script":
-                color = Color.parseColor("#b9d9ff");
-                break;
+                return "#b9d9ff";
             case "Alloy":
-                color = Color.parseColor("#64c800");
-                break;
+                return "#64c800";
+            case "AMPL":
+                return "#e6efbb";
+            case "ANTLR":
+                return "#9dc3ff";
+            case "API Blueprint":
+                return "#2acca8";
+            case "APL":
+                return "#5a8164";
+            case "AppleScript":
+                return "#101f1f";
+            case "Arc":
+                return "#aa2afe";
+            case "Arduino":
+                return "#bd79d1";
+            case "ASP":
+                return "#6a40fd";
+            case "AspectJ":
+                return "#a957b0";
+            case "Assembly":
+                return "#6e4c13";
+            case "ATS":
+                return "#1ac620";
+            case "AutoHotkey":
+                return "#6594b9";
+            case "AutoIt":
+                return "#1c3552";
+            case "Ballerina":
+                return "#ff5000";
+            case "Batchfile":
+                return "#c1f12e";
+            case "BlitzMax":
+                return "#cd6400";
+            case "Boo":
+                return "#d4bec1";
+            case "Brainfuck":
+                return "#2f2530";
             case "C":
-                color = Color.parseColor("#555555");
-                break;
+                return "#555555";
             case "C#":
-                color = Color.parseColor("#178600");
-                break;
+                return "#178600";
             case "C++":
-                color = Color.parseColor("#f34b7d");
-                break;
+                return "#f34b7d";
+            case "Ceylon":
+                return "#dfa535";
+            case "Chapel":
+                return "#8dc63f";
+            case "Cirru":
+                return "#ccccff";
+            case "Clarion":
+                return "#db901e";
+            case "Clean":
+                return "#3f85af";
+            case "Click":
+                return "#e4e6f3";
+            case "Clojure":
+                return "#db5855";
+            case "CoffeeScript":
+                return "#244776";
+            case "ColdFusion":
+                return "#ed2cd6";
+            case "Common Lisp":
+                return "#3fb68b";
+            case "Component Pascal":
+                return "#b0ce4e";
+            case "Crystal":
+                return "#776791";
             case "CSS":
-                color = Color.parseColor("#563d7c");
+                return "#563d7c";
+            case "Cuda":
+                return "#3a4e3a";
+            case "D":
+                return "#ba595e";
+            case "Dart":
+                return "#00b4ab";
+            case "DataWeave":
+                return "#003a52";
+            case "DM":
+                return "#447265";
+            case "Dogescript":
+                return "#cca760";
+            case "Dylan":
+                return "#6c616e";
+            case "E":
+                return "#ccce35";
+            case "eC":
+                return "#913960";
+            case "ECL":
+                return "#8a1267";
+            case "Eiffel":
+                return "#946d57";
+            case "Elixir":
+                return "#6e4a7e";
+            case "Elm":
+                return "#60b5cc";
+            case "Emacs Lisp":
+                return "#c065db";
+            case "EmberScript":
+                return "#fff4f3";
+            case "EQ":
+                return "#a78649";
+            case "Erlang":
+                return "#b83998";
+            case "F#":
+                return "#b845fc";
+            case "Factor":
+                return "#636746";
+            case "Fancy":
+                return "#7b9db4";
+            case "Fantom":
+                return "#14253c";
+            case "FLUX":
+                return "#88ccff";
+            case "Forth":
+                return "#341708";
+            case "Fortran":
+                return "#4d41b1";
+            case "FreeMarker":
+                return "#0050b2";
+            case "Frege":
+                return "#00cafe";
+            case "Game Maker Language":
+                return "#8fb200";
+            case "Genie":
+                return "#fb855d";
+            case "Gherkin":
+                return "#5b2063";
+            case "Glyph":
+                return "#e4cc98";
+            case "Gnuplot":
+                return "#f0a9f0";
+            case "Go":
+                return "#375eab";
+            case "Golo":
+                return "#88562a";
+            case "Gosu":
+                return "#82937f";
+            case "Grammatical Framework":
+                return "#79aa7a";
             case "Groovy":
-                color = Color.parseColor("#e69f56");
-                break;
+                return "#e69f56";
+            case "Hack":
+                return "#878787";
+            case "Harbour":
+                return "#0e60e3";
+            case "Haskell":
+                return "#5e5086";
+            case "Haxe":
+                return "#df7900";
             case "HTML":
-                color = Color.parseColor("#e34c26");
+                return "#e34c26";
+            case "Hy":
+                return "#7790b2";
+            case "IDL":
+                return "#a3522f";
+            case "Io":
+                return "#a9188d";
+            case "Ioke":
+                return "#078193";
+            case "Isabelle":
+                return "#fefe00";
+            case "J":
+                return "#9eedff";
             case "Java":
-                color = Color.parseColor("#b07219");
-                break;
+                return "#b07219";
             case "JavaScript":
-                color = Color.parseColor("#f1e05a");
-                break;
+                return "#f1e05a";
+            case "Jolie":
+                return "#843179";
+            case "JSONiq":
+                return "#40d47e";
+            case "Julia":
+                return "#a270ba";
+            case "Jupyter Notebook":
+                return "#da5b0b";
             case "Kotlin":
-                color = Color.parseColor("#f18e33");
-                break;
+                return "#f18e33";
+            case "KRL":
+                return "#28431f";
+            case "Lasso":
+                return "#999999";
+            case "Lex":
+                return "#dbca00";
+            case "LiveScript":
+                return "#499886";
+            case "LLVM":
+                return "#185619";
+            case "LOLCODE":
+                return "#cc9900";
+            case "LookML":
+                return "#652b81";
+            case "LSL":
+                return "#3d9970";
+            case "Lua":
+                return "#000080";
+            case "Makefile":
+                return "#427819";
+            case "Mask":
+                return "#f97732";
+            case "Matlab":
+                return "#e16737";
+            case "Max":
+                return "#c4a79c";
+            case "MAXScript":
+                return "#00a6a6";
+            case "Mercury":
+                return "#ff2b2b";
+            case "Meson":
+                return "#007800";
+            case "Metal":
+                return "#8f14e9";
+            case "Mirah":
+                return "#c7a938";
+            case "MQL4":
+                return "#62a8d6";
+            case "MQL5":
+                return "#4a76b8";
+            case "MTML":
+                return "#b7e1f4";
+            case "NCL":
+                return "#28431f";
+            case "Nearley":
+                return "#990000";
+            case "Nemerle":
+                return "#3d3c6e";
+            case "nesC":
+                return "#94b0c7";
+            case "NetLinx":
+                return "#0aa0ff";
+            case "NetLinx+ERB":
+                return "#747faa";
+            case "NetLogo":
+                return "#ff6375";
+            case "NewLisp":
+                return "#87aed7";
+            case "Nim":
+                return "#37775b";
+            case "Nit":
+                return "#009917";
+            case "Nix":
+                return "#7e7eff";
+            case "Nu":
+                return "#c9df40";
+            case "Objective-C":
+                return "#438eff";
+            case "Objective-C++":
+                return "#6866fb";
+            case "Objective-J":
+                return "#ff0c5a";
+            case "OCaml":
+                return "#3be133";
+            case "Omgrofl":
+                return "#cabbff";
+            case "ooc":
+                return "#b0b77e";
+            case "Opal":
+                return "#f7ede0";
+            case "Oxygene":
+                return "#cdd0e3";
+            case "Oz":
+                return "#fab738";
+            case "P4":
+                return "#7055b5";
+            case "Pan":
+                return "#cc0000";
+            case "Papyrus":
+                return "#6600cc";
+            case "Parrot":
+                return "#f3ca0a";
+            case "Pascal":
+                return "#e3f171";
+            case "PAWN":
+                return "#dbb284";
+            case "Pep8":
+                return "#c76f5b";
+            case "Perl":
+                return "#0298c3";
+            case "Perl 6":
+                return "#0000fb";
+            case "PHP":
+                return "#4f5d95";
+            case "PigLatin":
+                return "#fcd7de";
+            case "Pike":
+                return "#005390";
+            case "PLSQL":
+                return "#dad8d8";
+            case "PogoScript":
+                return "#d80074";
+            case "PostScript":
+                return "#da291c";
+            case "PowerBuilder":
+                return "#8f0f8d";
+            case "PowerShell":
+                return "#012456";
+            case "Processing":
+                return "#0096d8";
+            case "Prolog":
+                return "#74283c";
+            case "Propeller Spin":
+                return "#7fa2a7";
+            case "Puppet":
+                return "#302b6d";
+            case "PureBasic":
+                return "#5a6986";
+            case "PureScript":
+                return "#1d222d";
             case "Python":
-                color = Color.parseColor("#3572a5");
-                break;
+                return "#3572a5";
+            case "QML":
+                return "#44a51c";
+            case "R":
+                return "#198ce7";
+            case "Racket":
+                return "#22228f";
+            case "Ragel":
+                return "#9d5200";
+            case "RAML":
+                return "#77d9fb";
+            case "Rascal":
+                return "#fffaa0";
+            case "Rebol":
+                return "#358a5b";
+            case "Red":
+                return "#f50000";
+            case "Ren'Py":
+                return "#ff7f7f";
+            case "Ring":
+                return "#0e60e3";
+            case "Roff":
+                return "#ecdebe";
+            case "Rouge":
+                return "#cc0088";
             case "Ruby":
-                color = Color.parseColor("#701516");
+                return "#701516";
+            case "RUNOFF":
+                return "#665a4e";
+            case "Rust":
+                return "#dea584";
+            case "SaltStack":
+                return "#646464";
+            case "SAS":
+                return "#b34936";
+            case "Scala":
+                return "#c22d40";
+            case "Scheme":
+                return "#1e4aec";
+            case "Self":
+                return "#0579aa";
             case "Shell":
-                color = Color.parseColor("#89e051");
-                break;
+                return "#89e051";
+            case "Shen":
+                return "#120f14";
+            case "Slash":
+                return "#007eff";
+            case "Smalltalk":
+                return "#596706";
+            case "SourcePawn":
+                return "#5c7611";
+            case "SQF":
+                return "#3f3f3f";
+            case "Squirrel":
+                return "#800000";
+            case "SRecode Template":
+                return "#348a34";
+            case "Stan":
+                return "#b2011d";
+            case "Standard ML":
+                return "#dc566d";
+            case "SuperCollider":
+                return "#46390b";
+            case "Swift":
+                return "#ffac45";
+            case "SystemVerilog":
+                return "#dae1c2";
+            case "Tc1":
+                return "#e4cc98";
+            case "Terra":
+                return "#00004c";
+            case "TeX":
+                return "#3d6117";
+            case "TI Program":
+                return "#a0aa87";
+            case "Turing":
+                return "#cf142b";
+            case "TypeScript":
+                return "#2b7489";
+            case "UnrealScript":
+                return "#a54c4d";
+            case "Vala":
+                return "#fbe5cd";
+            case "Verilog":
+                return "#b2b7f8";
+            case "VHDL":
+                return "#adb2cb";
+            case "Vim script":
+                return "#199f4b";
+            case "Visual Basic":
+                return "#945db7";
+            case "Volt":
+                return "#1f1f1f";
+            case "Vue":
+                return "#2c3e50";
+            case "WebAssembly":
+                return "#04133b";
+            case "wisp":
+                return "#7582d1";
+            case "X10":
+                return "#4b6bef";
+            case "xBase":
+                return "#403a40";
+            case "XC":
+                return "#99da07";
+            case "XQuery":
+                return "#5232e7";
+            case "XSLT":
+                return "#eb8ceb";
+            case "Yacc":
+                return "#4b6c4b";
+            case "Zephir":
+                return "#118f9e";
             default:
-                color = Color.parseColor("#ffffff");
+                return "#bdbdbd";
         }
-
     }
 
 }

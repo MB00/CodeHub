@@ -117,8 +117,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHol
         holder.languageText.setText(repo.getLanguage());
 
         if (repo.getLanguage() != null) {
-            LanguageColor languageColor = new LanguageColor(repo.getLanguage());
-            holder.languageColorImage.setColorFilter(languageColor.color);
+            holder.languageColorImage.setColorFilter(LanguageColor.getColor(repo.getLanguage()));
         } else {
             holder.languageColorImage.setVisibility(View.GONE);
         }
