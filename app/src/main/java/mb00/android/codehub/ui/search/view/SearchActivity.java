@@ -52,6 +52,8 @@ public class SearchActivity extends BaseDrawerActivity<ActivitySearchBinding, Se
         PagerAdapter searchPagerAdapter = new SearchFragmentPagerAdapter(getSupportFragmentManager(), this, queryBundle);
         getBinding().searchViewPager.setAdapter(searchPagerAdapter);
         getBinding().searchViewPager.setOffscreenPageLimit(3);
+        getBinding().searchViewPager.setPageMargin(4);
+        getBinding().searchViewPager.setPageMarginDrawable(R.color.grey);
         getBinding().searchTabLayout.setupWithViewPager(getBinding().searchViewPager);
     }
 

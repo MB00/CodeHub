@@ -33,6 +33,8 @@ public class HomeActivity extends BaseDrawerActivity<ActivityHomeBinding, HomeVi
 
         getBinding().homeViewPager.setAdapter(homePagerAdapter);
         getBinding().homeViewPager.setOffscreenPageLimit(4);
+        getBinding().homeViewPager.setPageMargin(4);
+        getBinding().homeViewPager.setPageMarginDrawable(R.color.grey);
         getBinding().homeTabLayout.setupWithViewPager(getBinding().homeViewPager);
     }
 

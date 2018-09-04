@@ -54,6 +54,8 @@ public class UserActivity extends BaseDrawerActivity<ActivityUserBinding, UserVi
 
         getBinding().userViewPager.setAdapter(userPagerAdapter);
         getBinding().userViewPager.setOffscreenPageLimit(7);
+        getBinding().userViewPager.setPageMargin(4);
+        getBinding().userViewPager.setPageMarginDrawable(R.color.grey);
         getBinding().userTabLayout.setupWithViewPager(getBinding().userViewPager);
         getBinding().userViewPager.setCurrentItem(userBundle.getInt(BundleKeys.VIEW_PAGER_POSITION));
     }

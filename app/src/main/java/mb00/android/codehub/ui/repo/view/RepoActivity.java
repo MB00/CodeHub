@@ -47,6 +47,8 @@ public class RepoActivity extends BaseDrawerActivity<ActivityRepoBinding, RepoVi
         RepoFragmentPagerAdapter repoPagerAdapter = new RepoFragmentPagerAdapter(getSupportFragmentManager(), this, repoBundle);
         getBinding().repoViewPager.setAdapter(repoPagerAdapter);
         getBinding().repoViewPager.setOffscreenPageLimit(9);
+        getBinding().repoViewPager.setPageMargin(4);
+        getBinding().repoViewPager.setPageMarginDrawable(R.color.grey);
         getBinding().repoTabLayout.setupWithViewPager(getBinding().repoViewPager);
     }
 
