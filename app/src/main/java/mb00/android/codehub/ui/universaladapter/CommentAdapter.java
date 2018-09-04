@@ -18,8 +18,8 @@ import java.util.List;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Comment;
-import mb00.android.codehub.api.parser.DateParser;
-import mb00.android.codehub.api.parser.MarkdownParser;
+import mb00.android.codehub.logic.utils.DateParser;
+import mb00.android.codehub.logic.utils.MarkdownParser;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.gist.view.GistCommentsFragment;
 import mb00.android.codehub.ui.user.view.UserActivity;
@@ -30,41 +30,21 @@ import mb00.android.codehub.ui.user.view.UserActivity;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentHolder>{
 
-    //==============================================================================================
-    // CommentAdapter fields
-    //==============================================================================================
-
     private List<Comment> commentList;
     private Context context;
-
-    //==============================================================================================
-    // CommentAdapter constructor
-    //==============================================================================================
 
     public CommentAdapter(List<Comment> commentList, Context context) {
         this.commentList = commentList;
         this.context = context;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class CommentHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // CommentHolder fields
-        //==========================================================================================
 
         private LinearLayout commenterLayout;
         private ImageView commentAvatarImageView;
         private TextView commentUsernameTextView;
         private TextView commentDateTextView;
         private TextView commentBodyTextView;
-
-        //==========================================================================================
-        // CommentHolder constructor
-        //==========================================================================================
 
         public CommentHolder(final View itemView) {
             super(itemView);
@@ -75,25 +55,18 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
             commentDateTextView = itemView.findViewById(R.id.gist_comment_date_text_view);
             commentBodyTextView = itemView.findViewById(R.id.gist_comment_body_text_view);
 
-            commenterLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Comment comment = commentList.get(getAdapterPosition());
-                    String userLogin = comment.getUser().getLogin();
-                    Bundle userBundle = new Bundle();
-                    userBundle.putString(BundleKeys.USER_NAME, userLogin);
+            commenterLayout.setOnClickListener(view -> {
+                Comment comment = commentList.get(getAdapterPosition());
+                String userLogin = comment.getUser().getLogin();
+                Bundle userBundle = new Bundle();
+                userBundle.putString(BundleKeys.USER_NAME, userLogin);
 
-                    Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
-                    userActivityIntent.putExtras(userBundle);
-                    itemView.getContext().startActivity(userActivityIntent);
-                }
+                Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
+                userActivityIntent.putExtras(userBundle);
+                itemView.getContext().startActivity(userActivityIntent);
             });
         }
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public CommentHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -15,7 +15,7 @@ import java.util.List;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Repo;
 import mb00.android.codehub.data.BundleKeys;
-import mb00.android.codehub.ui.LanguageColor;
+import mb00.android.codehub.data.LanguageColor;
 import mb00.android.codehub.ui.repo.view.RepoActivity;
 import mb00.android.codehub.ui.search.view.SearchReposFragment;
 import mb00.android.codehub.ui.user.view.UserReposFragment;
@@ -26,29 +26,13 @@ import mb00.android.codehub.ui.user.view.UserReposFragment;
 
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHolder> {
 
-    //==============================================================================================
-    // RepoAdapter fields
-    //==============================================================================================
-
     private List<Repo> repoList;
-
-    //==============================================================================================
-    // RepoAdapter constructor
-    //==============================================================================================
 
     public RepoAdapter(List<Repo> repoList) {
         this.repoList = repoList;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class SearchReposHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // SearchReposHolder fields
-        //==========================================================================================
 
         private LinearLayout repoViewHolder;
         private TextView nameText;
@@ -58,10 +42,6 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHol
         private TextView stargazersCountText;
         private TextView forksCountText;
         private Bundle repoBundle;
-
-        //==========================================================================================
-        // SearchReposHolder constructor
-        //==========================================================================================
 
         public SearchReposHolder(final View itemView) {
             super(itemView);
@@ -74,30 +54,23 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.SearchReposHol
             stargazersCountText = itemView.findViewById(R.id.repo_stargazers_count_text_view);
             forksCountText = itemView.findViewById(R.id.repo_forks_count_text_view);
 
-            repoViewHolder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Repo repo = repoList.get(getAdapterPosition());
-                    String userLogin = repo.getOwner().getLogin();
-                    String repoName = repo.getName();
-                    String repoFullName = repo.getFullName();
-                    repoBundle = new Bundle();
-                    repoBundle.putString(BundleKeys.USER_NAME, userLogin);
-                    repoBundle.putString(BundleKeys.REPO_NAME, repoName);
-                    repoBundle.putString(BundleKeys.REPO_FULL_NAME, repoFullName);
+            repoViewHolder.setOnClickListener(view -> {
+                Repo repo = repoList.get(getAdapterPosition());
+                String userLogin = repo.getOwner().getLogin();
+                String repoName = repo.getName();
+                String repoFullName = repo.getFullName();
+                repoBundle = new Bundle();
+                repoBundle.putString(BundleKeys.USER_NAME, userLogin);
+                repoBundle.putString(BundleKeys.REPO_NAME, repoName);
+                repoBundle.putString(BundleKeys.REPO_FULL_NAME, repoFullName);
 
-                    Intent repoActivityIntent = new Intent(itemView.getContext(), RepoActivity.class);
-                    repoActivityIntent.putExtras(repoBundle);
-                    itemView.getContext().startActivity(repoActivityIntent);
-                }
+                Intent repoActivityIntent = new Intent(itemView.getContext(), RepoActivity.class);
+                repoActivityIntent.putExtras(repoBundle);
+                itemView.getContext().startActivity(repoActivityIntent);
             });
         }
 
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public SearchReposHolder onCreateViewHolder(ViewGroup parent, int viewType) {

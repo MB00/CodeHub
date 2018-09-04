@@ -32,37 +32,17 @@ import mb00.android.codehub.ui.user.view.UserFollowingFragment;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
-    //==============================================================================================
-    // UserAdapter fields
-    //==============================================================================================
-
     private List<User> userList;
-
-    //==============================================================================================
-    // UserAdapter constructor
-    //==============================================================================================
 
     public UserAdapter(List<User> userList) {
         this.userList = userList;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class UserHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // UserHolder fields
-        //==========================================================================================
 
         private LinearLayout userViewHolder;
         private TextView loginText;
         private ImageView avatar;
-
-        //==========================================================================================
-        // UserHolder constructor
-        //==========================================================================================
 
         public UserHolder(final View itemView) {
             super(itemView);
@@ -70,25 +50,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
             loginText = itemView.findViewById(R.id.user_login_text);
             avatar = itemView.findViewById(R.id.user_avatar);
 
-            userViewHolder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    User user = userList.get(getAdapterPosition());
-                    String userLogin = user.getLogin();
-                    Bundle userBundle = new Bundle();
-                    userBundle.putString(BundleKeys.USER_NAME, userLogin);
+            userViewHolder.setOnClickListener(view -> {
+                User user = userList.get(getAdapterPosition());
+                String userLogin = user.getLogin();
+                Bundle userBundle = new Bundle();
+                userBundle.putString(BundleKeys.USER_NAME, userLogin);
 
-                    Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
-                    userActivityIntent.putExtras(userBundle);
-                    itemView.getContext().startActivity(userActivityIntent);
-                }
+                Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
+                userActivityIntent.putExtras(userBundle);
+                itemView.getContext().startActivity(userActivityIntent);
             });
         }
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public UserHolder onCreateViewHolder(ViewGroup parent, int viewType) {

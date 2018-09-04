@@ -10,20 +10,16 @@ import mb00.android.codehub.R;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.home.view.HomeActivity;
-import mb00.android.codehub.ui.user.view.UserFollowersFragment;
-import mb00.android.codehub.ui.user.view.UserFollowingFragment;
-import mb00.android.codehub.ui.user.view.UserPulseFragment;
-import mb00.android.codehub.ui.user.view.UserReposFragment;
+import mb00.android.codehub.ui.user.view.HomeFollowersFragment;
+import mb00.android.codehub.ui.user.view.HomeFollowingFragment;
+import mb00.android.codehub.ui.user.view.HomePulseFragment;
+import mb00.android.codehub.ui.user.view.HomeReposFragment;
 
 /**
  * FragmentPagerAdapter used to display home-related Fragments; launched from {@link HomeActivity}
  */
 
 public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
-
-    //==============================================================================================
-    // HomeFragmentPagerAdapter fields
-    //==============================================================================================
 
     private final int PAGE_COUNT = 4;
 
@@ -34,10 +30,6 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Bundle homeArgs;
     private String userLogin;
-
-    //==============================================================================================
-    // HomeFragmentPagerAdapter constructor
-    //==============================================================================================
 
     public HomeFragmentPagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
@@ -52,10 +44,6 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
         homeArgs.putString(BundleKeys.USER_NAME, userLogin);
     }
 
-    //==============================================================================================
-    // FragmentPagerAdapter methods
-    //==============================================================================================
-
     @Override
     public int getCount() {
         return PAGE_COUNT;
@@ -65,19 +53,19 @@ public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position) {
             case 0:
-                UserPulseFragment pulseFragment = new UserPulseFragment();
+                HomePulseFragment pulseFragment = new HomePulseFragment();
                 pulseFragment.setArguments(homeArgs);
                 return pulseFragment;
             case 1:
-                UserReposFragment reposFragment = new UserReposFragment();
+                HomeReposFragment reposFragment = new HomeReposFragment();
                 reposFragment.setArguments(homeArgs);
                 return reposFragment;
             case 2:
-                UserFollowersFragment followersFragment = new UserFollowersFragment();
+                HomeFollowersFragment followersFragment = new HomeFollowersFragment();
                 followersFragment.setArguments(homeArgs);
                 return followersFragment;
             case 3:
-                UserFollowingFragment followingFragment = new UserFollowingFragment();
+                HomeFollowingFragment followingFragment = new HomeFollowingFragment();
                 followingFragment.setArguments(homeArgs);
                 return followingFragment;
             default:

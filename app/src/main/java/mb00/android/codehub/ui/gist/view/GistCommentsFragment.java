@@ -13,19 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Comment;
+import mb00.android.codehub.api.builder.RetrofitBuilder;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
 import mb00.android.codehub.ui.universaladapter.CommentAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
@@ -33,10 +29,6 @@ import retrofit2.Retrofit;
  */
 
 public class GistCommentsFragment extends Fragment {
-
-    //==============================================================================================
-    // GistCommentsFragment fields
-    //==============================================================================================
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -46,10 +38,6 @@ public class GistCommentsFragment extends Fragment {
     private CommentAdapter commentAdapter;
     private TextView noGistCommentsTextView;
     private SwipeRefreshLayout gistCommentsSwipeRefreshLayout;
-
-    //==============================================================================================
-    // Fragment / lifecycle methods
-    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,46 +58,30 @@ public class GistCommentsFragment extends Fragment {
 
         gistCommentsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         gistCommentsRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        gistCommentsSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                gistCommentsCall(authHeader, gistId);
-                gistCommentsSwipeRefreshLayout.setRefreshing(false);
-            }
+        gistCommentsSwipeRefreshLayout.setOnRefreshListener(() -> {
+            gistCommentsCall(authHeader, gistId);
+            gistCommentsSwipeRefreshLayout.setRefreshing(false);
         });
         gistCommentsCall(authHeader, gistId);
 
         return gistCommentsView;
     }
 
-    //==============================================================================================
-    // GistCommentsFragment methods
-    //==============================================================================================
-
     private void gistCommentsCall(String header, String gist) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
         GitHubService service = retrofit.create(GitHubService.class);
 
-        Call<List<Comment>> call = service.getGistComments(header, gist);
-
-        call.enqueue(new Callback<List<Comment>>() {
-            @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-                List<Comment> gistCommentList = response.body();
-
-                if (gistCommentList.size() > 0) {
-                    commentAdapter = new CommentAdapter(gistCommentList, getActivity());
-                    gistCommentsRecyclerView.setAdapter(commentAdapter);
-                } else {
-                    noGistCommentsTextView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
-
-            }
-        });
+        service.getGistComments(header, gist)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(gistCommentList -> {
+                    if (gistCommentList.size() > 0) {
+                        commentAdapter = new CommentAdapter(gistCommentList, getActivity());
+                        gistCommentsRecyclerView.setAdapter(commentAdapter);
+                    } else {
+                        noGistCommentsTextView.setVisibility(View.VISIBLE);
+                    }
+                });
     }
 
 }

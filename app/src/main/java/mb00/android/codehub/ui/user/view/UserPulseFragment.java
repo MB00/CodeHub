@@ -3,59 +3,44 @@ package mb00.android.codehub.ui.user.view;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import java.util.List;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Pulse;
+import mb00.android.codehub.api.builder.RetrofitBuilder;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.databinding.FragmentUserPulseBinding;
+import mb00.android.codehub.ui.base.view.BaseBindingFragment;
 import mb00.android.codehub.ui.universaladapter.PulseAdapter;
 import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import mb00.android.codehub.ui.user.viewmodel.UserPulseViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user pulse; launched from {@link UserFragmentPagerAdapter}
  */
 
-public class UserPulseFragment extends Fragment {
+public class UserPulseFragment extends BaseBindingFragment<FragmentUserPulseBinding, UserPulseViewModel> {
 
-    //==============================================================================================
-    // UserPulseFragment fields
-    //==============================================================================================
-
-    private SharedPreferences preferences;
     private String userName;
     private String authHeader;
 
-    private RecyclerView userPulseRecyclerView;
-    private PulseAdapter pulseAdapter;
-    private TextView noUserPulseTextView;
-    private SwipeRefreshLayout userPulseSwipeRefreshLayout;
-
-    //==============================================================================================
-    // Fragment / lifecycle fields
-    //==============================================================================================
+    @Override
+    protected int layout() {
+        return R.layout.fragment_user_pulse;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        preferences = getActivity().getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences preferences = getActivity().getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
 
         if (getArguments() != null) {
             userName = getArguments().getString(BundleKeys.USER_NAME);
@@ -66,54 +51,40 @@ public class UserPulseFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View userPulseView = inflater.inflate(R.layout.fragment_user_pulse, container, false);
+    public void onStart() {
+        super.onStart();
 
-        userPulseRecyclerView = userPulseView.findViewById(R.id.user_pulse_recycler_view);
-        noUserPulseTextView = userPulseView.findViewById(R.id.no_user_pulse_text_view);
-        userPulseSwipeRefreshLayout = userPulseView.findViewById(R.id.user_pulse_swipe_refresh_layout);
+        initRecyclerView();
 
-        userPulseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        userPulseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        userPulseSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                userPulseCall(authHeader, userName);
-                userPulseSwipeRefreshLayout.setRefreshing(false);
-            }
+        //getViewModel().getUserPulse(authHeader, "MB00");
+
+        getBinding().userPulseSwipeRefreshLayout.setOnRefreshListener(() -> {
+            userPulseCall(authHeader, userName);
+            getBinding().userPulseSwipeRefreshLayout.setRefreshing(false);
         });
         userPulseCall(authHeader, userName);
-
-        return userPulseView;
     }
 
-    //==============================================================================================
-    // UserPulseFragment methods
-    //==============================================================================================
+    private void initRecyclerView() {
+        getBinding().userPulseRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        getBinding().userPulseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+    }
 
     private void userPulseCall(String header, String user) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
         GitHubService service = retrofit.create(GitHubService.class);
-        Call<List<Pulse>> call = service.getUserPulse(header, user);
 
-        call.enqueue(new Callback<List<Pulse>>() {
-            @Override
-            public void onResponse(Call<List<Pulse>> call, Response<List<Pulse>> response) {
-                List<Pulse> userPulseList = response.body();
-
-                if (userPulseList.size() > 0) {
-                    pulseAdapter = new PulseAdapter(userPulseList, getActivity());
-                    userPulseRecyclerView.setAdapter(pulseAdapter);
-                } else {
-                    noUserPulseTextView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Pulse>> call, Throwable t) {
-
-            }
-        });
+        service.getUserPulse(header, user)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(userPulse -> {
+                    if (userPulse.size() > 0) {
+                        PulseAdapter pulseAdapter = new PulseAdapter(userPulse, getActivity());
+                        getBinding().userPulseRecyclerView.setAdapter(pulseAdapter);
+                    } else {
+                        getBinding().noUserPulseTextView.setVisibility(View.VISIBLE);
+                    }
+                }, error -> Timber.i(error.getMessage()));
     }
 
 }

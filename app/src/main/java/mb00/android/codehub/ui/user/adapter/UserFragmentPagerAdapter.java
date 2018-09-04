@@ -21,10 +21,6 @@ import mb00.android.codehub.ui.user.view.UserStarredFragment;
 
 public class UserFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    //==============================================================================================
-    // UserFragmentPagerAdapter fields
-    //==============================================================================================
-
     private final int PAGE_COUNT = 7;
 
     private String overviewTabTitle;
@@ -36,10 +32,6 @@ public class UserFragmentPagerAdapter extends FragmentPagerAdapter {
     private String followingTabTitle;
 
     private Bundle userArgs;
-
-    //==============================================================================================
-    // UserFragmentPagerAdapter constructor
-    //==============================================================================================
 
     public UserFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle userBundle) {
         super(fragmentManager);
@@ -54,10 +46,6 @@ public class UserFragmentPagerAdapter extends FragmentPagerAdapter {
 
         userArgs = userBundle;
     }
-
-    //==============================================================================================
-    // FragmentPagerAdapter methods
-    //==============================================================================================
 
     @Override
     public int getCount() {

@@ -2,7 +2,6 @@ package mb00.android.codehub.ui.gist.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -16,10 +15,6 @@ import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
 
 public class GistFileActivity extends AppCompatActivity {
 
-    //==============================================================================================
-    // GistFileActivity fields
-    //==============================================================================================
-
     private Bundle gistFileBundle;
     private String fileName;
     private String fileContent;
@@ -27,10 +22,6 @@ public class GistFileActivity extends AppCompatActivity {
     private ImageButton fileBackButton;
     private TextView fileTitleTextView;
     private TextView fileTextView;
-
-    //==============================================================================================
-    // Activity / lifecycle methods
-    //==============================================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +35,7 @@ public class GistFileActivity extends AppCompatActivity {
         fileTitleTextView = findViewById(R.id.gist_file_title_text_view);
         fileTextView = findViewById(R.id.gist_file_text_view);
 
-        fileBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        fileBackButton.setOnClickListener(view -> finish());
         fileTitleTextView.setText(fileName);
         fileTextView.setText(fileContent);
     }

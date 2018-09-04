@@ -14,7 +14,7 @@ import java.util.List;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Release;
-import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.logic.utils.DateParser;
 
 
 // not currently used
@@ -83,19 +83,6 @@ public class ReleaseAdapter extends RecyclerView.Adapter<ReleaseAdapter.ReleaseH
     /*private void releaseDownloadCall(String downloadPath) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
         GitHubService service = retrofit.create(GitHubService.class);
-        Call<Release> call = service.getRepoReleaseDownload(downloadPath);
-
-        call.enqueue(new Callback<Release>() {
-            @Override
-            public void onResponse(Call<Release> call, Response<Release> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<Release> call, Throwable t) {
-
-            }
-        });
     }*/
 
     @Override

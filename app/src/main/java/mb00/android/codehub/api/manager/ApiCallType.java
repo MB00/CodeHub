@@ -1,0 +1,27 @@
+package mb00.android.codehub.api.manager;
+
+
+public enum ApiCallType {
+    LOGIN,
+    GIST_COMMENTS,
+    GIST_FILES,
+    REPO_CODE,
+    REPO_COMMITS,
+    REPO_CONTRIBUTORS,
+    REPO_ISSUES,
+    REPO_LICENSE,
+    REPO_PULL_REQUESTS,
+    REPO_PULSE,
+    REPO_README,
+    REPO_RELEASES,
+    SEARCH_CODE,
+    SEARCH_ISSUES,
+    SEARCH_REPOS,
+    SEARCH_USERS,
+    USER_FOLLOWERS,
+    USER_FOLLOWING,
+    USER_OVERVIEW,
+    USER_PULSE,
+    USER_REPOS,
+    USER_STARRED
+}

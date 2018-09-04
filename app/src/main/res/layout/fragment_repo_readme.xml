@@ -1,37 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+<layout>
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <data>
+        <variable
+            name="viewModel"
+            type="mb00.android.codehub.ui.repo.viewmodel.RepoViewModel"
+            />
+    </data>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         >
 
-        <TextView
-            android:id="@+id/repo_readme_text_view"
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/repo_readme_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                />
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/no_repo_readme_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:padding="10dp"
+            android:text="@string/no_readme"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="18sp"
+            android:visibility="gone"
             />
 
-    </ScrollView>
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/no_repo_readme_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp"
-        android:text="@string/no_readme"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:visibility="gone"
-        />
-
-</FrameLayout>
+</layout>

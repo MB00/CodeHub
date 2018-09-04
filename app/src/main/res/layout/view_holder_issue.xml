@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="mb00.android.codehub.ui.repo.viewmodel.RepoViewModel"
+            />
+    </data>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
-        <ImageView
-            android:id="@+id/issue_status_image_view"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            />
+            >
+
+            <ImageView
+                android:id="@+id/issue_status_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                />
+
+            <TextView
+                android:id="@+id/issue_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/issue_title_text_view"
+            android:id="@+id/issue_date_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
+            android:padding="10dp"
             />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/issue_date_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:padding="10dp"
-        />
-
-</LinearLayout>
+</layout>

@@ -23,39 +23,19 @@ import mb00.android.codehub.ui.user.view.UserGistsFragment;
 
 public class GistAdapter extends RecyclerView.Adapter<GistAdapter.GistHolder> {
 
-    //==============================================================================================
-    // GistAdapter fields
-    //==============================================================================================
-
     private List<Gist> gistList;
-
-    //==============================================================================================
-    // GistAdapter constructor
-    //==============================================================================================
 
     public GistAdapter(List<Gist> gistList) {
         this.gistList = gistList;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class GistHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // GistHolder fields
-        //==========================================================================================
 
         private LinearLayout gistViewHolder;
         private TextView gistDescriptionTextView;
         private TextView gistFileCountTextView;
         private TextView gistCommentCountTextView;
         private Bundle gistBundle;
-
-        //==========================================================================================
-        // GistHolder constructor
-        //==========================================================================================
 
         public GistHolder(final View itemView) {
             super(itemView);
@@ -65,26 +45,19 @@ public class GistAdapter extends RecyclerView.Adapter<GistAdapter.GistHolder> {
             gistFileCountTextView = itemView.findViewById(R.id.gist_file_count_text_view);
             gistCommentCountTextView = itemView.findViewById(R.id.gist_comment_count_text_view);
 
-            gistViewHolder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Gist gist = gistList.get(getAdapterPosition());
+            gistViewHolder.setOnClickListener(view -> {
+                Gist gist = gistList.get(getAdapterPosition());
 
-                    gistBundle = new Bundle();
-                    gistBundle.putString(BundleKeys.GIST_ID, gist.getId());
-                    gistBundle.putString(BundleKeys.USER_NAME, gist.getOwner().getLogin());
+                gistBundle = new Bundle();
+                gistBundle.putString(BundleKeys.GIST_ID, gist.getId());
+                gistBundle.putString(BundleKeys.USER_NAME, gist.getOwner().getLogin());
 
-                    Intent gistActivityIntent = new Intent(itemView.getContext(), GistActivity.class);
-                    gistActivityIntent.putExtras(gistBundle);
-                    itemView.getContext().startActivity(gistActivityIntent);
-                }
+                Intent gistActivityIntent = new Intent(itemView.getContext(), GistActivity.class);
+                gistActivityIntent.putExtras(gistBundle);
+                itemView.getContext().startActivity(gistActivityIntent);
             });
         }
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public GistHolder onCreateViewHolder(ViewGroup parent, int viewType) {

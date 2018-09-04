@@ -1,54 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="mb00.android.codehub.ui.gist.viewmodel.GistViewModel"
+            />
+    </data>
 
     <LinearLayout
-        android:id="@+id/gist_commenter_layout"
-        android:orientation="horizontal"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         >
 
-        <ImageView
-            android:id="@+id/gist_comment_avatar_image_view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:id="@+id/gist_commenter_layout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/gist_comment_avatar_image_view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingRight="10dp"
+                />
+
+            <TextView
+                android:id="@+id/gist_comment_username_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/gist_comment_body_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:paddingLeft="10dp"
             android:paddingRight="10dp"
             />
 
         <TextView
-            android:id="@+id/gist_comment_username_text_view"
+            android:id="@+id/gist_comment_date_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="14sp"
+            android:padding="10dp"
             />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/gist_comment_body_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        />
-
-    <TextView
-        android:id="@+id/gist_comment_date_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:padding="10dp"
-        />
-
-</LinearLayout>
+</layout>

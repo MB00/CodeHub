@@ -17,29 +17,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Gist;
+import mb00.android.codehub.api.builder.RetrofitBuilder;
 import mb00.android.codehub.api.model.GistFile;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
 import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
  * Fragment containing gist files; launched from {@link GistFragmentPagerAdapter}
  */
 
-public class GistFilesFragment extends Fragment{
-
-    //==============================================================================================
-    // GistFilesFragment fields
-    //==============================================================================================
+public class GistFilesFragment extends Fragment {
 
     private SharedPreferences preferences;
     private String authHeader;
@@ -49,10 +43,6 @@ public class GistFilesFragment extends Fragment{
     private GistFileAdapter fileAdapter;
     private TextView noGistFilesTextView;
     private SwipeRefreshLayout gistFilesSwipeRefreshLayout;
-
-    //==============================================================================================
-    // Fragment / lifecycle methods
-    //==============================================================================================
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,48 +63,35 @@ public class GistFilesFragment extends Fragment{
 
         gistFilesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         gistFilesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        gistFilesSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                gistFilesCall(authHeader, gistId);
-                gistFilesSwipeRefreshLayout.setRefreshing(false);
-            }
+        gistFilesSwipeRefreshLayout.setOnRefreshListener(() -> {
+            gistFilesCall(authHeader, gistId);
+            gistFilesSwipeRefreshLayout.setRefreshing(false);
         });
         gistFilesCall(authHeader, gistId);
 
         return gistFilesView;
     }
 
-    //==============================================================================================
-    // GistFilesFragment methods
-    //==============================================================================================
-
     private void gistFilesCall(String header, String gist) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
         GitHubService service = retrofit.create(GitHubService.class);
 
-        Call<Gist> call = service.getGistContents(header, gist);
+        service.getGistContents(header, gist)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(gistFile -> {
 
-        call.enqueue(new Callback<Gist>() {
-            @Override
-            public void onResponse(Call<Gist> call, Response<Gist> response) {
-                Gist gist = response.body();
-                Map<String, GistFile> fileMap = gist.getFiles();
-                List<GistFile> gistFileList = new ArrayList<>(fileMap.values());
+                    Map<String, GistFile> fileMap = gistFile.getFiles();
+                    List<GistFile> gistFileList = new ArrayList<>(fileMap.values());
 
-                if (gistFileList.size() > 0) {
-                    fileAdapter = new GistFileAdapter(gistFileList, gistFilesRecyclerView, authHeader, gistId);
-                    gistFilesRecyclerView.setAdapter(fileAdapter);
-                } else {
-                    noGistFilesTextView.setVisibility(View.VISIBLE);
-                }
-            }
+                    if (gistFileList.size() > 0) {
+                        fileAdapter = new GistFileAdapter(gistFileList, gistFilesRecyclerView, authHeader, gistId);
+                        gistFilesRecyclerView.setAdapter(fileAdapter);
+                    } else {
+                        noGistFilesTextView.setVisibility(View.VISIBLE);
+                    }
 
-            @Override
-            public void onFailure(Call<Gist> call, Throwable t) {
-
-            }
-        });
+                });
     }
 
 }

@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+<layout>
 
-    <Button
-        android:id="@+id/zip_download_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@null"
-        android:text="@string/zip_download"
-        android:textAllCaps="false"
-        android:drawableTop="@drawable/ic_download"
-        />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <Button
-        android:id="@+id/tar_download_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@null"
-        android:text="@string/tar_download"
-        android:textAllCaps="false"
-        android:drawableTop="@drawable/ic_download"
-        />
+        <Button
+            android:id="@+id/zip_download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:text="@string/zip_download"
+            android:textAllCaps="false"
+            android:drawableTop="@drawable/ic_download"
+            />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/tar_download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:text="@string/tar_download"
+            android:textAllCaps="false"
+            android:drawableTop="@drawable/ic_download"
+            />
+
+    </LinearLayout>
+
+</layout>

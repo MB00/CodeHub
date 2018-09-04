@@ -26,38 +26,18 @@ import mb00.android.codehub.ui.user.view.UserActivity;
 
 public class ContributorAdapter extends RecyclerView.Adapter<ContributorAdapter.ContributorHolder> {
 
-    //==============================================================================================
-    // ContributorAdapter fields
-    //==============================================================================================
-
     private List<Contributor> contributorList;
-
-    //==============================================================================================
-    // ContributorAdapter constructor
-    //==============================================================================================
 
     public ContributorAdapter(List<Contributor> contributorList) {
         this.contributorList = contributorList;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class ContributorHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // ContributorHolder fields
-        //==========================================================================================
 
         private LinearLayout contributorViewHolder;
         private ImageView avatarImageView;
         private TextView titleTextView;
         private TextView detailTextView;
-
-        //==========================================================================================
-        // ContributorHolder constructor
-        //==========================================================================================
 
         public ContributorHolder(final View itemView) {
             super(itemView);
@@ -67,25 +47,18 @@ public class ContributorAdapter extends RecyclerView.Adapter<ContributorAdapter.
             titleTextView = itemView.findViewById(R.id.repo_contributors_title_text_view);
             detailTextView = itemView.findViewById(R.id.repo_contributors_detail_text_view);
 
-            contributorViewHolder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Contributor contributor = contributorList.get(getAdapterPosition());
-                    String userLogin = contributor.getLogin();
-                    Bundle userBundle = new Bundle();
-                    userBundle.putString(BundleKeys.USER_NAME, userLogin);
+            contributorViewHolder.setOnClickListener(view -> {
+                Contributor contributor = contributorList.get(getAdapterPosition());
+                String userLogin = contributor.getLogin();
+                Bundle userBundle = new Bundle();
+                userBundle.putString(BundleKeys.USER_NAME, userLogin);
 
-                    Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
-                    userActivityIntent.putExtras(userBundle);
-                    itemView.getContext().startActivity(userActivityIntent);
-                }
+                Intent userActivityIntent = new Intent(itemView.getContext(), UserActivity.class);
+                userActivityIntent.putExtras(userBundle);
+                itemView.getContext().startActivity(userActivityIntent);
             });
         }
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public ContributorHolder onCreateViewHolder(ViewGroup parent, int viewType) {

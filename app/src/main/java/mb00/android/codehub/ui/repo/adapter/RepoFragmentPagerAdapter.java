@@ -24,10 +24,6 @@ import mb00.android.codehub.ui.repo.view.RepoReleasesFragment;
 
 public class RepoFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    //==============================================================================================
-    // RepoFragmentPagerAdapter fields
-    //==============================================================================================
-
     private final int PAGE_COUNT = 9;
 
     private String readmeTabTitle;
@@ -41,10 +37,6 @@ public class RepoFragmentPagerAdapter extends FragmentPagerAdapter {
     private String licenseTabTitle;
 
     private Bundle repoArgs;
-
-    //==============================================================================================
-    // RepoFragmentPagerAdapter constructor
-    //==============================================================================================
 
     public RepoFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle repoBundle) {
         super(fragmentManager);
@@ -61,10 +53,6 @@ public class RepoFragmentPagerAdapter extends FragmentPagerAdapter {
 
         repoArgs = repoBundle;
     }
-
-    //==============================================================================================
-    // FragmentPagerAdapter methods
-    //==============================================================================================
 
     @Override
     public int getCount() {

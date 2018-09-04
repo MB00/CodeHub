@@ -18,10 +18,6 @@ import mb00.android.codehub.ui.search.view.SearchUsersFragment;
 
 public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    //==============================================================================================
-    // SearchFragmentPagerAdapter fields
-    //==============================================================================================
-
     private final int PAGE_COUNT = 3;
 
     private String reposTabTitle;
@@ -30,10 +26,6 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private Bundle queryArgs;
 
-    //==============================================================================================
-    // SearchFragmentPagerAdapter constructor
-    //==============================================================================================
-
     public SearchFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle queryArgs) {
         super(fragmentManager);
         reposTabTitle = context.getResources().getString(R.string.repositories);
@@ -41,10 +33,6 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
         issuesTabTitle = context.getResources().getString(R.string.issues);
         this.queryArgs = queryArgs;
     }
-
-    //==============================================================================================
-    // FragmentPagerAdapter methods
-    //==============================================================================================
 
     @Override
     public int getCount() {

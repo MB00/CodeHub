@@ -14,7 +14,7 @@ import java.util.List;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Pulse;
-import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.logic.utils.DateParser;
 import mb00.android.codehub.ui.repo.view.RepoPulseFragment;
 import mb00.android.codehub.ui.user.view.UserPulseFragment;
 
@@ -24,53 +24,29 @@ import mb00.android.codehub.ui.user.view.UserPulseFragment;
 
 public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.PulseHolder> {
 
-    //==============================================================================================
-    // PulseAdapter fields
-    //==============================================================================================
-
     private List<Pulse> pulseList;
     private Context context;
-
-    //==============================================================================================
-    // PulseAdapter constructor
-    //==============================================================================================
 
     public PulseAdapter(List<Pulse> pulseList, Context context) {
         this.pulseList = pulseList;
         this.context = context;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class PulseHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // PulseHolder fields
-        //==========================================================================================
 
         private ImageView pulseAvatarImageView;
         private TextView pulseTitleTextView;
         private TextView pulseTimeTextView;
 
-        //==========================================================================================
-        // PulseHolder constructor
-        //==========================================================================================
-
         public PulseHolder(View itemView) {
             super(itemView);
 
-            pulseAvatarImageView = itemView.findViewById(R.id.repo_pulse_avatar_image_view);
-            pulseTitleTextView = itemView.findViewById(R.id.repo_pulse_title_text_view);
-            pulseTimeTextView = itemView.findViewById(R.id.repo_pulse_time_text_view);
+            pulseAvatarImageView = itemView.findViewById(R.id.pulse_avatar_image_view);
+            pulseTitleTextView = itemView.findViewById(R.id.pulse_title_text_view);
+            pulseTimeTextView = itemView.findViewById(R.id.pulse_time_text_view);
         }
 
     }
-
-    //==============================================================================================
-    // PulseAdapter methods
-    //==============================================================================================
 
     private String getActionType(Pulse pulse) {
         String repoName = pulse.getRepo().getName();
@@ -97,10 +73,6 @@ public class PulseAdapter extends RecyclerView.Adapter<PulseAdapter.PulseHolder>
                 return "";
         }
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public PulseHolder onCreateViewHolder(ViewGroup parent, int viewType) {

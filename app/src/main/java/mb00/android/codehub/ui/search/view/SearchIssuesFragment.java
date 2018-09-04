@@ -3,117 +3,99 @@ package mb00.android.codehub.ui.search.view;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
-import java.util.List;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import mb00.android.codehub.R;
-import mb00.android.codehub.api.RetrofitBuilder;
-import mb00.android.codehub.api.model.Issue;
+import mb00.android.codehub.api.builder.RetrofitBuilder;
 import mb00.android.codehub.api.model.IssueResult;
 import mb00.android.codehub.api.service.GitHubService;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.data.PreferenceKeys;
+import mb00.android.codehub.databinding.FragmentSearchIssuesBinding;
+import mb00.android.codehub.ui.base.view.BaseBindingFragment;
 import mb00.android.codehub.ui.repo.adapter.IssueAdapter;
 import mb00.android.codehub.ui.search.adapter.SearchFragmentPagerAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import mb00.android.codehub.ui.search.viewmodel.SearchIssuesViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing issue search results; launched from {@link SearchFragmentPagerAdapter}
  */
 
-public class SearchIssuesFragment extends Fragment {
+public class SearchIssuesFragment extends BaseBindingFragment<FragmentSearchIssuesBinding, SearchIssuesViewModel> {
 
-    //==============================================================================================
-    // SearchIssuesFragment fields
-    //==============================================================================================
-
-    private SharedPreferences preferences;
     private String authHeader;
     private String issue;
 
-    private RecyclerView searchIssuesRecyclerView;
-    private IssueAdapter searchIssuesAdapter;
-    private TextView noIssueResultsTextView;
-    private SwipeRefreshLayout searchIssuesSwipeRefreshLayout;
-
-    //==============================================================================================
-    // Fragment / lifecycle methods
-    //==============================================================================================
+    @Override
+    protected int layout() {
+        return R.layout.fragment_search_issues;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        preferences = getActivity().getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
-        authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
+        initPreferences();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View searchIssuesView = inflater.inflate(R.layout.fragment_search_issues, container, false);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        issue = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
-        searchIssuesRecyclerView = searchIssuesView.findViewById(R.id.search_issues_recycler_view);
-        noIssueResultsTextView = searchIssuesView.findViewById(R.id.no_issue_results_text_view);
-        searchIssuesSwipeRefreshLayout = searchIssuesView.findViewById(R.id.search_issues_swipe_refresh_layout);
-
-        searchIssuesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        searchIssuesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        searchIssuesSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                issueCall(authHeader, issue);
-                searchIssuesSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        issueCall(authHeader, issue);
-
-        return searchIssuesView;
+        initRecyclerView();
+        initSwipeRefreshListener();
     }
 
-    //==============================================================================================
-    // SearchIssuesFragment methods
-    //==============================================================================================
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        issue = getArguments().getString(BundleKeys.SEARCH_QUERY_KEY);
+        issueCall(authHeader, issue);
+    }
+
+    private void initPreferences() {
+        SharedPreferences preferences = getActivity().getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE);
+        authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "");
+    }
+
+    private void initRecyclerView() {
+        getBinding().searchIssuesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        getBinding().searchIssuesRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+    }
+
+    private void initSwipeRefreshListener() {
+        getBinding().searchIssuesSwipeRefreshLayout.setOnRefreshListener(() -> {
+            issueCall(authHeader, issue);
+            getBinding().searchIssuesSwipeRefreshLayout.setRefreshing(false);
+        });
+    }
 
     private void issueCall(String header, String issue) {
         Retrofit retrofit = RetrofitBuilder.getInstance();
         GitHubService service = retrofit.create(GitHubService.class);
-        Call<IssueResult> call = service.issueSearch(header, issue);
 
-        call.enqueue(new Callback<IssueResult>() {
-            @Override
-            public void onResponse(Call<IssueResult> call, Response<IssueResult> response) {
-                if (response.isSuccessful()) {
-                    List<Issue> issueList = response.body().getItems();
-
+        service.issueSearch(header, issue)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(IssueResult::getItems)
+                .subscribe(issueList -> {
                     if (issueList.size() > 0) {
-                        searchIssuesAdapter = new IssueAdapter(issueList);
-                        searchIssuesRecyclerView.setAdapter(searchIssuesAdapter);
+                        IssueAdapter searchIssuesAdapter = new IssueAdapter(issueList);
+                        getBinding().searchIssuesRecyclerView.setAdapter(searchIssuesAdapter);
                     } else {
-                        noIssueResultsTextView.setVisibility(View.VISIBLE);
+                        getBinding().noIssueResultsTextView.setVisibility(View.VISIBLE);
                     }
-                } else {
-                    noIssueResultsTextView.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<IssueResult> call, Throwable t) {
-
-            }
-        });
+                }, error -> {
+                    getBinding().noIssueResultsTextView.setVisibility(View.VISIBLE);
+                    Timber.i(error.getMessage());
+                });
     }
 
 }

@@ -1,86 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     >
 
-    <LinearLayout
-        android:orientation="vertical"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="mb00.android.codehub.ui.home.viewmodel.HomeViewModel"
+            />
+
+    </data>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_home"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/grey"
+            android:orientation="vertical"
             >
 
-            <android.support.constraint.ConstraintLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/grey"
                 >
 
-                <ImageButton
-                    android:id="@+id/home_menu_button"
-                    android:src="@drawable/ic_menu"
-                    android:layout_width="wrap_content"
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
-                    />
+                    >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toRightOf="@+id/home_menu_button"
-                    android:text="@string/app_name"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:paddingLeft="20dp"
-                    />
+                    <ImageButton
+                        android:id="@+id/home_menu_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:onClick="@{ () -> viewModel.openNavigationDrawer() }"
+                        android:src="@drawable/ic_menu"
+                        />
 
-                <ImageButton
-                    android:id="@+id/home_search_button"
-                    android:src="@drawable/ic_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:background="@null"
-                    android:paddingRight="10dp"
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:text="@string/app_name"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toRightOf="@+id/home_menu_button"
+                        />
 
-            </android.support.constraint.ConstraintLayout>
+                    <ImageButton
+                        android:id="@+id/home_search_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:onClick="@{ () -> viewModel.startSearchActivity() }"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/ic_search"
+                        app:layout_constraintRight_toRightOf="parent"
+                        />
 
-        </android.support.v7.widget.Toolbar>
+                </android.support.constraint.ConstraintLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/home_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="scrollable"
+            </android.support.v7.widget.Toolbar>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/home_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="scrollable"
+                />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/home_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/drawer_navigation_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            app:headerLayout="@layout/header_drawer"
+            app:menu="@menu/drawer"
             />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/home_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+    </android.support.v4.widget.DrawerLayout>
 
-    </LinearLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/drawer_navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        app:headerLayout="@layout/header_drawer"
-        app:menu="@menu/drawer"
-        />
-
-</android.support.v4.widget.DrawerLayout>
+</layout>

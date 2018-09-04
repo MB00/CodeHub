@@ -14,7 +14,7 @@ import java.util.List;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.Code;
-import mb00.android.codehub.api.parser.FileSizeParser;
+import mb00.android.codehub.logic.utils.FileSizeParser;
 import mb00.android.codehub.data.BundleKeys;
 import mb00.android.codehub.ui.repo.view.RepoCodeFragment;
 import mb00.android.codehub.ui.repo.view.RepoFileActivity;
@@ -25,19 +25,11 @@ import mb00.android.codehub.ui.repo.view.RepoFileActivity;
 
 public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
     
-    //==============================================================================================
-    // CodeAdapter fields
-    //==============================================================================================
-
     private List<Code> fileList;
     private RecyclerView fileRecyclerView;
     private String header;
     private String user;
     private String repo;
-
-    //==============================================================================================
-    // CodeAdapter constructor
-    //==============================================================================================
 
     public CodeAdapter(List<Code> fileList, RecyclerView fileRecyclerView, String header, String user, String repo) {
         this.fileList = fileList;
@@ -47,24 +39,12 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
         this.repo = repo;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class CodeHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // CodeHolder fields
-        //==========================================================================================
 
         private LinearLayout codeViewHolder;
         private ImageView codeTypeImageView;
         private TextView codeTextView;
         private TextView codeSizeTextView;
-
-        //==========================================================================================
-        // CodeHolder constructor
-        //==========================================================================================
 
         public CodeHolder(final View itemView) {
             super(itemView);
@@ -74,34 +54,27 @@ public class CodeAdapter extends RecyclerView.Adapter<CodeAdapter.CodeHolder> {
             codeTextView = itemView.findViewById(R.id.code_text_view);
             codeSizeTextView = itemView.findViewById(R.id.code_size_text_view);
 
-            codeViewHolder.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Code code = fileList.get(getAdapterPosition());
-                    if (code.getType().equals("dir")) {
-                        String path = code.getPath();
-                        RepoCodeFragment.repoCodeCall(fileRecyclerView, header, user, repo, path);
-                        RepoCodeFragment.displayPathAsViewObjects(path, view.getContext(), (ViewGroup) itemView.getParent());
-                    } else { // code.getType().equals("file)
-                        Bundle fileBundle = new Bundle();
-                        fileBundle.putString(BundleKeys.USER_NAME, user);
-                        fileBundle.putString(BundleKeys.REPO_NAME, repo);
-                        fileBundle.putString(BundleKeys.FILE_NAME, code.getName());
-                        fileBundle.putString(BundleKeys.FILE_PATH, code.getPath());
+            codeViewHolder.setOnClickListener(view -> {
+                Code code = fileList.get(getAdapterPosition());
+                if (code.getType().equals("dir")) {
+                    String path = code.getPath();
+                    RepoCodeFragment.repoCodeCall(fileRecyclerView, header, user, repo, path);
+                    //RepoCodeFragment.displayPathAsViewObjects(path, view.getContext(), (ViewGroup) itemView.getParent());
+                } else { // code.getType().equals("file)
+                    Bundle fileBundle = new Bundle();
+                    fileBundle.putString(BundleKeys.USER_NAME, user);
+                    fileBundle.putString(BundleKeys.REPO_NAME, repo);
+                    fileBundle.putString(BundleKeys.FILE_NAME, code.getName());
+                    fileBundle.putString(BundleKeys.FILE_PATH, code.getPath());
 
-                        Intent fileIntent = new Intent(itemView.getContext(), RepoFileActivity.class);
-                        fileIntent.putExtras(fileBundle);
-                        itemView.getContext().startActivity(fileIntent);
-                    }
+                    Intent fileIntent = new Intent(itemView.getContext(), RepoFileActivity.class);
+                    fileIntent.putExtras(fileBundle);
+                    itemView.getContext().startActivity(fileIntent);
                 }
             });
         }
 
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public CodeHolder onCreateViewHolder(ViewGroup parent, int viewType) {

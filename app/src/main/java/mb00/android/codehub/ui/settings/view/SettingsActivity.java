@@ -1,29 +1,33 @@
 package mb00.android.codehub.ui.settings.view;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import mb00.android.codehub.R;
+import mb00.android.codehub.databinding.ActivitySettingsBinding;
+import mb00.android.codehub.ui.base.view.BaseBindingActivity;
+import mb00.android.codehub.ui.settings.viewmodel.SettingsViewModel;
 
 /**
  * Launched from Activity's navigation drawer if "Settings" item is clicked
  */
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseBindingActivity<ActivitySettingsBinding, SettingsViewModel> {
 
-    //==============================================================================================
-    // Activity / lifecycle methods
-    //==============================================================================================
+    @Override
+    protected int layout() {
+        return R.layout.activity_settings;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
 
-        Toolbar settingsToolbar = findViewById(R.id.toolbar_settings);
-        settingsToolbar.setTitle(R.string.settings);
-        setSupportActionBar(settingsToolbar);
+        initToolbar();
+    }
+
+    private void initToolbar() {
+        getBinding().settingsToolbar.setTitle(R.string.settings);
+        setSupportActionBar(getBinding().settingsToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

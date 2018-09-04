@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+<layout>
 
-    <TextView
-        android:id="@+id/no_gist_comments_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/no_comments"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:padding="10dp"
-        android:visibility="gone"
-        />
+    <data>
+        <variable
+            name="viewModel"
+            type="mb00.android.codehub.ui.gist.viewmodel.GistViewModel"
+            />
+    </data>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/gist_comments_swipe_refresh_layout"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         >
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/gist_comments_recycler_view"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/no_gist_comments_text_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/no_comments"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="10dp"
+            android:visibility="gone"
             />
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/gist_comments_swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-</LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/gist_comments_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+</layout>

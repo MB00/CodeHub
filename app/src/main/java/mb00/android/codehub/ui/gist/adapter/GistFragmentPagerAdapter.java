@@ -17,20 +17,12 @@ import mb00.android.codehub.ui.gist.view.GistFilesFragment;
 
 public class GistFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    //==============================================================================================
-    // GistFragmentPagerAdapter fields
-    //==============================================================================================
-
     private final int PAGE_COUNT = 2;
 
     private String filesTabTitle;
     private String commentsTabTitle;
 
     private Bundle gistArgs;
-
-    //==============================================================================================
-    // GistFileAdapter constructor
-    //==============================================================================================
 
     public GistFragmentPagerAdapter(FragmentManager fragmentManager, Context context, Bundle gistBundle) {
         super(fragmentManager);
@@ -40,10 +32,6 @@ public class GistFragmentPagerAdapter extends FragmentPagerAdapter {
 
         gistArgs = gistBundle;
     }
-
-    //==============================================================================================
-    // FragmentPagerAdapter methods
-    //==============================================================================================
 
     @Override
     public int getCount() {

@@ -14,7 +14,7 @@ import java.util.List;
 
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.model.PullRequest;
-import mb00.android.codehub.api.parser.DateParser;
+import mb00.android.codehub.logic.utils.DateParser;
 import mb00.android.codehub.ui.repo.view.RepoPullRequestsFragment;
 
 /**
@@ -23,39 +23,19 @@ import mb00.android.codehub.ui.repo.view.RepoPullRequestsFragment;
 
 public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestAdapter.PullRequestHolder> {
 
-    //==============================================================================================
-    // PullRequestAdapter fields
-    //==============================================================================================
-
     private List<PullRequest> pullRequestList;
     private Context context;
-
-    //==============================================================================================
-    // PullRequestAdapter constructor
-    //==============================================================================================
 
     public PullRequestAdapter(List<PullRequest> pullRequestList, Context context) {
         this.pullRequestList = pullRequestList;
         this.context = context;
     }
 
-    //==============================================================================================
-    // ViewHolder inner class
-    //==============================================================================================
-
     public class PullRequestHolder extends RecyclerView.ViewHolder {
-
-        //==========================================================================================
-        // PullRequestHolder fields
-        //==========================================================================================
 
         private ImageView avatarImageView;
         private TextView titleTextView;
         private TextView detailTextView;
-
-        //==========================================================================================
-        // PullRequestHolder constructor
-        //==========================================================================================
 
         public PullRequestHolder(View itemView) {
             super(itemView);
@@ -66,10 +46,6 @@ public class PullRequestAdapter extends RecyclerView.Adapter<PullRequestAdapter.
         }
 
     }
-
-    //==============================================================================================
-    // RecyclerView.Adapter methods
-    //==============================================================================================
 
     @Override
     public PullRequestHolder onCreateViewHolder(ViewGroup parent, int viewType) {
