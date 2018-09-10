@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.home.adapter.HomeFragmentPagerAdapter;
 import mb00.android.codehub.ui.home.viewmodel.HomeViewModel;
 import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user repositories; launched from {@link HomeFragmentPagerAdapter}
@@ -81,7 +82,7 @@ public class HomeReposFragment extends BaseBindingFragment<FragmentHomeReposBind
                     } else {
                         getBinding().noReposTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

@@ -21,6 +21,7 @@ import mb00.android.codehub.ui.base.view.BaseBindingFragment;
 import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import mb00.android.codehub.ui.user.viewmodel.UserOverviewViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user overview; launched from {@link UserFragmentPagerAdapter}
@@ -59,7 +60,7 @@ public class UserOverviewFragment extends BaseBindingFragment<FragmentUserOvervi
         service.getUserOverview(header, user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::setUserInfo, Throwable::getMessage);
+                .subscribe(this::setUserInfo, error -> Timber.e(error.getMessage()));
     }
     
     private void setUserInfo(User user) {

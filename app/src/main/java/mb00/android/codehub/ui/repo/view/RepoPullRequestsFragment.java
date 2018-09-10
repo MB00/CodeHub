@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.repo.adapter.PullRequestAdapter;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoPullRequestsViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository pull requests; launched from {@link RepoFragmentPagerAdapter}
@@ -78,7 +79,7 @@ public class RepoPullRequestsFragment extends BaseBindingFragment<FragmentRepoPu
                     } else {
                         getBinding().noPullRequestsTextView.setVisibility(View.VISIBLE);
                     }
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.gist.adapter.GistAdapter;
 import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import mb00.android.codehub.ui.user.viewmodel.UserGistsViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user gists; launched from {@link UserFragmentPagerAdapter}
@@ -76,7 +77,7 @@ public class UserGistsFragment extends BaseBindingFragment<FragmentUserGistsBind
                     } else {
                         getBinding().noGistsTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

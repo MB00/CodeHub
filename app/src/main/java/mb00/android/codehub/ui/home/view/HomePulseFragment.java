@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import mb00.android.codehub.R;
 import mb00.android.codehub.api.builder.RetrofitBuilder;
@@ -89,7 +90,7 @@ public class HomePulseFragment extends BaseBindingFragment<FragmentHomePulseBind
                     } else {
                         getBinding().noUserPulseTextView.setVisibility(View.VISIBLE);
                     }
-                }, error -> Timber.i(error.getMessage()));
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

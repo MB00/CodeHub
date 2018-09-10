@@ -19,6 +19,7 @@ import mb00.android.codehub.ui.base.view.BaseBindingFragment;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoReadmeViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository readme; launched from {@link RepoFragmentPagerAdapter}
@@ -63,7 +64,7 @@ public class RepoReadmeFragment extends BaseBindingFragment<FragmentRepoReadmeBi
                     String readmeMarkdown = Base64Decoder.decodeBase64(repoReadme.getContent());
                     String readmeParsed = MarkdownParser.parseMarkdown(readmeMarkdown);
                     getBinding().repoReadmeTextView.setText(Html.fromHtml(readmeParsed));
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

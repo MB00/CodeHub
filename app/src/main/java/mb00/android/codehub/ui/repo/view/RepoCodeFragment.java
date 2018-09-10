@@ -30,6 +30,7 @@ import mb00.android.codehub.ui.repo.adapter.CodeAdapter;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoCodeViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository contents; launched from {@link RepoFragmentPagerAdapter}
@@ -101,7 +102,7 @@ public class RepoCodeFragment extends BaseBindingFragment<FragmentRepoCodeBindin
                         TextView noRepoCodeTextView = ((View) codeRecyclerView.getParent()).findViewById(R.id.no_repo_code_text_view);
                         noRepoCodeTextView.setVisibility(View.VISIBLE);
                     }
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
     private static List<Code> sortCodeList(List<Code> codeList) {

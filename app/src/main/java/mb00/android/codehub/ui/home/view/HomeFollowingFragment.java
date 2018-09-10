@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.home.adapter.HomeFragmentPagerAdapter;
 import mb00.android.codehub.ui.home.viewmodel.HomeViewModel;
 import mb00.android.codehub.ui.user.adapter.UserAdapter;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing users following; launched from {@link HomeFragmentPagerAdapter}
@@ -82,7 +83,7 @@ public class HomeFollowingFragment extends BaseBindingFragment<FragmentHomeFollo
                     } else {
                         getBinding().noneFollowingTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

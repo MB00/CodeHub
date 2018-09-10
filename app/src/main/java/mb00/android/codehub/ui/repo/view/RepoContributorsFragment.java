@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.repo.adapter.ContributorAdapter;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoContributorsViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository contributors; launched from {@link RepoFragmentPagerAdapter}
@@ -76,7 +77,7 @@ public class RepoContributorsFragment extends BaseBindingFragment<FragmentRepoCo
                     } else {
                         getBinding().noContributorsTextView.setVisibility(View.VISIBLE);
                     }
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

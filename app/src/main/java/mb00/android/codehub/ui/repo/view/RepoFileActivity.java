@@ -17,6 +17,7 @@ import mb00.android.codehub.ui.base.view.BaseDrawerActivity;
 import mb00.android.codehub.ui.repo.adapter.CodeAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoFileViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Launched from {@link CodeAdapter} if repository file in RecyclerView is clicked
@@ -56,7 +57,7 @@ public class RepoFileActivity extends BaseDrawerActivity<ActivityRepoFileBinding
                 .subscribe(repoFile -> {
                     String file = Base64Decoder.decodeBase64(repoFile.getContent());
                     getBinding().repoFileTextView.setText(file);
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

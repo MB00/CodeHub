@@ -23,6 +23,7 @@ import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
 import mb00.android.codehub.ui.universaladapter.CommentAdapter;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing gist comments; launched from {@link GistFragmentPagerAdapter}
@@ -81,7 +82,7 @@ public class GistCommentsFragment extends Fragment {
                     } else {
                         noGistCommentsTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

@@ -28,6 +28,7 @@ import mb00.android.codehub.data.PreferenceKeys;
 import mb00.android.codehub.ui.gist.adapter.GistFileAdapter;
 import mb00.android.codehub.ui.gist.adapter.GistFragmentPagerAdapter;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing gist files; launched from {@link GistFragmentPagerAdapter}
@@ -91,7 +92,7 @@ public class GistFilesFragment extends Fragment {
                         noGistFilesTextView.setVisibility(View.VISIBLE);
                     }
 
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

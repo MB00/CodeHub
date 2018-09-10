@@ -84,7 +84,7 @@ public class UserPulseFragment extends BaseBindingFragment<FragmentUserPulseBind
                     } else {
                         getBinding().noUserPulseTextView.setVisibility(View.VISIBLE);
                     }
-                }, error -> Timber.i(error.getMessage()));
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

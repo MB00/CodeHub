@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.repo.adapter.ReleaseAdapter;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoReleasesViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository releases; launched from {@link RepoFragmentPagerAdapter}
@@ -78,7 +79,7 @@ public class RepoReleasesFragment extends BaseBindingFragment<FragmentRepoReleas
                     } else {
                         getBinding().noReleasesTextView.setVisibility(View.VISIBLE);
                     }
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

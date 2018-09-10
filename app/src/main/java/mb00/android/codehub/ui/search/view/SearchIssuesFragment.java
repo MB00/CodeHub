@@ -94,7 +94,7 @@ public class SearchIssuesFragment extends BaseBindingFragment<FragmentSearchIssu
                     }
                 }, error -> {
                     getBinding().noIssueResultsTextView.setVisibility(View.VISIBLE);
-                    Timber.i(error.getMessage());
+                    Timber.e(error.getMessage());
                 });
     }
 

@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.user.adapter.UserAdapter;
 import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import mb00.android.codehub.ui.user.viewmodel.UserFollowersViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user followers; launched from {@link UserFragmentPagerAdapter}
@@ -81,7 +82,7 @@ public class UserFollowersFragment extends BaseBindingFragment<FragmentUserFollo
                     } else {
                         getBinding().noFollowersTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

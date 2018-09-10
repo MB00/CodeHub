@@ -95,7 +95,7 @@ public class SearchUsersFragment extends BaseBindingFragment<FragmentSearchUsers
                     }
                 }, error -> {
                     getBinding().noUserResultsTextView.setVisibility(View.VISIBLE);
-                    Timber.i(error.getMessage());
+                    Timber.e(error.getMessage());
                 });
     }
 

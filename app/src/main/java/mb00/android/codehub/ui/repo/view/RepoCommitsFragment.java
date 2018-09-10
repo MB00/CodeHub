@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.repo.adapter.CommitAdapter;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoCommitsViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository commits; launched from {@link RepoFragmentPagerAdapter}
@@ -84,7 +85,7 @@ public class RepoCommitsFragment extends BaseBindingFragment<FragmentRepoCommits
                     } else {
                         getBinding().noCommitsTextView.setVisibility(View.VISIBLE);
                     }
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

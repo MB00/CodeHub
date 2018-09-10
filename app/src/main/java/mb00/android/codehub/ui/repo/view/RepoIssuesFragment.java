@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.repo.adapter.IssueAdapter;
 import mb00.android.codehub.ui.repo.adapter.RepoFragmentPagerAdapter;
 import mb00.android.codehub.ui.repo.viewmodel.RepoIssuesViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing repository issues; launched from {@link RepoFragmentPagerAdapter}
@@ -78,7 +79,7 @@ public class RepoIssuesFragment extends BaseBindingFragment<FragmentRepoIssuesBi
                     } else {
                         getBinding().noIssuesTextView.setVisibility(View.VISIBLE);
                     }
-                }, Throwable::getMessage);
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

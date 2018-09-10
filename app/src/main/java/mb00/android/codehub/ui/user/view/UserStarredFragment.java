@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.repo.adapter.RepoAdapter;
 import mb00.android.codehub.ui.user.adapter.UserFragmentPagerAdapter;
 import mb00.android.codehub.ui.user.viewmodel.UserStarredViewModel;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user-starred repositories; launched from {@link UserFragmentPagerAdapter}
@@ -76,7 +77,7 @@ public class UserStarredFragment extends BaseBindingFragment<FragmentUserStarred
                     } else {
                         getBinding().noneStarredTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

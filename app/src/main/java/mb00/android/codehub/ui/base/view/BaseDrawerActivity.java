@@ -30,6 +30,7 @@ import mb00.android.codehub.ui.login.view.LoginActivity;
 import mb00.android.codehub.ui.settings.view.SettingsActivity;
 import mb00.android.codehub.ui.user.view.UserActivity;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 
 public abstract class BaseDrawerActivity<B extends ViewDataBinding, V extends BaseViewModel> extends BaseBindingActivity<B, V> {
@@ -126,7 +127,7 @@ public abstract class BaseDrawerActivity<B extends ViewDataBinding, V extends Ba
                 .map(User::getAvatarUrl)
                 .subscribe(userAvatarUrl -> {
                     Glide.with(BaseDrawerActivity.this).load(userAvatarUrl).into(userAvatarImageView);
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }

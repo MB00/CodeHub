@@ -20,6 +20,7 @@ import mb00.android.codehub.ui.home.adapter.HomeFragmentPagerAdapter;
 import mb00.android.codehub.ui.home.viewmodel.HomeViewModel;
 import mb00.android.codehub.ui.user.adapter.UserAdapter;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 /**
  * Fragment containing user followers; launched from {@link HomeFragmentPagerAdapter}
@@ -81,7 +82,7 @@ public class HomeFollowersFragment extends BaseBindingFragment<FragmentHomeFollo
                     } else {
                         getBinding().noFollowersTextView.setVisibility(View.VISIBLE);
                     }
-                });
+                }, error -> Timber.e(error.getMessage()));
     }
 
 }
