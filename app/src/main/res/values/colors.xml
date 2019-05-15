@@ -7,4 +7,6 @@
     <color name="white">#FFFFFF</color>
     <color name="grey">#424242</color>
     <color name="darkGrey">#212121</color>
+
+    <color name="androidStudioBackground">#2A2A2A</color>
 </resources>

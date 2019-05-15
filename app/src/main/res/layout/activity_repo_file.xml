@@ -58,26 +58,12 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <ScrollView
+        <com.pddstudio.highlightjs.HighlightJsView
+            android:id="@+id/repo_file_text_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
-
-                <TextView
-                    android:id="@+id/repo_file_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    />
-
-            </HorizontalScrollView>
-
-        </ScrollView>
+            android:layout_height="match_parent"
+            android:scrollHorizontally="false"
+            />
 
     </LinearLayout>
 

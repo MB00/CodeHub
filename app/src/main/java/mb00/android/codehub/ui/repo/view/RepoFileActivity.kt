@@ -2,6 +2,9 @@ package mb00.android.codehub.ui.repo.view
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import com.pddstudio.highlightjs.models.Language
+import com.pddstudio.highlightjs.models.Theme
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import mb00.android.codehub.R
@@ -46,7 +49,14 @@ class RepoFileActivity : BaseBindingActivity<ActivityRepoFileBinding, RepoFileVi
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ repoFile ->
                     val file = repoFile.content?.let { Base64Decoder.decodeBase64(it) }
-                    binding.repoFileTextView.text = file
+
+                    binding.repoFileTextView.theme = Theme.ANDROID_STUDIO
+                    binding.repoFileTextView.highlightLanguage = Language.AUTO_DETECT
+                    binding.repoFileTextView.setZoomSupportEnabled(true)
+                    binding.repoFileTextView.setShowLineNumbers(true)
+                    binding.repoFileTextView.setSource(file)
+                    binding.repoFileTextView.setBackgroundColor(ContextCompat.getColor(this, R.color.androidStudioBackground))
+
                 }, { error -> Timber.e(error.message) }))
     }
 
