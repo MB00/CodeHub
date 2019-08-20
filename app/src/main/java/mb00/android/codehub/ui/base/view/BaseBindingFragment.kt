@@ -25,8 +25,10 @@ abstract class BaseBindingFragment<B : ViewDataBinding, V : BaseViewModel> : Bas
     }
 
     private fun setBinding(inflater: LayoutInflater?, container: ViewGroup?) {
-        binding = DataBindingUtil.inflate(inflater!!, layout(), container, false)
-        binding.setVariable(BR.viewModel, viewModel)
+        inflater?.let {
+            binding = DataBindingUtil.inflate(it, layout(), container, false)
+            binding.setVariable(BR.viewModel, viewModel)
+        }
     }
 
     @LayoutRes

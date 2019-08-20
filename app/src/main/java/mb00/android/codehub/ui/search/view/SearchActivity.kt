@@ -34,7 +34,7 @@ class SearchActivity : BaseDrawerActivity<ActivitySearchBinding, SearchViewModel
     private fun initSearchQuery() {
         queryBundle = Bundle()
         searchQuery = ""
-        queryBundle!!.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery)
+        queryBundle?.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery)
     }
 
     private fun initSearchListeners() {
@@ -55,9 +55,9 @@ class SearchActivity : BaseDrawerActivity<ActivitySearchBinding, SearchViewModel
 
     fun search() {
         searchQuery = ""
-        queryBundle!!.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery)
+        queryBundle?.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery)
         searchQuery = binding.searchQueryEditText.text.toString()
-        queryBundle!!.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery)
+        queryBundle?.putString(BundleKeys.SEARCH_QUERY_KEY, searchQuery)
         binding.searchViewPager.adapter?.notifyDataSetChanged()
     }
 

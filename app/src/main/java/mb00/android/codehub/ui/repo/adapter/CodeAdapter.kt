@@ -1,5 +1,6 @@
 package mb00.android.codehub.ui.repo.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -43,35 +44,42 @@ class CodeAdapter(
         init {
             codeViewHolder.setOnClickListener {
                 val code = fileList[adapterPosition]
-                if (code.type == "dir") {
-                    val path = code.path
-                    viewModel.loadRepoCode(header, user, repo, path!!)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({ repoCodeList ->
-                                if (repoCodeList.isNotEmpty()) {
-                                    val sortedCodeList = viewModel.sortCodeList(repoCodeList)
-                                    codeRecyclerView.adapter = CodeAdapter(viewModel, sortedCodeList, codeRecyclerView, header, user, repo)
-                                } else {
-                                    val noRepoCodeTextView = (codeRecyclerView.parent as View).findViewById<TextView>(R.id.no_repo_code_text_view)
-                                    noRepoCodeTextView.visibility = View.VISIBLE
-                                }
-                            }, { error -> Timber.e(error.message) })
-                    //RepoCodeFragment.displayPathAsViewObjects(path, view.getContext(), (ViewGroup) itemView.getParent());
-                } else { // code.getType().equals("file)
-                    val fileBundle = Bundle()
-                    fileBundle.putString(BundleKeys.USER_NAME, user)
-                    fileBundle.putString(BundleKeys.REPO_NAME, repo)
-                    fileBundle.putString(BundleKeys.FILE_NAME, code.name)
-                    fileBundle.putString(BundleKeys.FILE_PATH, code.path)
 
-                    val fileIntent = Intent(itemView.context, RepoFileActivity::class.java)
-                    fileIntent.putExtras(fileBundle)
-                    itemView.context.startActivity(fileIntent)
+                when (code.type) {
+                    "dir" -> loadRepoCode(code)
+                    "file" -> startRepoFileActivity(code, itemView.context)
                 }
             }
         }
 
+    }
+
+    private fun loadRepoCode(code: Code) {
+        viewModel.loadRepoCode(header, user, repo, code.path ?: "")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ repoCodeList ->
+                    if (repoCodeList.isNotEmpty()) {
+                        val sortedCodeList = viewModel.sortCodeList(repoCodeList)
+                        codeRecyclerView.adapter = CodeAdapter(viewModel, sortedCodeList, codeRecyclerView, header, user, repo)
+                    } else {
+                        val noRepoCodeTextView = (codeRecyclerView.parent as View).findViewById<TextView>(R.id.no_repo_code_text_view)
+                        noRepoCodeTextView.visibility = View.VISIBLE
+                    }
+                }, { error -> Timber.e(error.message) })
+        //RepoCodeFragment.displayPathAsViewObjects(path, view.getContext(), (ViewGroup) itemView.getParent());
+    }
+
+    private fun startRepoFileActivity(code: Code, context: Context) {
+        val fileBundle = Bundle()
+        fileBundle.putString(BundleKeys.USER_NAME, user)
+        fileBundle.putString(BundleKeys.REPO_NAME, repo)
+        fileBundle.putString(BundleKeys.FILE_NAME, code.name)
+        fileBundle.putString(BundleKeys.FILE_PATH, code.path)
+
+        val fileIntent = Intent(context, RepoFileActivity::class.java)
+        fileIntent.putExtras(fileBundle)
+        context.startActivity(fileIntent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CodeHolder {

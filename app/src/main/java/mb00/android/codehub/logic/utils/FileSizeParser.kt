@@ -10,11 +10,13 @@ import java.math.MathContext
 object FileSizeParser {
 
     fun parseSize(size: String?): String? {
-        return when {
-            size?.length!! <= 3 -> returnBytes(size)
-            size.length == 4 || size.length == 5 -> returnKilobytes(size)
-            size.length == 6 -> returnMegabytes(size)
-            else -> size // some horrific edge case
+        size?.let {
+            return when {
+                size.length <= 3 -> returnBytes(size)
+                size.length == 4 || size.length == 5 -> returnKilobytes(size)
+                size.length == 6 -> returnMegabytes(size)
+                else -> size // some horrific edge case
+            }
         }
     }
 

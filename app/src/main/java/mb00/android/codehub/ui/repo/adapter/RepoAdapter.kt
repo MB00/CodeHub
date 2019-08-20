@@ -1,5 +1,6 @@
 package mb00.android.codehub.ui.repo.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
@@ -33,25 +34,29 @@ class RepoAdapter(private val repoList: List<Repo>) : RecyclerView.Adapter<RepoA
         val languageText: TextView = itemView.findViewById(R.id.repo_language_text_view)
         val stargazersCountText: TextView = itemView.findViewById(R.id.repo_stargazers_count_text_view)
         val forksCountText: TextView = itemView.findViewById(R.id.repo_forks_count_text_view)
-        private var repoBundle: Bundle? = null
+        private lateinit var repoBundle: Bundle
 
         init {
             repoViewHolder.setOnClickListener {
-                val repo = repoList[adapterPosition]
-                val userLogin = repo.owner?.login
-                val repoName = repo.name
-                val repoFullName = repo.fullName
-                repoBundle = Bundle()
-                repoBundle!!.putString(BundleKeys.USER_NAME, userLogin)
-                repoBundle!!.putString(BundleKeys.REPO_NAME, repoName)
-                repoBundle!!.putString(BundleKeys.REPO_FULL_NAME, repoFullName)
-
-                val repoActivityIntent = Intent(itemView.context, RepoActivity::class.java)
-                repoActivityIntent.putExtras(repoBundle!!)
-                itemView.context.startActivity(repoActivityIntent)
+                startRepoActivity(repoBundle, adapterPosition, itemView.context)
             }
         }
 
+    }
+
+    private fun startRepoActivity(repoBundle: Bundle, adapterPosition: Int, context: Context) {
+        val repo = repoList[adapterPosition]
+        val userLogin = repo.owner?.login
+        val repoName = repo.name
+        val repoFullName = repo.fullName
+        repoBundle = Bundle()
+        repoBundle.putString(BundleKeys.USER_NAME, userLogin)
+        repoBundle.putString(BundleKeys.REPO_NAME, repoName)
+        repoBundle.putString(BundleKeys.REPO_FULL_NAME, repoFullName)
+
+        val repoActivityIntent = Intent(context, RepoActivity::class.java)
+        repoActivityIntent.putExtras(repoBundle)
+        context.startActivity(repoActivityIntent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchReposHolder {
@@ -69,11 +74,12 @@ class RepoAdapter(private val repoList: List<Repo>) : RecyclerView.Adapter<RepoA
         holder.languageColorImage.setImageResource(R.drawable.ic_dot)
         holder.languageText.text = repo.language
 
-        if (repo.language?.isNotEmpty()!!) {
+        if (repo.language.isNullOrEmpty()) {
             holder.languageColorImage.setColorFilter(LanguageColor.getColor(repo.language!!))
         } else {
             holder.languageColorImage.visibility = View.GONE
         }
+
         if (repo.description.isNullOrEmpty()) {
             holder.descriptionText.visibility = View.GONE
         }

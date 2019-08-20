@@ -33,12 +33,11 @@ class UserReposFragment : BaseBindingFragment<FragmentUserReposBinding, UserRepo
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
 
-        userLogin = if (arguments != null) {
-            arguments!!.getString(BundleKeys.USER_NAME)
-        } else {
-            preferences!!.getString(PreferenceKeys.USER_NAME, "")
+        userLogin = when (arguments) {
+            null -> preferences?.getString(PreferenceKeys.USER_NAME, "") ?: ""
+            else -> arguments?.getString(BundleKeys.USER_NAME) ?: ""
         }
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
     }
 
     override fun onStart() {
@@ -62,13 +61,11 @@ class UserReposFragment : BaseBindingFragment<FragmentUserReposBinding, UserRepo
         }
     }
 
-    private fun userReposCall(header: String?, user: String?) {
-        disposables.add(viewModel.loadUserRepos(header!!, user!!).subscribe({ userRepoList ->
-            if (userRepoList.isNotEmpty()) {
-                val searchReposAdapter = RepoAdapter(userRepoList)
-                binding.userReposRecyclerView.adapter = searchReposAdapter
-            } else {
-                binding.noReposTextView.visibility = View.VISIBLE
+    private fun userReposCall(header: String, user: String) {
+        disposables.add(viewModel.loadUserRepos(header, user).subscribe({ userRepoList ->
+            when (userRepoList.isNotEmpty()) {
+                true -> binding.userReposRecyclerView.adapter = RepoAdapter(userRepoList)
+                false -> binding.noReposTextView.visibility = View.VISIBLE
             }
         }, { error -> Timber.e(error.message) })
         )

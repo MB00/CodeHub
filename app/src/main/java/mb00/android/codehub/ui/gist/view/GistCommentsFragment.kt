@@ -32,7 +32,7 @@ class GistCommentsFragment : BaseBindingFragment<FragmentGistCommentsBinding, Gi
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = activity.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "")
         gistId = if (arguments != null) arguments.getString(BundleKeys.GIST_ID) else ""
 
         initRecyclerView()

@@ -1,8 +1,6 @@
 package mb00.android.codehub.ui.about.view
 
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
-
 import mb00.android.codehub.R
 import mb00.android.codehub.databinding.ActivityAboutBinding
 import mb00.android.codehub.ui.about.viewmodel.AboutViewModel
@@ -21,11 +19,8 @@ class AboutActivity : BaseBindingActivity<ActivityAboutBinding, AboutViewModel>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val aboutToolbar = findViewById<Toolbar>(R.id.toolbar_about)
-        aboutToolbar.setTitle(R.string.app_name)
-
-        setSupportActionBar(aboutToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        setSupportActionBar(binding.aboutToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {
