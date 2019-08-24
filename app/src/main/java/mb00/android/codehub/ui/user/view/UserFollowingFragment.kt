@@ -31,14 +31,14 @@ class UserFollowingFragment : BaseBindingFragment<FragmentUserFollowingBinding, 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
+        val preferences = activity.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
 
-        userName = if (arguments != null) {
-            arguments!!.getString(BundleKeys.USER_NAME)
-        } else {
-            preferences!!.getString(PreferenceKeys.USER_NAME, "")
+        userName = when (arguments != null) {
+            true -> arguments.getString(BundleKeys.USER_NAME)
+            false -> preferences.getString(PreferenceKeys.USER_NAME, "")
         }
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+
+        authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "")
     }
 
     override fun onStart() {

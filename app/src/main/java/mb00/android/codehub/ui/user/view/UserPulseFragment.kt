@@ -31,10 +31,10 @@ class UserPulseFragment : BaseBindingFragment<FragmentUserPulseBinding, UserPuls
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val preferences = activity!!.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
+        val preferences = activity.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
 
         userName = when (arguments != null) {
-            true -> arguments!!.getString(BundleKeys.USER_NAME)
+            true -> arguments.getString(BundleKeys.USER_NAME)
             false -> preferences.getString(PreferenceKeys.USER_NAME, "")
         }
 
@@ -66,7 +66,7 @@ class UserPulseFragment : BaseBindingFragment<FragmentUserPulseBinding, UserPuls
         // set in layout
         disposables.add(viewModel.loadUserPulse(authHeader, userName).subscribe({ userPulse ->
             when (userPulse.isNotEmpty()) {
-                true -> binding.userPulseRecyclerView.adapter = PulseAdapter(userPulse, activity!!)
+                true -> binding.userPulseRecyclerView.adapter = PulseAdapter(userPulse, activity)
                 false -> binding.noUserPulseTextView.visibility = View.VISIBLE
             }
         }, { error -> Timber.e(error.message) })

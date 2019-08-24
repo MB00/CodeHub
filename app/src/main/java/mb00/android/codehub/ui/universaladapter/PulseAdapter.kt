@@ -22,6 +22,8 @@ import mb00.android.codehub.ui.user.view.UserPulseFragment
 
 class PulseAdapter(private val pulseList: List<Pulse>, private val context: Context) : RecyclerView.Adapter<PulseAdapter.PulseHolder>() {
 
+
+
     inner class PulseHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val pulseAvatarImageView: ImageView = itemView.findViewById(R.id.pulse_avatar_image_view)
         val pulseTitleTextView: TextView = itemView.findViewById(R.id.pulse_title_text_view)
@@ -30,23 +32,17 @@ class PulseAdapter(private val pulseList: List<Pulse>, private val context: Cont
 
     private fun getActionType(pulse: Pulse): String {
         val repoName = pulse.repo?.name
-        val issueNumber: String
+        val issueNumber = pulse.payload?.issue?.number
 
-        when (pulse.type) {
-            "WatchEvent" -> return " starred $repoName"
-            "IssuesEvent" -> {
-                issueNumber = pulse.payload?.issue?.number!!
-                return " opened issue $issueNumber on $repoName" // closing issues to be added - need to check action
-            }
-            "IssueCommentEvent" -> {
-                issueNumber = pulse.payload?.issue?.number!!
-                return " commented on issue $issueNumber on $repoName"
-            }
-            "PushEvent" -> return " pushed to $repoName" // more detail to be added
-            "PullRequestEvent" -> return " pulled from $repoName" // more detail to be added
-            "ForkEvent" -> return " forked repository $repoName"
-            "CreateEvent" -> return " created repository $repoName"
-            else -> return ""
+        return when (pulse.type) {
+            "WatchEvent" -> " starred $repoName"
+            "IssuesEvent" -> " opened issue $issueNumber on $repoName" // closing issues to be added - need to check action
+            "IssueCommentEvent" -> " commented on issue $issueNumber on $repoName"
+            "PushEvent" -> " pushed to $repoName" // more detail to be added
+            "PullRequestEvent" -> " pulled from $repoName" // more detail to be added
+            "ForkEvent" -> " forked repository $repoName"
+            "CreateEvent" -> " created repository $repoName"
+            else -> ""
         }
     }
 

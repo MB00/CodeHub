@@ -31,15 +31,15 @@ class SearchCodeFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val searchUsersView = inflater!!.inflate(R.layout.fragment_search_code, container, false)
+        val searchUsersView = inflater.inflate(R.layout.fragment_search_code, container, false)
         searchUsersRecyclerView = searchUsersView.findViewById(R.id.search_codes_recycler_view)
-        searchUsersRecyclerView!!.layoutManager = LinearLayoutManager(activity)
+        searchUsersRecyclerView.layoutManager = LinearLayoutManager(activity)
         noUserResultsTextView = searchUsersView.findViewById(R.id.no_code_results_text_view)
 
         code = arguments.getString(BundleKeys.SEARCH_QUERY_KEY)
 
         if (code == null) {
-            noUserResultsTextView!!.visibility = View.VISIBLE
+            noUserResultsTextView.visibility = View.VISIBLE
         } else {
             codeCall(code)
         }

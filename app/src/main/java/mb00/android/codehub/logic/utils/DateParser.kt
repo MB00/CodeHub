@@ -7,8 +7,8 @@ package mb00.android.codehub.logic.utils
 object DateParser {
 
     fun parseStandard(dateAndTime: String?): String? {
-        val endIndex = dateAndTime?.indexOf("T")
-        return dateAndTime?.substring(0, endIndex!!)
+        val endIndex = dateAndTime?.indexOf("T") ?: 0
+        return dateAndTime?.substring(0, endIndex)
     }
 
     fun parseEnglish(dateAndTime: String?): String? {

@@ -33,12 +33,14 @@ class UserFollowersFragment : BaseBindingFragment<FragmentUserFollowersBinding, 
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
 
-        userName = when (arguments != null) {
-            true -> arguments!!.getString(BundleKeys.USER_NAME)
-            false -> preferences!!.getString(PreferenceKeys.USER_NAME, "")
+        activity.supportFragmentManager
+
+        userName = when (arguments) {
+            null -> preferences?.getString(PreferenceKeys.USER_NAME, "") ?: ""
+            else -> arguments.getString(BundleKeys.USER_NAME)
         }
 
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
     }
 
     override fun onStart() {

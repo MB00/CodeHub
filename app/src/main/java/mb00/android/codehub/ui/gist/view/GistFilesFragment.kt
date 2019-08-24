@@ -33,7 +33,7 @@ class GistFilesFragment : BaseBindingFragment<FragmentGistFilesBinding, GistView
         super.onViewCreated(view, savedInstanceState)
 
         val preferences = activity.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "")
         gistId = if (arguments != null) arguments.getString(BundleKeys.GIST_ID) else ""
 
         initRecyclerView()
@@ -55,12 +55,12 @@ class GistFilesFragment : BaseBindingFragment<FragmentGistFilesBinding, GistView
     }
 
     private fun gistFilesCall(header: String?, gist: String?) {
-        disposables.add(viewModel.loadGistFiles(header!!, gist!!)
+        disposables.add(viewModel.loadGistFiles(header ?: "", gist ?: "")
                 .subscribe({ gistFile ->
                     val gistFileList = ArrayList(gistFile.files?.values)
 
                     if (gistFileList.isNotEmpty()) {
-                        binding.gistFilesRecyclerView.adapter = GistFileAdapter(gistFileList, binding.gistFilesRecyclerView, authHeader!!, gistId)
+                        binding.gistFilesRecyclerView.adapter = GistFileAdapter(gistFileList, binding.gistFilesRecyclerView, authHeader ?: "", gistId)
                     } else {
                         binding.noGistFilesTextView.visibility = View.VISIBLE
                     }

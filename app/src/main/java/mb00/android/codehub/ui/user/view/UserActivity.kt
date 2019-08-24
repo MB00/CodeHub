@@ -39,7 +39,7 @@ class UserActivity : BaseDrawerActivity<ActivityUserBinding, UserViewModel>() {
         userName = userBundle?.getString(BundleKeys.USER_NAME)
 
         val preferences = getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "")
         userName = getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
                 .getString(PreferenceKeys.USER_NAME, "")
     }
@@ -57,7 +57,7 @@ class UserActivity : BaseDrawerActivity<ActivityUserBinding, UserViewModel>() {
         binding.userViewPager.setPageMarginDrawable(R.color.grey)
         binding.userTabLayout.setupWithViewPager(binding.userViewPager)
 
-        userBundle?.let { binding.userViewPager.currentItem = userBundle!!.getInt(BundleKeys.VIEW_PAGER_POSITION) }
+        userBundle?.let { binding.userViewPager.currentItem = userBundle?.getInt(BundleKeys.VIEW_PAGER_POSITION) ?: 0 }
     }
 
 }

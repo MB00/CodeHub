@@ -26,7 +26,7 @@ class SettingsActivity : BaseBindingActivity<ActivitySettingsBinding, SettingsVi
     private fun initToolbar() {
         binding.settingsToolbar.setTitle(R.string.settings)
         setSupportActionBar(binding.settingsToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {

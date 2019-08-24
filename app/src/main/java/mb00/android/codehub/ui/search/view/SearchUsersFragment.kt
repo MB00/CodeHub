@@ -21,8 +21,8 @@ import timber.log.Timber
 
 class SearchUsersFragment : BaseBindingFragment<FragmentSearchUsersBinding, SearchUsersViewModel>() {
 
-    private var authHeader: String? = null
-    private var user: String? = null
+    private lateinit var authHeader: String
+    private lateinit var user: String
 
     override fun layout(): Int {
         return R.layout.fragment_search_users
@@ -65,10 +65,10 @@ class SearchUsersFragment : BaseBindingFragment<FragmentSearchUsersBinding, Sear
         }
     }
 
-    private fun userCall(header: String?, user: String?) {
-        disposables.add(viewModel.searchUsers(header!!, user!!)
+    private fun userCall(header: String, user: String) {
+        disposables.add(viewModel.searchUsers(header, user)
                 .subscribe({ userResult ->
-                    if (userResult.items?.isNotEmpty()!!) {
+                    if (userResult.items?.isNotEmpty()) {
                         val searchUsersAdapter = userResult.items?.let { UserAdapter(it) }
                         binding.searchUsersRecyclerView.adapter = searchUsersAdapter
                     } else {

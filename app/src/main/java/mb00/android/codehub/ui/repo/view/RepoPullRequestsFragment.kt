@@ -33,7 +33,7 @@ class RepoPullRequestsFragment : BaseBindingFragment<FragmentRepoPullRequestsBin
         super.onCreate(savedInstanceState)
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
         userName = if (arguments != null) arguments.getString(BundleKeys.USER_NAME) else ""
         repoName = if (arguments != null) arguments.getString(BundleKeys.REPO_NAME) else ""
     }

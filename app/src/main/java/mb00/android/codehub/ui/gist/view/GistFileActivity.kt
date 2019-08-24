@@ -20,7 +20,7 @@ class GistFileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gist_file)
 
         val gistFileBundle = intent.extras
-        val fileName = gistFileBundle!!.getString(BundleKeys.FILE_NAME)
+        val fileName = gistFileBundle.getString(BundleKeys.FILE_NAME)
         val fileContent = gistFileBundle.getString(BundleKeys.FILE_CONTENT)
         val fileBackButton = findViewById<ImageButton>(R.id.gist_file_back_button)
         val fileTitleTextView = findViewById<TextView>(R.id.gist_file_title_text_view)

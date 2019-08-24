@@ -89,7 +89,7 @@ class RepoCodeFragment : BaseBindingFragment<FragmentRepoCodeBinding, RepoCodeVi
 
     // Parses the path and turns each directory into a clickable TextView
     fun displayPathAsViewObjects(path: String, context: Context, viewParent: ViewGroup) {
-        val repoCodeView = layoutInflater!!.inflate(R.layout.fragment_repo_code, viewParent, false)
+        val repoCodeView = layoutInflater.inflate(R.layout.fragment_repo_code, viewParent, false)
         val dynamicPath = repoCodeView.findViewById<LinearLayout>(R.id.repo_dynamic_path)
         val pathList = ArrayList<String>()
 
