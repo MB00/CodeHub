@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.repo.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
@@ -33,9 +33,9 @@ class RepoPulseFragment : BaseBindingFragment<FragmentRepoPulseBinding, RepoPuls
         super.onCreate(savedInstanceState)
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
-        userName = if (arguments != null) arguments.getString(BundleKeys.USER_NAME) else ""
-        repoName = if (arguments != null) arguments.getString(BundleKeys.REPO_NAME) else ""
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        userName = arguments?.getString(BundleKeys.USER_NAME) ?: ""
+        repoName = arguments?.getString(BundleKeys.REPO_NAME) ?: ""
     }
 
     override fun onStart() {

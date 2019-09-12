@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.user.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
@@ -33,12 +33,8 @@ class UserFollowersFragment : BaseBindingFragment<FragmentUserFollowersBinding, 
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
 
-        userName = when (arguments != null) {
-            true -> arguments!!.getString(BundleKeys.USER_NAME)
-            false -> preferences!!.getString(PreferenceKeys.USER_NAME, "")
-        }
-
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        userName = arguments?.getString(BundleKeys.USER_NAME) ?: ""
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
     }
 
     override fun onStart() {

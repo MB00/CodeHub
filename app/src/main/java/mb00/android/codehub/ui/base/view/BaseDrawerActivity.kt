@@ -2,14 +2,15 @@ package mb00.android.codehub.ui.base.view
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AlertDialog
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
+import androidx.databinding.ViewDataBinding
+import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
+import com.google.android.material.navigation.NavigationView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import mb00.android.codehub.R
@@ -46,8 +47,8 @@ abstract class BaseDrawerActivity<B : ViewDataBinding, V : BaseViewModel> : Base
         val userNameTextView = navigationView.getHeaderView(0).findViewById<TextView>(R.id.drawer_user_name_text_view)
 
         val preferences = getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        val authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "")
-        userName = preferences.getString(PreferenceKeys.USER_NAME, "")
+        val authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        userName = preferences?.getString(PreferenceKeys.USER_NAME, "") ?: ""
         avatarCall(authHeader, userName, userAvatarImageView)
         userNameTextView.text = userName
 

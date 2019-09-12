@@ -1,9 +1,9 @@
 package mb00.android.codehub.ui.gist.view
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys

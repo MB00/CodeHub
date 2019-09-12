@@ -11,12 +11,7 @@ import mb00.android.codehub.ui.search.view.SearchActivity
 import mb00.android.codehub.ui.search.viewmodel.SearchViewModel
 
 
-@Module(subcomponents = [
-    SearchCodeFragmentComponent::class,
-    SearchIssuesFragmentComponent::class,
-    SearchReposFragmentComponent::class,
-    SearchUsersFragmentComponent::class
-])
+@Module(includes = [SearchActivityFragmentsModule::class])
 class SearchActivityModule {
 
     @Provides

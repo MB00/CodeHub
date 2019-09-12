@@ -1,8 +1,8 @@
 package mb00.android.codehub.ui.home.interactor
 
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AppCompatActivity
-import android.view.Gravity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 
 import io.reactivex.Single
 import mb00.android.codehub.R
@@ -19,7 +19,7 @@ class HomeInteractorImpl(
 
     override fun openNavigationDrawer() {
         val navigationDrawer = activity.window.decorView.rootView.findViewById<DrawerLayout>(R.id.drawer_layout)
-        navigationDrawer.openDrawer(Gravity.START)
+        navigationDrawer.openDrawer(GravityCompat.START)
     }
 
     override fun loadUserFollowers(header: String, user: String): Single<List<User>> {

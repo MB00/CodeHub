@@ -15,15 +15,15 @@ class PreferenceManagerImpl(context: Context) : PreferenceManager {
         set(isSignedIn) = sharedPreferences.edit().putBoolean(PreferenceKeys.SIGNED_IN, isSignedIn).apply()
 
     override var username: String
-        get() = sharedPreferences.getString(PreferenceKeys.USER_NAME, "")
+        get() = sharedPreferences.getString(PreferenceKeys.USER_NAME, "") ?: ""
         set(username) = sharedPreferences.edit().putString(PreferenceKeys.USER_NAME, username).apply()
 
     override var authHeader: String
-        get() = sharedPreferences.getString(PreferenceKeys.AUTH_HEADER, "")
+        get() = sharedPreferences.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
         set(authHeader) = sharedPreferences.edit().putString(PreferenceKeys.AUTH_HEADER, authHeader).apply()
 
     override var accessToken: String
-        get() = sharedPreferences.getString(PreferenceKeys.ACCESS_TOKEN, "")
+        get() = sharedPreferences.getString(PreferenceKeys.ACCESS_TOKEN, "") ?: ""
         set(accessToken) = sharedPreferences.edit().putString(PreferenceKeys.ACCESS_TOKEN, accessToken).apply()
 
 }

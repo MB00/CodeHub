@@ -10,15 +10,7 @@ import mb00.android.codehub.ui.user.router.UserRouterImpl
 import mb00.android.codehub.ui.user.view.UserActivity
 import mb00.android.codehub.ui.user.viewmodel.UserViewModel
 
-@Module(subcomponents = [
-    UserFollowersFragmentComponent::class,
-    UserFollowingFragmentComponent::class,
-    UserGistsFragmentComponent::class,
-    UserOverviewFragmentComponent::class,
-    UserPulseFragmentComponent::class,
-    UserReposFragmentComponent::class,
-    UserStarredFragmentComponent::class
-])
+@Module(includes = [UserActivityFragmentsModule::class])
 class UserActivityModule {
 
     @Provides

@@ -2,10 +2,10 @@ package mb00.android.codehub.ui.user.adapter
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.PagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import mb00.android.codehub.R
 import mb00.android.codehub.ui.user.view.*
 
@@ -33,7 +33,7 @@ class UserFragmentPagerAdapter(
         return PAGE_COUNT
     }
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> getUserOverviewFragment()
             1 -> getUserReposFragment()
@@ -42,7 +42,7 @@ class UserFragmentPagerAdapter(
             4 -> getUserPulseFragment()
             5 -> getUserFollowersFragment()
             6 -> getUserFollowingFragment()
-            else -> null
+            else -> getUserOverviewFragment()
         }
     }
 

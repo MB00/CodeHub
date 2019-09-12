@@ -11,10 +11,7 @@ import mb00.android.codehub.ui.gist.view.GistActivity
 import mb00.android.codehub.ui.gist.viewmodel.GistViewModel
 
 
-@Module(subcomponents = [
-    GistFilesFragmentComponent::class,
-    GistCommentsFragmentComponent::class
-])
+@Module(includes = [GistActivityFragmentsModule::class])
 class GistActivityModule {
 
     @Provides

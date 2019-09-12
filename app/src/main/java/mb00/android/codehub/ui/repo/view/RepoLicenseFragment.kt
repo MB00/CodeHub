@@ -31,9 +31,9 @@ class RepoLicenseFragment : BaseBindingFragment<FragmentRepoLicenseBinding, Repo
         super.onCreate(savedInstanceState)
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
-        userName = if (arguments != null) arguments.getString(BundleKeys.USER_NAME) else ""
-        repoName = if (arguments != null) arguments.getString(BundleKeys.REPO_NAME) else ""
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        userName = arguments?.getString(BundleKeys.USER_NAME) ?: ""
+        repoName = arguments?.getString(BundleKeys.REPO_NAME) ?: ""
     }
 
     override fun onStart() {

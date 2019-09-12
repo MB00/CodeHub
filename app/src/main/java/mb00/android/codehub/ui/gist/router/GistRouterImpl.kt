@@ -1,6 +1,6 @@
 package mb00.android.codehub.ui.gist.router
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 
 class GistRouterImpl(private val activity: AppCompatActivity) : GistRouter {

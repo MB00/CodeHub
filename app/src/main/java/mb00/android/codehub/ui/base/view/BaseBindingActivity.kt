@@ -1,9 +1,9 @@
 package mb00.android.codehub.ui.base.view
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import mb00.android.codehub.BR
 import mb00.android.codehub.ui.base.viewmodel.BaseViewModel
 import javax.inject.Inject

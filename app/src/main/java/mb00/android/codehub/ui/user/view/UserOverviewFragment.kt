@@ -33,8 +33,8 @@ class UserOverviewFragment : BaseBindingFragment<FragmentUserOverviewBinding, Us
         super.onCreate(savedInstanceState)
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
-        userLogin = if (arguments != null) arguments.getString(BundleKeys.USER_NAME) else ""
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        userLogin = arguments?.getString(BundleKeys.USER_NAME) ?: ""
     }
 
     override fun onStart() {
@@ -53,10 +53,10 @@ class UserOverviewFragment : BaseBindingFragment<FragmentUserOverviewBinding, Us
 
     private fun setUserInfo(user: User) {
         // set in layout
-        val toolbarTextView = activity.findViewById<TextView>(R.id.user_toolbar_text_view)
+        val toolbarTextView = activity?.findViewById<TextView>(R.id.user_toolbar_text_view)
         val creationDate = DateParser.parseEnglish(user.creationDate)
 
-        toolbarTextView.text = user.login
+        toolbarTextView?.text = user.login
         Glide.with(activity!!).load(user.avatarUrl).into(binding.userOverviewAvatarImageView)
 
         binding.userOverviewNameTextView.text = user.name

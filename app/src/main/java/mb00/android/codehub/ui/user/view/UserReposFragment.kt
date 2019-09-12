@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.user.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
@@ -33,12 +33,8 @@ class UserReposFragment : BaseBindingFragment<FragmentUserReposBinding, UserRepo
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
 
-        userLogin = if (arguments != null) {
-            arguments!!.getString(BundleKeys.USER_NAME)
-        } else {
-            preferences!!.getString(PreferenceKeys.USER_NAME, "")
-        }
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
+        userLogin = arguments?.getString(BundleKeys.USER_NAME) ?: ""
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
     }
 
     override fun onStart() {

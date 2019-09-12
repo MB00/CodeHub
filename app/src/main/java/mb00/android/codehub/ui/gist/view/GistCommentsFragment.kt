@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.gist.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
@@ -31,9 +31,9 @@ class GistCommentsFragment : BaseBindingFragment<FragmentGistCommentsBinding, Gi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val preferences = activity.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
-        gistId = if (arguments != null) arguments.getString(BundleKeys.GIST_ID) else ""
+        val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        gistId = arguments?.getString(BundleKeys.GIST_ID) ?: ""
 
         initRecyclerView()
         initSwipeRefreshLayout()
@@ -57,7 +57,7 @@ class GistCommentsFragment : BaseBindingFragment<FragmentGistCommentsBinding, Gi
         disposables.add(viewModel.loadGistComments(header, gist)
                 .subscribe({ gistCommentList ->
                     if (gistCommentList.isNotEmpty()) {
-                        binding.gistCommentsRecyclerView.adapter = CommentAdapter(gistCommentList, activity)
+                        binding.gistCommentsRecyclerView.adapter = CommentAdapter(gistCommentList, activity!!)
                     } else {
                         binding.noGistCommentsTextView.visibility = View.VISIBLE
                     }
