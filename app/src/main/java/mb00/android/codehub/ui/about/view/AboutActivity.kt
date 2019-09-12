@@ -1,7 +1,7 @@
 package mb00.android.codehub.ui.about.view
 
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 
 import mb00.android.codehub.R
 import mb00.android.codehub.databinding.ActivityAboutBinding

@@ -3,6 +3,7 @@ package mb00.android.codehub.ui.repo.view
 import android.content.Context
 import android.os.Bundle
 import android.text.Html
+import android.view.View
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
@@ -32,9 +33,9 @@ class RepoReadmeFragment : BaseBindingFragment<FragmentRepoReadmeBinding, RepoRe
         super.onCreate(savedInstanceState)
 
         val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
-        userName = if (arguments != null) arguments.getString(BundleKeys.USER_NAME) else ""
-        repoName = if (arguments != null) arguments.getString(BundleKeys.REPO_NAME) else ""
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        userName = arguments?.getString(BundleKeys.USER_NAME) ?: ""
+        repoName = arguments?.getString(BundleKeys.REPO_NAME) ?: ""
     }
 
     override fun onStart() {
@@ -45,6 +46,7 @@ class RepoReadmeFragment : BaseBindingFragment<FragmentRepoReadmeBinding, RepoRe
 
     private fun repoReadmeCall(header: String, user: String, repo: String) {
         disposables.add(viewModel.loadRepoReadme(header, user, repo)
+                .doOnError { binding.noRepoReadmeTextView.visibility = View.VISIBLE }
                 .subscribe({ repoReadme ->
                     val readmeMarkdown = repoReadme.content?.let { Base64Decoder.decodeBase64(it) }
                     val readmeParsed = MarkdownParser.parseMarkdown(readmeMarkdown)

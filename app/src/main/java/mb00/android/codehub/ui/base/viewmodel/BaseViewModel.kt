@@ -1,6 +1,5 @@
 package mb00.android.codehub.ui.base.viewmodel
 
-import android.databinding.BaseObservable
+import androidx.lifecycle.ViewModel
 
-
-open class BaseViewModel : BaseObservable()
+open class BaseViewModel : ViewModel()

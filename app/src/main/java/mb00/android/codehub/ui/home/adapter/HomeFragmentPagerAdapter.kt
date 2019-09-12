@@ -2,18 +2,18 @@ package mb00.android.codehub.ui.home.adapter
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
 import mb00.android.codehub.ui.home.view.HomeActivity
-import mb00.android.codehub.ui.user.view.HomeFollowersFragment
-import mb00.android.codehub.ui.user.view.HomeFollowingFragment
-import mb00.android.codehub.ui.user.view.HomePulseFragment
-import mb00.android.codehub.ui.user.view.HomeReposFragment
+import mb00.android.codehub.ui.home.view.HomeFollowersFragment
+import mb00.android.codehub.ui.home.view.HomeFollowingFragment
+import mb00.android.codehub.ui.home.view.HomePulseFragment
+import mb00.android.codehub.ui.home.view.HomeReposFragment
 
 /**
  * FragmentPagerAdapter used to display home-related Fragments; launched from [HomeActivity]
@@ -41,13 +41,13 @@ class HomeFragmentPagerAdapter(fragmentManager: FragmentManager, context: Contex
         return PAGE_COUNT
     }
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> getHomePulseFragment()
             1 -> getHomeReposFragment()
             2 -> getHomeFollowersFragment()
             3 -> getHomeFollowingFragment()
-            else -> return null
+            else -> return getHomePulseFragment()
         }
     }
 

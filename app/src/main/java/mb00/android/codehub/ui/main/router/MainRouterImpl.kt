@@ -1,7 +1,7 @@
 package mb00.android.codehub.ui.main.router
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 import mb00.android.codehub.ui.home.view.HomeActivity
 import mb00.android.codehub.ui.login.view.LoginActivity

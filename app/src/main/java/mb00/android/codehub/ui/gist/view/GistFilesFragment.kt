@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.gist.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import mb00.android.codehub.R
 import mb00.android.codehub.data.BundleKeys
 import mb00.android.codehub.data.PreferenceKeys
@@ -29,12 +29,12 @@ class GistFilesFragment : BaseBindingFragment<FragmentGistFilesBinding, GistView
         return R.layout.fragment_gist_files
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val preferences = activity.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        authHeader = preferences!!.getString(PreferenceKeys.AUTH_HEADER, "")
-        gistId = if (arguments != null) arguments.getString(BundleKeys.GIST_ID) else ""
+        val preferences = activity?.getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
+        authHeader = preferences?.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        gistId = arguments?.getString(BundleKeys.GIST_ID) ?: ""
 
         initRecyclerView()
         initSwipeRefreshLayout()
@@ -57,7 +57,7 @@ class GistFilesFragment : BaseBindingFragment<FragmentGistFilesBinding, GistView
     private fun gistFilesCall(header: String?, gist: String?) {
         disposables.add(viewModel.loadGistFiles(header!!, gist!!)
                 .subscribe({ gistFile ->
-                    val gistFileList = ArrayList(gistFile.files?.values)
+                    val gistFileList = ArrayList(gistFile.files?.values ?: Collections.emptyList())
 
                     if (gistFileList.isNotEmpty()) {
                         binding.gistFilesRecyclerView.adapter = GistFileAdapter(gistFileList, binding.gistFilesRecyclerView, authHeader!!, gistId)

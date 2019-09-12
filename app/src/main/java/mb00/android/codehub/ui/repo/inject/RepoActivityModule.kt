@@ -11,17 +11,7 @@ import mb00.android.codehub.ui.repo.view.RepoActivity
 import mb00.android.codehub.ui.repo.viewmodel.RepoViewModel
 
 
-@Module(subcomponents = [
-    RepoCodeFragmentComponent::class,
-    RepoCommitsFragmentComponent::class,
-    RepoContributorsFragmentComponent::class,
-    RepoIssuesFragmentComponent::class,
-    RepoLicenseFragmentComponent::class,
-    RepoPullRequestsFragmentComponent::class,
-    RepoPulseFragmentComponent::class,
-    RepoReadmeFragmentComponent::class,
-    RepoReleasesFragmentComponent::class
-])
+@Module(includes = [RepoActivityFragmentsModule::class])
 class RepoActivityModule {
 
     @Provides

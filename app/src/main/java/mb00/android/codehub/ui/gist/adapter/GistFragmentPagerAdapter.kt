@@ -2,9 +2,9 @@ package mb00.android.codehub.ui.gist.adapter
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 
 import mb00.android.codehub.R
 import mb00.android.codehub.ui.gist.view.GistActivity
@@ -30,11 +30,11 @@ class GistFragmentPagerAdapter(
         return PAGE_COUNT
     }
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> getGistFilesFragment()
             1 -> getGistCommentsFragment()
-            else -> null
+            else -> getGistFilesFragment()
         }
     }
 

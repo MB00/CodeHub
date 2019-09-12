@@ -11,12 +11,7 @@ import mb00.android.codehub.ui.home.view.HomeActivity
 import mb00.android.codehub.ui.home.viewmodel.HomeViewModel
 
 
-@Module(subcomponents = [
-    HomePulseFragmentComponent::class,
-    HomeReposFragmentComponent::class,
-    HomeFollowersFragmentComponent::class,
-    HomeFollowingFragmentComponent::class
-])
+@Module(includes = [HomeActivityFragmentsModule::class])
 class HomeActivityModule {
 
     @Provides

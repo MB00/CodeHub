@@ -2,7 +2,7 @@ package mb00.android.codehub.ui.repo.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.pddstudio.highlightjs.models.Language
 import com.pddstudio.highlightjs.models.Theme
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -31,11 +31,11 @@ class RepoFileActivity : BaseBindingActivity<ActivityRepoFileBinding, RepoFileVi
         super.onCreate(savedInstanceState)
 
         val preferences = getSharedPreferences(PreferenceKeys.PREFERENCES, Context.MODE_PRIVATE)
-        val authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "")
-        val userName = intent.extras!!.getString(BundleKeys.USER_NAME)
-        val repoName = intent.extras!!.getString(BundleKeys.REPO_NAME)
-        val fileName = intent.extras!!.getString(BundleKeys.FILE_NAME)
-        val filePath = intent.extras!!.getString(BundleKeys.FILE_PATH)
+        val authHeader = preferences.getString(PreferenceKeys.AUTH_HEADER, "") ?: ""
+        val userName = intent.extras!!.getString(BundleKeys.USER_NAME) ?: ""
+        val repoName = intent.extras!!.getString(BundleKeys.REPO_NAME) ?: ""
+        val fileName = intent.extras!!.getString(BundleKeys.FILE_NAME) ?: ""
+        val filePath = intent.extras!!.getString(BundleKeys.FILE_PATH) ?: ""
 
         binding.repoFileBackButton.setOnClickListener { finish() }
         binding.repoFileTitleTextView.text = fileName
