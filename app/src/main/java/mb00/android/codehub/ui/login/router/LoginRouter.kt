@@ -5,4 +5,6 @@ interface LoginRouter {
 
     fun loadHomeActivity()
 
+    fun loginOAuth()
+
 }

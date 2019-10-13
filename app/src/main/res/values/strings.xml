@@ -9,6 +9,8 @@
     <string name="hint_password">Password</string>
     <string name="sign_in">Sign in</string>
     <string name="login_failure">Username or password is incorrect</string>
+    <string name="login_oauth">Login with OAuth</string>
+    <string name="continue_no_login">Continue without logging in</string>
 
     <!-- Navigation drawer -->
     <string name="home">Home</string>
